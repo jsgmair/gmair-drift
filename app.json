@@ -1,8 +1,8 @@
 {
   "pages": [
-    
-    "pages/apply_detail/apply_detail",
     "pages/activity_detail/activity_detail",
+    "pages/apply_detail/apply_detail",
+   
     "pages/index/index",
     "pages/logs/logs"
   ],

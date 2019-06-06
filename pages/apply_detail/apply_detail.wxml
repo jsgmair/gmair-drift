@@ -1,7 +1,7 @@
 <!--pages/apply_detail/apply_detail.wxml-->
 <view class="page">
     <view class="page__hd">
-        <view class="page__title" style="color:#00a6e4">设备xxx</view>
+        <view class="page__title" style="color:#00a6e4">甲醛检测仪</view>
         <view class="page__desc">本甲醛检测仪完全满足GB/T 18204.2</view>
         <view class='page__desc'><text style="color:#00a6e4">活动时间：</text>2019-06-06 — 2019-07-10</view>
     </view>
@@ -73,8 +73,8 @@
                         <image class="weui-media-box__thumb" src="../../images/feedback.png" />
                     </view>
                     <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-                        <view class="weui-media-box__title">某某配件</view>
-                        <view class="weui-media-box__desc">某某配件详情</view>
+                        <view class="weui-media-box__title">检测试纸</view>
+                        <view class="weui-media-box__desc">用于检测空气质量</view>
                     </view>
                     <view>
                          <demo-block title="基础用法" padding><van-stepper value="{{ value1 }}" /></demo-block>
