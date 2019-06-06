@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "查看启动日志",
-  "usingComponents": {}
+  "usingComponents": {
+      "van-button": "/miniprogram_npm/vant-weapp/button/index"
+  }
 }

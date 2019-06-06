@@ -1,0 +1,95 @@
+<!--pages/apply_detail/apply_detail.wxml-->
+<view class="page">
+    <view class="page__hd">
+        <view class="page__title" style="color:#00a6e4">设备xxx</view>
+        <view class="page__desc">本甲醛检测仪完全满足GB/T 18204.2</view>
+        <view class='page__desc'><text style="color:#00a6e4">活动时间：</text>2019-06-06 — 2019-07-10</view>
+    </view>
+    <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">姓名</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="请输入姓名"/>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input weui-cell_vcode">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">手机号</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" type="number" placeholder="请输入手机号" />
+                </view>
+                <view class="weui-cell__ft">
+                    <view class="weui-vcode-btn">获取验证码</view>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input weui-cell_vcode">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">验证码</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" type="number" placeholder="请输入验证码" />
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input" bindtap='city_select'>
+                <view class="weui-cell__hd">
+                    <view class="weui-label" ><text>地址  </text><van-tag  class="demo-margin-right" plain type="primary" >省市区</van-tag></view>
+                </view>
+                <view class="weui-cell__bd">
+                    <view class="weui-input">{{address}}</view>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="请输入详细地址" />
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">开始时间</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker mode="date" bindchange="bindStartTimeChange">
+                        <view class="weui-input">{{start_date}}</view>
+                    </picker>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">使用天数</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker mode="date" bindchange="bindEndTimeChange">
+                        <view class="weui-input">5天</view>
+                    </picker>
+                </view>
+            </view>
+            
+            <view class="weui-panel__bd" style="border-top:0.2px solid #00A6E4">
+                <view  class="weui-media-box weui-media-box_appmsg" >
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image class="weui-media-box__thumb" src="../../images/feedback.png" />
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">某某配件</view>
+                        <view class="weui-media-box__desc">某某配件详情</view>
+                    </view>
+                    <view>
+                         <demo-block title="基础用法" padding><van-stepper value="{{ value1 }}" /></demo-block>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class='check'>
+                <checkbox value="{{item.name}}" checked="{{item.checked}}"/>我同意<text style='color:#00a6e4'>xx协议</text>
+            </view>
+            <view style="padding-bottom:60rpx">
+            <button class="weui-btn" type="primary" bindtap="acctivity_apply" hover-class='btn_hover'>提交订单并支付</button>
+            </view>
+             <van-action-sheet show="{{add_select}}" bind:close="toggleActionSheet1" bind:select="toggleActionSheet1">
+                <van-area  loading="{{ loading }}" area-list="{{ areaList }}"
+                 bind:cancel="onCityCancel" bind:confirm="onCityConfirm"/></van-action-sheet>
+</view>
+

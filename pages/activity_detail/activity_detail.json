@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "活动介绍",
+  "usingComponents": {
+     "van-overlay":"/miniprogram_npm/vant-weapp/popup/index",
+     "van-notice-bar":"/miniprogram_npm/vant-weapp/notice-bar/index"
+  }
+}
