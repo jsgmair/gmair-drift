@@ -6,3 +6,9 @@
    justify-content: center;
    align-items: center;
 }
+.weui-panel__hd:after{
+    border-bottom:none;
+}
+.weui-cell:after{
+  border-bottom:none;
+}
