@@ -33,7 +33,7 @@
           </view>
         </view>
       </view>
-      <van-notice-bar text="特别说明：这是一个特别说明，虽然我也不知道特别在哪，但它就是一个特别说明" left-icon="//img.yzcdn.cn/public_files/2017/8/10/6af5b7168eed548100d9041f07b7c616.png"/>
+      <van-notice-bar text="特别说明：这是一个特别说明，虽然我也不知道特别在哪，但它就是一个特别说明" left-icon="https://console.gmair.net/drift/alert.png"/>
       <view class="weui-cells weui-cells_after-title" style="font-size:14px">
         <view class="weui-cell">
           <view class="weui-cell__bd">当前预约人数</view>
