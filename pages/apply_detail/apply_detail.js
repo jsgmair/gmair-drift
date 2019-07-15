@@ -146,7 +146,9 @@ Page({
   check_submit_ready(name, phone, phone_true, code, code_send, address, address_detail, time, day_index, is_check){
     var submit_ready;
     var that=this;
-    if (name !== "" && phone !== "" && phone_true === true && code === code_send&&address !== "" && address_detail !== "" && time !== "" && day_index !== "" && is_check===true){
+    //将开始时间和使用天数删除后判断条件更改
+    // if (name !== "" && phone !== "" && phone_true === true && code === code_send&&address !== "" && address_detail !== "" && time !== "" && day_index !== "" && is_check===true){
+    if (name !== "" && phone !== "" && phone_true === true && code === code_send && address !== "" && address_detail !== "" && is_check === true) {
       submit_ready=true;
     }else{
       submit_ready=false;
