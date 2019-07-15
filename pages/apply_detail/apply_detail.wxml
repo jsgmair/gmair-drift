@@ -1,9 +1,9 @@
 <!--pages/apply_detail/apply_detail.wxml-->
 <view class="page">
     <view class="page__hd">
-        <view class="page__title" style="color:#00a6e4">甲醛检测仪</view>
-        <view class="page__desc">本甲醛检测仪完全满足GB/T 18204.2</view>
-        <view class='page__desc'><text style="color:#00a6e4">活动时间：</text>2019-06-06 — 2019-07-10</view>
+        <view class="page__title" style="color:#00a6e4">果麦#无醛计划#</view>
+        <view class="page__desc">人，一生中有2/3的时间在家度过，温馨的家也是我们的避风港。但很多家庭因装修、用材等原因，身体健康遭遇着室内甲醛污染的危害。果麦用爱行动，为爱发声，发起免费测甲醛的公益活动，果麦室内空气研究中心专业检测人员上门服务！</view>
+        <view class='page__desc'><text style="color:#00a6e4">活动时间：</text>2019-07-15 — 2019-08-31</view>
     </view>
     <view class="weui-cells__title">表单</view>
     <view class="weui-cells weui-cells_after-title">

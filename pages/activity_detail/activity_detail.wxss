@@ -1,4 +1,8 @@
 /* pages/activity_detail/activity_detail.wxss */
+.acti_index {
+  padding: 0rpx 0rpx;
+}
+
 .weui-panel__hd{
    padding:20rpx 50rpx;
 }
