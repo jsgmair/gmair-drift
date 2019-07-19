@@ -91,7 +91,7 @@
                 
             </view>
             <view style="padding-bottom:60rpx">
-            <button class="weui-btn" type="primary" disabled='{{!submit_ready}}' hover-class='btn_hover'>提交订单并支付</button>
+            <button class="weui-btn" type="primary" disabled='{{!submit_ready}}' hover-class='btn_hover' bindtap='submit_order'>提交订单并支付</button>
             </view>
              <van-action-sheet show="{{add_select}}" bind:close="toggleActionSheet1" bind:select="toggleActionSheet1">
                 <van-area  loading="{{ loading }}" area-list="{{ areaList }}"

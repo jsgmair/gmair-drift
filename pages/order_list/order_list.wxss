@@ -1,0 +1,7 @@
+/* pages/order_list/order_list.wxss */
+page{
+  height: 100%
+}
+.page{
+  height: 100%
+}

@@ -1,0 +1,7 @@
+/* pages/order_confirm/order_confirm.wxss */
+page{
+  height: 100%
+}
+.page{
+  height: 100%
+}

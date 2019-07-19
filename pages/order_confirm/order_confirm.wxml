@@ -1,0 +1,58 @@
+<!--pages/order_confirm/order_confirm.wxml-->
+<view class='page'>
+    <view class="page__bd">
+        <view class="weui-panel">
+            <view class="weui-panel__hd">订单编号：xxxxx12342xxx</view>
+            <view class="weui-panel__bd">
+                <view class="weui-media-box weui-media-box_text">
+                    <view class="weui-media-box__title weui-media-box__title_in-text">上海市浦东新区唐镇</view>
+                    <view class="weui-media-box__desc">云雅路400弄阳光花城同景苑6号602室</view>
+                    <view class="weui-media-box__info">
+                        <view class="weui-media-box__info__meta">张伦鸿</view>
+                        <view class="weui-media-box__info__meta">18260099285</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="weui-cells weui-cells_after-title" style='margin-top:20rpx;margin-bottom:20rpx'>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">支付方式</view>
+                <view class="weui-cell__ft">支付宝</view>
+            </view>
+        </view>
+         <view style="background-color:white">
+    <view class="weui-panel weui-panel_access">
+      <view class="weui-panel__hd" style="color:#00a6e4;font-size:17px;padding-bottom:0rpx">商品详情</view>
+      <view class="weui-panel__bd" style="border:none">
+      <view  class="weui-media-box weui-media-box_appmsg">
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+          <image class="weui-media-box__thumb" src="../../images/feedback.png" /></view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+          <view class="weui-media-box__title">甲醛检测仪</view>
+          <view class="weui-media-box__desc">本甲醛检测仪完全满足GB/T 18204.2《公共场所卫生检验方法 第2部分：化学污染物》7.4光电光度法要求。甲醛气体通过检测单元时，检测单元中浸有发色剂的纸因化学反应其颜色由白色变为黄色。变色的程度所引起反射光强度的变化与甲醛浓度呈函数关系，根据反射光量强度的变化率测定甲醛的浓度。待仪器达到试纸反应时间读取数值。</view>
+          </view>
+        </view>
+        <view  class="weui-media-box weui-media-box_appmsg">
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+          <image class="weui-media-box__thumb" src="../../images/feedback.png" /></view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+          <view class="weui-media-box__title">检测试纸</view>
+          <view class="weui-media-box__desc">超准确的检测试纸</view>
+          </view>
+          <view style="margin-right:30rpx">数量：4张</view>
+        </view>
+      </view>
+      
+      </view>
+      </view>
+    </view>
+    <demo-block title="基础用法">
+       <van-submit-bar
+         price="{{ 305 }}"
+         button-text="支付"
+         bind:submit="onClickButton"
+         custom-class="van-submit-bar"
+         safe-area-inset-bottom="{{ false }}"
+       />
+</demo-block>
+</view>
