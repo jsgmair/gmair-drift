@@ -32,18 +32,21 @@ Page({
     wx.request({
       url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + that.data.acitivity_id + '/profile',
       success: function(response) {
+        console.log(response)
         response = response.data;
         if(response.responseCode == 'RESPONSE_OK') {
           let item = response.data;
-          let start_date = util.formatTimeToDate(item.startTime);
-          let end_date = util.formatTimeToDate(item.endTime);
+          let start_date = util.formatTimeToDateCN(item.startTime);
+          let end_date = util.formatTimeToDateCN(item.endTime);
           that.setData({ act_name: item.activityName, act_desc: item.introduction, start_date: start_date, end_date: end_date, host: item.host, notification: '尊敬的用户, 本次活动——' + item.activityName + ', 由' + item.host + "发起, 活动时间为: " + start_date + '-' + end_date + ', 欢迎参加'});
         }
       }
     });
+    // console.log(that.data)
     wx.request({
       url: app.globalData.protocol + app.globalData.url + '/drift/order/summary?activityId=' + that.data.acitivity_id,
       success: function(response) {
+        // console.log(response)
         response = response.data
         if (response.responseCode == 'RESPONSE_OK') {
           let item = response.data

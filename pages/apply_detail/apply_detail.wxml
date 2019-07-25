@@ -1,11 +1,11 @@
 <!--pages/apply_detail/apply_detail.wxml-->
 <view class="page">
     <view class="page__hd">
-        <view class="page__title" style="color:#00a6e4">果麦#无醛计划#</view>
-        <view class="page__desc">人，一生中有2/3的时间在家度过，温馨的家也是我们的避风港。但很多家庭因装修、用材等原因，身体健康遭遇着室内甲醛污染的危害。果麦用爱行动，为爱发声，发起免费测甲醛的公益活动，果麦室内空气研究中心专业检测人员上门服务！</view>
-        <view class='page__desc'><text style="color:#00a6e4">活动时间：</text>2019-07-15 — 2019-08-31</view>
+        <view class="page__title" style="color:#00a6e4">{{act_name}}</view>
+        <view class="page__desc">{{act_desc}}</view>
+        <view class='page__desc'><text style="color:#00a6e4">活动时间：</text>{{start_date}} — {{end_date}}</view>
     </view>
-    <view class="weui-cells__title">表单</view>
+    <view class="weui-cells__title">个人信息</view>
     <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__hd">
@@ -50,7 +50,7 @@
                     <input class="weui-input" bindinput='detail_address_input' value='{{address_detail}}' placeholder="请输入详细地址" />
                 </view>
             </view>
-            <!-- <view class="weui-cell weui-cell_input">
+            <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__hd">
                     <view class="weui-label">开始时间</view>
                 </view>
@@ -62,15 +62,12 @@
             </view>
             <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__hd">
-                    <view class="weui-label">使用天数</view>
+                    <view class="weui-label">结束时间</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <picker  bindchange="day_length_change" value="{{day_index}}" range="{{day_list}}">
-                        <view class="weui-input">{{day_list[day_index]}}</view>
-                    </picker>
+                    <view class="weui-input">{{endtime}}</view>
                 </view>
-            </view> -->
-            
+            </view> 
             <view class="weui-panel__bd" style="border-top:0.2px solid #00A6E4">
                 <view  class="weui-media-box weui-media-box_appmsg" >
                     <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">

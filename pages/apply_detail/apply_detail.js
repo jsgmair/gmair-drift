@@ -1,11 +1,17 @@
 // pages/apply_detail/apply_detail.js
 const util = require('../../utils/util.js')
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    acitivity_id: 'ACT20190723a545nr39',
+    act_name: '',
+    act_desc: '',
+    start_date: '',//活动开始时间
+    end_date: '',//活动截止时间
     areaList:[],
     add_select:false,
     address:'',
@@ -16,11 +22,11 @@ Page({
     code_send:'',//后台返回的验证码
     code:'',
     address_detail:'',
-    start_time:"",//活动开始时间
-    end_time:"",//活动截止时间
     time:"",//个人选择时间
-    day_list:["3","5","7"],//从后台获取可选时间
-    day_index:0,
+    interval:5,
+    endtime:'2019-07-30',
+    // day_list:["3","5","7"],//从后台获取可选时间
+    // day_index:0,
     annex_num:1,
     is_check:false,
     submit_ready:false,
@@ -172,6 +178,20 @@ Page({
      this.setData({
         time:time,
      })
+    let that = this;
+    wx.request({
+      url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + that.data.acitivity_id + '/profile',
+      success: function (response) {
+        console.log(response)
+        response = response.data;
+        if (response.responseCode == 'RESPONSE_OK') {
+          let item = response.data;
+          let start_date = util.formatTimeToDate(item.startTime);
+          let end_date = util.formatTimeToDate(item.endTime);
+          that.setData({ act_name: item.activityName, act_desc: item.introduction, start_date: start_date, end_date: end_date, host: item.host, notification: '尊敬的用户, 本次活动——' + item.activityName + ', 由' + item.host + "发起, 活动时间为: " + start_date + '-' + end_date + ', 欢迎参加' });
+        }
+      }
+    });
   },
 
   /**

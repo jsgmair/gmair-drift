@@ -30,6 +30,15 @@ const formatTimeToDate=time=>{
   var year = today.getFullYear();
   var month = ('0' + (today.getMonth() + 1)).slice(-2).toString();
   var date = ('0' + today.getDate()).slice(-2).toString();
+  var date_string = year + "-" + month + "-" + date;
+  return date_string;
+}
+
+const formatTimeToDateCN = time => {
+  var today = new Date(time);
+  var year = today.getFullYear();
+  var month = ('0' + (today.getMonth() + 1)).slice(-2).toString();
+  var date = ('0' + today.getDate()).slice(-2).toString();
   var date_string = year + "年" + month + "月" + date + "日";
   return date_string;
 }
@@ -38,4 +47,5 @@ module.exports = {
   formatTime: formatTime,
   validate_mobile: validate_mobile,
   formatTimeToDate: formatTimeToDate,
+  formatTimeToDateCN: formatTimeToDateCN
 }
