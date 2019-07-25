@@ -14,7 +14,7 @@ App({
     wx.checkSession({
       success: function () {
         let openid = wx.getStorageSync('openid');
-        // console.log(openid)
+        console.log(openid)
         if (openid == undefined || openid == '') {
           // console.log('login')
           that.login();

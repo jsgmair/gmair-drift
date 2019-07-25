@@ -8,10 +8,10 @@
   </view>
 
   <view class="page__hd">
-    <view class="page__title" style="color:#00a6e4">果麦#无醛计划#</view>
-    <view class="page__desc">人，一生中有2/3的时间在家度过，温馨的家也是我们的避风港。但很多家庭因装修、用材等原因，身体健康遭遇着室内甲醛污染的危害。果麦用爱行动，为爱发声，发起免费测甲醛的公益活动，果麦室内空气研究中心专业检测人员上门服务！</view>
-    <view class='page__desc'><text style="color:#00a6e4">主办方：</text>果麦室内空气研究中心</view>
-    <view class='page__desc'><text style="color:#00a6e4">活动时间：</text>2019-07-15 — 2019-08-31</view>
+    <view class="page__title" style="color:#00a6e4">{{act_name}}</view>
+    <view class="page__desc">{{act_desc}}</view>
+    <view class='page__desc'><text style="color:#00a6e4">主办方：</text>{{host}}</view>
+    <view class='page__desc'><text style="color:#00a6e4">活动时间：</text>{{start_date}} — {{end_date}}</view>
   </view>
   <view class="page__bd" style="background-color:white">
     <view class="weui-panel weui-panel_access">
@@ -33,11 +33,11 @@
           </view>
         </view>
       </view>
-      <van-notice-bar text="特别说明：这是一个特别说明，虽然我也不知道特别在哪，但它就是一个特别说明" left-icon="https://console.gmair.net/drift/alert.png"/>
+      <van-notice-bar text="{{notification}}" left-icon="https://console.gmair.net/drift/alert.png"/>
       <view class="weui-cells weui-cells_after-title" style="font-size:14px">
         <view class="weui-cell">
           <view class="weui-cell__bd">当前预约人数</view>
-          <view class="weui-cell__ft">20人</view>
+          <view class="weui-cell__ft">{{registered_size}}人</view>
         </view>
       </view>
       <view class='choose_btn_view' style='margin-top:70rpx'>
