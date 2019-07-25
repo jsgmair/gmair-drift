@@ -114,8 +114,9 @@ Page({
     });
   },
   acctivity_apply(){
+    let activity_id = this.data.activity_id;
     wx.navigateTo({
-      url: '../apply_detail/apply_detail'
+      url: '../apply_detail/apply_detail?activityId=' + activity_id
     }) 
   }
 })
