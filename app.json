@@ -1,5 +1,6 @@
 {
   "pages": [
+    
     "pages/activity_detail/activity_detail",
     "pages/order_confirm/order_confirm",
     "pages/order_list/order_list",

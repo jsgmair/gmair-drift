@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    acitivity_id: 'ACT20190723a545nr39',
+    activity_id: 'ACT20190723a545nr39',
     act_name: '',
     act_desc: '',
     start_date: '',
@@ -29,8 +29,9 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
+    that.obtain_equip();
     wx.request({
-      url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + that.data.acitivity_id + '/profile',
+      url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + that.data.activity_id + '/profile',
       success: function(response) {
         console.log(response)
         response = response.data;
@@ -44,7 +45,7 @@ Page({
     });
     // console.log(that.data)
     wx.request({
-      url: app.globalData.protocol + app.globalData.url + '/drift/order/summary?activityId=' + that.data.acitivity_id,
+      url: app.globalData.protocol + app.globalData.url + '/drift/order/summary?activityId=' + that.data.activity_id,
       success: function(response) {
         // console.log(response)
         response = response.data
@@ -54,6 +55,27 @@ Page({
         }
       }
     });
+  },
+  //根据activityId获取equip详情
+  obtain_equip(){
+    let that = this;
+    wx.request({
+      url: app.globalData.protocol + app.globalData.url + '/drift/activity/getEquip/by/' + that.data.activity_id,
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+      },
+      success: function (response) {
+        console.log(response);
+        // response = response.data;
+        // if (response.responseCode == 'RESPONSE_OK') {
+        //   let openid = response.data;
+        //   wx.setStorage({
+        //     key: 'openid',
+        //     data: openid,
+        //   })
+        // }
+      }
+    })
   },
 
   /**
@@ -116,8 +138,9 @@ Page({
       }
     });
   },
-  acctivity_apply(){
+  activity_apply(){
     let activity_id = this.data.activity_id;
+    console.log(activity_id)
     wx.navigateTo({
       url: '../apply_detail/apply_detail?activityId=' + activity_id
     }) 
