@@ -7,8 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    acitivity_id: '',
-    equip_id:'EMI2019072394249w93',
+    activity_id: '',
+    equip_id:'',
     act_name: '',
     act_desc: '',
     start:'',
@@ -24,7 +24,7 @@ Page({
     name:'',
     phone:'',
     phone_true:false,
-    btn_text:"获取验证码",
+    btn_text:"获取手机号",
     code_send:'',//后台返回的验证码
     code:'',
     address_detail:'',
@@ -57,7 +57,7 @@ Page({
        city:value[1].name,
        district:value[2].name,
      })
-    this.check_submit_ready(this.data.name, this.data.phone, this.data.phone_true, this.data.code, this.data.code_send, address, this.data.address_detail, this.data.starttime, this.data.interval,this.data.is_check);
+    this.check_submit_ready(this.data.name, this.data.phone, address, this.data.address_detail, this.data.starttime, this.data.interval,this.data.is_check);
   },
   //城市选择取消
   onCityCancel(e){
@@ -70,7 +70,7 @@ Page({
       this.setData({
         name:e.detail.value,
       })
-    this.check_submit_ready(e.detail.value, this.data.phone, this.data.phone_true, this.data.code, this.data.code_send, this.data.address, this.data.address_detail, this.data.starttime, this.data.interval, this.data.is_check);
+    this.check_submit_ready(e.detail.value, this.data.phone, this.data.address, this.data.address_detail, this.data.starttime, this.data.interval, this.data.is_check);
   },
  //电话输入
   phone_input(e){
@@ -86,42 +86,63 @@ Page({
        phone_true:phone_true,
      })
      console.log(phone_true)
-    this.check_submit_ready(this.data.name, phone, phone_true, this.data.code, this.data.code_send, this.data.address, this.data.address_detail, this.data.starttime, this.data.interval, this.data.is_check);
+    this.check_submit_ready(this.data.name, phone,this.data.address, this.data.address_detail, this.data.starttime, this.data.interval, this.data.is_check);
   },
   //验证码按钮点击
   btn_obtain_click(e){
-    var that = this;
-    that.setData({
-       obtain_click:true,
-    })
-    if(e.currentTarget.dataset.isable===true){
-       var interval = 60;
-       that.setData({
-          phone_true:false,
-       })
-       var verification_interval = setInterval(() => {
-         interval = interval - 1;
-         that.setData({ btn_text: interval + 's后重发' });
-         if (interval < 0) {
-           that.setData({ btn_text: '获取验证码', obtain_click:false});
-           clearInterval(verification_interval);
-         }
-       }, 1000);
-     }
-     
+    let that = this;
+    let openid = wx.getStorageSync('openid')
+    // that.setData({
+    //    obtain_click:true,
+    // })
+    if (e.detail.errMsg === "getPhoneNumber:ok"){
+      let iv = e.detail.iv
+      let data = e.detail.encryptedData
+      wx.request({
+        url: app.globalData.protocol + app.globalData.url + '/drift/user/decode/phone',
+        method: 'POST',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+        },
+        data: {
+          openid: openid,
+          iv: iv,
+          data: data
+        },
+        success: function (response) {
+          response=response.data
+          if(response.responseCode==="RESPONSE_OK"){
+            that.setData({
+              phone:response.data
+            })
+          }
+        }
+      })
+    }
+    // if(e.currentTarget.dataset.isable===false){
+    //    var interval = 60;
+    //    var verification_interval = setInterval(() => {
+    //      interval = interval - 1;
+    //      that.setData({ btn_text: interval + 's后获取' });
+    //      if (interval < 0) {
+    //        that.setData({ btn_text: '获取手机号', obtain_click:false});
+    //        clearInterval(verification_interval);
+    //      }
+    //    }, 1000);
+    //  }
   },
   //验证码输入
   code_input(e){
      this.setData({
         code:e.detail.value,
      })
-    this.check_submit_ready(this.data.name, this.data.phone, this.data.phone_true, e.detail.values, this.data.code_send, this.data.address, this.data.address_detail, this.data.starttime, this.data.interval,this.data.is_check);
+    this.check_submit_ready(this.data.name, this.data.phone, this.data.address, this.data.address_detail, this.data.starttime, this.data.interval,this.data.is_check);
   },
   detail_address_input(e){
      this.setData({
         address_detail:e.detail.value,
      })
-    this.check_submit_ready(this.data.name, this.data.phone, this.data.phone_true, this.data.code, this.data.code_send, this.data.address, e.detail.value, this.data.starttime, this.data.interval, this.data.is_check);
+    this.check_submit_ready(this.data.name, this.data.phone, this.data.address, e.detail.value, this.data.starttime, this.data.interval, this.data.is_check);
   },
   //开始时间选择
   bindStartTimeChange(e){
@@ -130,7 +151,7 @@ Page({
         starttime:e.detail.value,
         endtime:endtime
      })
-    this.check_submit_ready(this.data.name, this.data.phone, this.data.phone_true, this.data.code, this.data.code_send, this.data.address, this.data.address_detail,e.detail.value, this.data.day_index);
+    this.check_submit_ready(this.data.name, this.data.phone, this.data.address, this.data.address_detail,e.detail.value, this.data.day_index);
   },
   //使用时长选择
   // day_length_change(e){
@@ -154,17 +175,17 @@ Page({
       }else{
         is_check=false;
       }
-    this.check_submit_ready(this.data.name, this.data.phone, this.data.phone_true, this.data.code, this.data.code_send, this.data.address, this.data.address_detail, this.data.starttime, this.data.interval, is_check);
+    this.check_submit_ready(this.data.name, this.data.phone, this.data.address, this.data.address_detail, this.data.starttime, this.data.interval, is_check);
       that.setData({
         is_check:is_check,
       })
   },
   //判断是否可以提交，满足姓名、手机号、验证码正确、地址、详细地址、开始时间、使用天数均已选择填写
-  check_submit_ready(name, phone, phone_true, code, code_send, address, address_detail, starttime, interval, is_check){
+  check_submit_ready(name, phone,address, address_detail, starttime, interval, is_check){
     var submit_ready;
     var that=this;
     //将开始时间和使用天数删除后判断条件更改
-    if (name !== "" && phone !== "" && phone_true === true && code === code_send&&address !== "" && address_detail !== "" && starttime !== ""&&interval!==''&&is_check===true){
+    if (name !== "" && phone !== ""&&address !== "" && address_detail !== "" && starttime !== ""&&interval!==''&&is_check===true){
     // if (name !== "" && phone !== "" && phone_true === true && code === code_send && address !== "" && address_detail !== "" && is_check === true) {
       submit_ready=true;
     }else{
@@ -179,12 +200,16 @@ Page({
     this.setData({
       submit_ready:false,
     })
+    // console.log(that.data)
     wx.request({
       url: app.globalData.protocol + app.globalData.url + '/drift/order/create',
       method:'POST',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+      },
       data:{
         consumerId: wx.getStorageSync('openid'),
-        activityId:that.data.acitivity_id,
+        activityId:that.data.activity_id,
         equipId:that.data.equip_id,
         consignee:that.data.name,
         phone:that.data.phone,
@@ -198,16 +223,18 @@ Page({
         itemQuantity:that.data.annex_num
       },
       success: function (response) {
-        console.log(response)
+        // console.log(response)
         response = response.data;
         if (response.responseCode == 'RESPONSE_OK') {
-          
+          console.log(response)
+          let orderId = response.data.orderId
+          wx.redirectTo({
+             url: '../order_confirm/order_confirm?orderId='+orderId
+          })
         }
       }
     });
-    // wx.navigateTo({
-    //   url: '../order_confirm/order_confirm'
-    // })
+    
   },
   formatStartTime(start_date,new_date){
     // console.log(new_date.getTime())
@@ -230,10 +257,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    // console.log(options)
     let activity_id = options.activityId
+    let equip_id = options.equipId
+    // console.log(activity_id)
      this.setData({
-        activity_id:activity_id
+        activity_id:activity_id,
+        equip_id: equip_id
      })
     let that = this;
     wx.request({

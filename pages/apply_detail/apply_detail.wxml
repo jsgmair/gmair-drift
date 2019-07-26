@@ -21,20 +21,23 @@
                     <view class="weui-label">手机号</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input class="weui-input" type="number" bindinput='phone_input' placeholder="请输入手机号" />
+                    <view class="weui-input">{{phone}}</view>
                 </view>
+                <!-- <view class="weui-cell__bd">
+                    <input class="weui-input" type="number" bindinput='phone_input' placeholder="请输入手机号" />
+                </view> -->
                 <view class="weui-cell__ft">
-                     <van-button type="info" class="demo-margin-right" bindtap='btn_obtain_click' data-isable="{{phone_true}}" disabled='{{!phone_true||obtain_click}}'>{{btn_text}}</van-button>
+                     <van-button type="info" class="demo-margin-right"  data-isable="{{phone_true}}" disabled='{{phone_true||obtain_click}}' open-type="getPhoneNumber" bindgetphonenumber='btn_obtain_click'>{{btn_text}}</van-button>
                 </view>
             </view>
-            <view class="weui-cell weui-cell_input weui-cell_vcode">
+            <!-- <view class="weui-cell weui-cell_input weui-cell_vcode">
                 <view class="weui-cell__hd">
                     <view class="weui-label">验证码</view>
                 </view>
                 <view class="weui-cell__bd">
                     <input class="weui-input" type="number" bindinput='code_input' value='{{code}}' placeholder="请输入验证码"/>
                 </view>
-            </view>
+            </view> -->
         </view>
         <view class="weui-cells__title">信息详情</view>
     <view class="weui-cells weui-cells_after-title">

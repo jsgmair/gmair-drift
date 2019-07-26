@@ -22,6 +22,8 @@ Page({
       type: String,
       value: ''
     },
+    equip_id:'',
+    equip_name:''
   },
 
   /**
@@ -66,14 +68,13 @@ Page({
       },
       success: function (response) {
         console.log(response);
-        // response = response.data;
-        // if (response.responseCode == 'RESPONSE_OK') {
-        //   let openid = response.data;
-        //   wx.setStorage({
-        //     key: 'openid',
-        //     data: openid,
-        //   })
-        // }
+        response = response.data;
+        if (response.responseCode == 'RESPONSE_OK') {
+          that.setData({
+            equip_id:response.data[0].equipmentId,
+            equip_name:response.data[0].equipmentName
+          })
+        }
       }
     })
   },
@@ -140,9 +141,10 @@ Page({
   },
   activity_apply(){
     let activity_id = this.data.activity_id;
-    console.log(activity_id)
+    let equip_id = this.data.equip_id;
+    // console.log(activity_id)
     wx.navigateTo({
-      url: '../apply_detail/apply_detail?activityId=' + activity_id
+      url: '../apply_detail/apply_detail?activityId=' + activity_id + '&equipId='+equip_id
     }) 
   }
 })

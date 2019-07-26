@@ -5,14 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    order_id:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let that=this;
+    let order_id=options.order_id;
+    that.setData({
+      order_id:order_id
+    })
   },
 
   /**
