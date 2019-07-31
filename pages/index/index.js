@@ -12,7 +12,7 @@ Page({
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
-      url: '../activity_detail/activity_detail'
+      url: '/pages/activity_detail/activity_detail'
     })
   },
   onLoad: function () {

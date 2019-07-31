@@ -22,7 +22,7 @@
         </view>
          <view style="background-color:white">
     <view class="weui-panel weui-panel_access">
-      <view class="weui-panel__hd" style="color:#00a6e4;font-size:17px;padding-bottom:0rpx">商品详情</view>
+      <view class="weui-panel__hd" style="color:#00a6e4;font-size:17px;padding-bottom:16rpx;padding-top:14rpx">商品详情</view>
       <view class="weui-panel__bd" style="border:none">
       <view  class="weui-media-box weui-media-box_appmsg">
         <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">

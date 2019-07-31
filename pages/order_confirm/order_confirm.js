@@ -8,6 +8,7 @@ Page({
    */
   data: {
     order_id:"",
+    // order_id: "GMO201907319v2whh49",
     address:'',
     address_detail:'',
     name:'',
@@ -53,18 +54,39 @@ Page({
         console.log(response)
         response = response.data
         if (response.responseCode === "RESPONSE_OK") {
+          console.log(response.data.timeStamp)
             wx.requestPayment({
-              timeStamp: response.data[0].tradeStartTime+'',
-              nonceStr: response.data[0].tradeNonceStr,
-              package: response.data[0].tradeId,
-              signType: 'MD5',
-              paySign: response.data[0].tradeOpenId,
+              timeStamp: response.data.timeStamp,
+              nonceStr: response.data.nonceStr,
+              package: response.data.package,
+              signType: response.data.signType,
+              paySign: response.data.paySign,
               // total_fee: response.data[0].total_fee,
               success(res) {
-                console.log(res)
+                // wx.showToast({
+                //   title: '支付成功',
+                //   icon: 'success',
+                //   duration: 2000
+                // })
+                console.log('success')
+                wx.switchTab({
+                  url: '/pages/order_list/order_list'
+                })
+                // setTimeout(() => {
+                //   wx.redirectTo({
+                //     url: "/pages/apply_detail/apply_detail"
+                //   })
+                // }, 1000)
+                // setTimeout(function(){
+                  
+                // },2000)
               },
               fail(res) {
-                console.log(res)
+                // wx.showToast({
+                //   title: '支付失败',
+                //   icon: 'none',
+                //   duration: 2000
+                // })
               }
           })
         }
@@ -82,6 +104,7 @@ Page({
     that.setData({
       order_id:order_id
     })
+    // this.obtain_order_detail(this.data.order_id)
   },
 
   /**

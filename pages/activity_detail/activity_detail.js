@@ -49,7 +49,7 @@ Page({
     wx.request({
       url: app.globalData.protocol + app.globalData.url + '/drift/order/summary?activityId=' + that.data.activity_id,
       success: function(response) {
-        // console.log(response)
+        console.log(response)
         response = response.data
         if (response.responseCode == 'RESPONSE_OK') {
           let item = response.data
@@ -144,7 +144,7 @@ Page({
     let equip_id = this.data.equip_id;
     // console.log(activity_id)
     wx.navigateTo({
-      url: '../apply_detail/apply_detail?activityId=' + activity_id + '&equipId='+equip_id
+      url: '/pages/apply_detail/apply_detail?activityId=' + activity_id + '&equipId='+equip_id
     }) 
   }
 })

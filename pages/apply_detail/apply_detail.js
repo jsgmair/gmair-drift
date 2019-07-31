@@ -229,7 +229,7 @@ Page({
           console.log(response)
           let orderId = response.data.orderId
           wx.redirectTo({
-             url: '../order_confirm/order_confirm?orderId='+orderId
+             url: '/pages/order_confirm/order_confirm?orderId='+orderId
           })
         }
       }
