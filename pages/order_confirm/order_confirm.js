@@ -8,12 +8,13 @@ Page({
    */
   data: {
     order_id:"",
-    // order_id: "GMO201907319v2whh49",
+    // order_id: "GMO20190731oa7hx818",
     address:'',
     address_detail:'',
     name:'',
     phone:'',
     equip_name:'',
+    annux_name:'',
     item_quantity:'',
     realPay:''
   },
@@ -35,7 +36,8 @@ Page({
             name: response.data.consignee,
             phone: response.data.phone,
             equip_name: response.data.list[0].itemName,
-            item_quantity: response.data.list[0].quantity,
+            annux_name: response.data.list[1].itemName,
+            item_quantity: response.data.list[1].quantity,
             realPay:response.data.realPay*100
           })
         }
