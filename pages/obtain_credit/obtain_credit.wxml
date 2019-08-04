@@ -1,0 +1,14 @@
+<!--pages/obtain_credit/obtain_credit.wxml-->
+<!-- <web-view src="{{web_src}}"></web-view> -->
+<view>
+<view class='url_qrcode'>
+<canvas class='canvas' canvas-id='canvas'></canvas>
+</view>
+<text class='msg'>请对当前页面截图，然后使用<text class='bold_font'>支付宝扫描二维码</text>获取芝麻信用才能继续使用，感谢您的配合</text>
+<view class='blank'></view>
+<view class='msg2'>如若已经完成认证，请点击下方按钮返回活动页</view>
+<view class='blank'></view>
+<view class='choose_btn_view'>
+    <button style="width:66%" class="weui-btn" type="primary" bindtap="backToActivity" hover-class='btn_hover'>已经完成认证</button>
+</view>
+</view>

@@ -2,11 +2,13 @@
   "pages": [
     
     "pages/activity_detail/activity_detail",
-    "pages/order_confirm/order_confirm",
     "pages/order_list/order_list",
+    "pages/obtain_credit/obtain_credit",
+    "pages/order_confirm/order_confirm",
     "pages/apply_detail/apply_detail",
     "pages/index/index",
     "pages/logs/logs"
+    
   ],
   "tabBar": {
     "selectedColor": "#00A6E4",
@@ -14,7 +16,7 @@
       {
         "pagePath": "pages/activity_detail/activity_detail",
         "iconPath": "./images/activity.png",
-        "selectedIconPath":"./images/activity_select.png",
+        "selectedIconPath": "./images/activity_select.png",
         "text": "活动"
       },
       {

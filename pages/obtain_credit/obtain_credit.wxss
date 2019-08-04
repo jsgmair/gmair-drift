@@ -1,0 +1,31 @@
+/* pages/obtain_credit/obtain_credit.wxss */
+.url_qrcode{
+  padding: 150rpx 20rpx;
+  display: flex;
+  flex: 1;
+  justify-content: center
+}
+.canvas{
+  width: 150px
+}
+.msg{
+  display: flex;
+  flex: 1;
+  padding: 0 100rpx;
+  text-align: center;
+  font-size: 26rpx
+}
+.bold_font{
+  /* font-size: 30rpx; */
+  color:#00A6E4;
+}
+.blank{
+  height: 100rpx
+}
+.msg2{
+  display: flex;
+  flex: 1;
+  padding: 0 180rpx;
+  text-align: center;
+  font-size: 26rpx
+}
