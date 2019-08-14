@@ -6,13 +6,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    size: 0,
+    order_list: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this;
     let openid = wx.getStorageSync('openid')
     wx.request({
       url: app.globalData.protocol + app.globalData.url + '/drift/order/'+openid+'/list',
@@ -20,7 +22,12 @@ Page({
         "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
       },
       success: function (response) {
-        console.log(response);
+        response = response.data
+        if(response.responseCode == 'RESPONSE_OK') {
+          let orders = response.data;
+          console.log(orders)
+          that.setData({size: orders.length, order_list: orders})
+        }
       }
     })
   },
