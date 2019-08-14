@@ -17,6 +17,7 @@ Page({
     host: '',
     registered_size: 0,
     notification: '',
+    thumbnails: [],
     areaList:[],
     leftIcon: {
       type: String,
@@ -32,31 +33,67 @@ Page({
   onLoad: function (options) {
     let that = this;
     that.obtain_equip();
+    //获取活动信息
     wx.request({
       url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + that.data.activity_id + '/profile',
       success: function(response) {
-        console.log(response)
+        // console.log(response)
         response = response.data;
         if(response.responseCode == 'RESPONSE_OK') {
           let item = response.data;
           let start_date = util.formatTimeToDateCN(item.startTime);
           let end_date = util.formatTimeToDateCN(item.endTime);
-          that.setData({ act_name: item.activityName, act_desc: item.introduction, start_date: start_date, end_date: end_date, host: item.host, notification: '尊敬的用户, 本次活动——' + item.activityName + ', 由' + item.host + "发起, 活动时间为: " + start_date + '-' + end_date + ', 欢迎参加'});
+          that.setData({ act_name: item.activityName, act_desc: item.introduction, start_date: start_date, end_date: end_date, host: item.host});
         }
       }
     });
+    //获取活动图片信息
+    wx.request({
+      url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + that.data.activity_id + '/thumbnail',
+      success: function(response) {
+        response = response.data;
+        // console.log(JSON.stringify(response.data))
+        if(response.responseCode == 'RESPONSE_OK') {
+          response = response.data;
+          let paths = [];
+          for (let i = 0; i < response.length; i ++) {
+            paths.push(response[i].thumbnailPath)
+          }
+          // console.log(paths)
+          that.setData({ thumbnails: paths})
+        }
+      } 
+    })
     // console.log(that.data)
+    //获取活动的报名人数
     wx.request({
       url: app.globalData.protocol + app.globalData.url + '/drift/order/summary?activityId=' + that.data.activity_id,
       success: function(response) {
-        console.log(response)
         response = response.data
+        // console.log(JSON.stringify(response))
         if (response.responseCode == 'RESPONSE_OK') {
           let item = response.data
           that.setData({registered_size: item.size})
         }
       }
     });
+    //获取活动的通知信息
+    wx.request({
+      url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + that.data.activity_id + '/notification',
+      success: function(response) {
+        response = response.data;
+        if(response.responseCode == 'RESPONSE_OK') {
+          let list = response.data;
+          let message = '';
+          // console.log(JSON.stringify(list[0].context))
+          for (let i = 0; i < list.length; i++) {
+            message += list[i].context;
+          }
+          // console.log(message)
+          that.setData({ notification: message})
+        }
+      }
+    })
   },
   //根据activityId获取equip详情
   obtain_equip(){
@@ -67,7 +104,6 @@ Page({
         "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
       },
       success: function (response) {
-        console.log(response);
         response = response.data;
         if (response.responseCode == 'RESPONSE_OK') {
           that.setData({
@@ -152,7 +188,6 @@ Page({
       success: function (response) {
         response = response.data;
         if (response.responseCode == 'RESPONSE_OK') {
-          console.log(response)
            wx.navigateTo({
              url: '/pages/obtain_credit/obtain_credit'
           }) 

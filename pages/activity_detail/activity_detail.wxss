@@ -17,3 +17,7 @@
 .weui-panel__hd:after{
     border-bottom:none;
 }
+
+.weui-article__section {
+  text-align: center;
+}
