@@ -3,7 +3,7 @@
 .page{
     background-color: #F8F8F8;
     font-size: 30rpx;
-    font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+    font-family: -apple-system-font,Helvetica,Helvetica Neue,sans-serif;
     font-weight: 200;
 }
 .page__hd {

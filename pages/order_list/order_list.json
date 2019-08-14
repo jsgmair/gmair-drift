@@ -1,4 +1,7 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText": "订单列表"
+  "navigationBarTitleText": "订单列表",
+  "usingComponents": {
+    "van-icon": "/miniprogram_npm/vant-weapp/icon/index",
+    "van-tag": "/miniprogram_npm/vant-weapp/tag/index"
+  }
 }

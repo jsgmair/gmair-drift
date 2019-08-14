@@ -178,26 +178,29 @@ Page({
   activity_apply(){
     let activity_id = this.data.activity_id;
     let equip_id = this.data.equip_id;
-    let openid = wx.getStorageSync('openid')
-    // console.log(activity_id)
-    wx.request({
-      url: app.globalData.protocol + app.globalData.url + '/drift/user/score?openid='+openid,
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
-      },
-      success: function (response) {
-        response = response.data;
-        if (response.responseCode == 'RESPONSE_OK') {
-           wx.navigateTo({
-             url: '/pages/obtain_credit/obtain_credit'
-          }) 
-        }else {
-          wx.navigateTo({
-            url: '/pages/apply_detail/apply_detail?activityId=' + activity_id + '&equipId=' + equip_id
-          })
-        }
-      }
+    // let openid = wx.getStorageSync('openid');
+    wx.navigateTo({
+      url: '/pages/apply_detail/apply_detail?activityId=' + activity_id + '&equipId=' + equip_id
     })
+    // console.log(activity_id)
+    // wx.request({
+    //   url: app.globalData.protocol + app.globalData.url + '/drift/user/score?openid='+openid,
+    //   header: {
+    //     "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+    //   },
+    //   success: function (response) {
+    //     response = response.data;
+    //     if (response.responseCode == 'RESPONSE_OK') {
+    //        wx.navigateTo({
+    //          url: '/pages/obtain_credit/obtain_credit'
+    //       }) 
+    //     }else {
+    //       wx.navigateTo({
+    //         url: '/pages/apply_detail/apply_detail?activityId=' + activity_id + '&equipId=' + equip_id
+    //       })
+    //     }
+    //   }
+    // })
    
   }
 })

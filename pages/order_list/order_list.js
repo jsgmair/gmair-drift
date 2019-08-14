@@ -1,4 +1,5 @@
 // pages/order_list/order_list.js
+var util = require("../../utils/util.js");
 const app = getApp();
 Page({
 
@@ -7,7 +8,8 @@ Page({
    */
   data: {
     size: 0,
-    order_list: []
+    order_list: [],
+    time:'',
   },
 
   /**
@@ -25,6 +27,9 @@ Page({
         response = response.data
         if(response.responseCode == 'RESPONSE_OK') {
           let orders = response.data;
+          for (let i =0 ;i<orders.length;i++){
+            orders[i].time = util.formatTimeToDateCN(orders[i].expectedDate) + '至' + util.formatTimeToDateCN(orders[i].expectedDate + orders[i].intervalDate * 86400000)
+          }
           console.log(orders)
           that.setData({size: orders.length, order_list: orders})
         }

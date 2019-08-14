@@ -1,25 +1,42 @@
 <!--pages/order_list/order_list.wxml-->
 <!--pages/order_confirm/order_confirm.wxml-->
 <view class='page'>
-  <view class="page__bd" style='padding-top:20rpx'>      
-    <view style='margin-bottom:20rpx'>
-      <view class="weui-panel weui-panel_access">
-      <block wx:for="{{order_list}}" wx:key="item.orderId">
-      <view class="weui-panel__hd" style="font-size:17px;padding-bottom:10rpx">订单编号：{{item.orderId}}</view>
-      <view class="weui-panel__bd" style="border:none">
-        <view  class="weui-media-box weui-media-box_appmsg">
-          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="../../images/feedback.png" />
-          </view>
-          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <view class="weui-media-box__title">甲醛检测仪</view>
-            <view class="weui-media-box__desc">本甲醛检测仪完全满足GB/T 18204.2《公共场所卫生检验方法 第2部分：化学污染物》7.4光电光度法要求。甲醛气体通过检测单元时，检测单元中浸有发色剂的纸因化学反应其颜色由白色变为黄色。变色的程度所引起反射光强度的变化与甲醛浓度呈函数关系，根据反射光量强度的变化率测定甲醛的浓度。待仪器达到试纸反应时间读取数值。</view>
-          </view>
-        </view>
+  <view class="page__bd" style='padding-top:20rpx;'>      
+      <view class='item'  wx:for="{{order_list}}" wx:key="item.orderId">
+         <view class='item_header'>
+            <view class='header_1'>
+              <van-icon name="shop-o" size="42rpx" custom-class="icon" color='red'/>
+            </view>
+            <view class='header_2'>
+              订单编号:{{item.orderId}}
+            </view>
+            <view class='header_3'>
+              <van-tag class="demo-margin-right" plain type="success">支付成功</van-tag>
+            </view>
+         </view>
+         <view class='item_content'>
+            <view class='content_1'>
+               <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                  <image class="weui-media-box__thumb" src="../../images/feedback.png" />
+               </view>
+            </view>
+            <view class='content_2'>
+               <view class="weui-media-box__title">{{item.list[0].itemName}} x {{item.list[0].quantity}}</view>
+               <view class="weui-media-box__desc">本甲醛检测仪完全满足GB/T 18204.2《公共场所卫生检验方法 第2部分：化学污染物》7.4光电光度法要求。甲醛气体通过检测单元时，检测单元中浸有发色剂的纸因化学反应其颜色由白色变为黄色。变色的程度所引起反射光强度的变化与甲醛浓度呈函数关系，根据反射光量强度的变化率测定甲醛的浓度。待仪器达到试纸反应时间读取数值。</view>
+            </view>
+            <view class='content_3'>
+              {{item.list[1].itemName}} x {{item.list[1].quantity}}
+            </view>
+         </view>
+         <view class='item_footer'>
+            <view class='footer_1'>
+            下单日期:{{item.time}}
+            </view>
+            <view class='footer_2'>
+              合计<span style='color:red'>{{item.realPay}}</span>元
+            </view>
+         </view>
       </view>
-    </block>
-    </view>
-    </view>
     </view>
 </view>
 
