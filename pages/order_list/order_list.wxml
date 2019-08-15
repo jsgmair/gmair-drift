@@ -1,7 +1,11 @@
 <!--pages/order_list/order_list.wxml-->
 <!--pages/order_confirm/order_confirm.wxml-->
 <view class='page'>
-  <view class="page__bd" style='padding-top:20rpx;'>      
+  <view wx:if="{{size === 0}}" class='nodata'>
+      <van-icon name="todo-list-o" size="80rpx" custom-class="icon" color='#00A6E4'/>
+      <view>您还没有相关的订单</view>
+  </view>
+  <view class="page__bd" style='padding-top:20rpx;' wx:else>      
       <view class='item'  wx:for="{{order_list}}" wx:key="item.orderId"  wx:for-item="item" bindtap='listClick' data-id="{{item.orderId}}">
          <view class='item_header'>
             <view class='header_1'>
@@ -13,7 +17,7 @@
             <view class='header_3'>
               <van-tag class="demo-margin-right" plain type="primary" wx:if="{{item.status == 'APPLIED'}}">等待支付</van-tag>
               <van-tag class="demo-margin-right" plain type="danger" wx:if="{{item.status ==='PAYED'}}">支付完成</van-tag>
-              <van-tag class="demo-margin-right" plain type="danger" wx:if="{{item.status === 'CONFIRMED'}}">正在确认</van-tag>
+              <van-tag class="demo-margin-right" plain type="danger" wx:if="{{item.status === 'CONFIRMED'}}">处理中</van-tag>
               <van-tag class="demo-margin-right" plain type="success" wx:if="{{item.status === 'DELIVERED'}}">已发货</van-tag>
               <van-tag class="demo-margin-right" plain type="success" wx:if="{{item.status === 'FINISHED'}}">交易完成</van-tag>
               <van-tag class="demo-margin-right" plain wx:if="{{item.status === 'CLOSED'}}">交易关闭</van-tag>

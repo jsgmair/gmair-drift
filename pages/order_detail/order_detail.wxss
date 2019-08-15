@@ -1,0 +1,53 @@
+/* pages/order_detail/order_detail.wxss */
+page{
+  height: 100%;
+}
+.page{
+  height: 100%;
+  overflow: scroll;
+}
+.status{
+  background: #00A6E4;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  padding: 40rpx 0rpx 50rpx 0rpx;
+  color: white;
+  font-size: 40rpx
+}
+.item{
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+.left{
+  display: flex;
+  flex: 2;
+}
+.right{
+  display: flex;
+  flex: 1;
+  justify-content: flex-end
+}
+.item_panel{
+  background: white;
+  margin-top:20rpx;
+  padding:15px;
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+.panel_left{
+  display: flex;
+  flex: 1;
+}
+.panel_right{
+  display: flex;
+  flex: 3;
+  justify-content: flex-end
+}
+.input{
+  border: 1px solid #d9d9d9;
+  margin:20rpx;
+  padding:10rpx 5rpx;
+}

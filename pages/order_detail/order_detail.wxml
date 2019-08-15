@@ -1,0 +1,65 @@
+<!--pages/order_confirm/order_confirm.wxml-->
+<view class='page'>
+    <view class='status' wx:if="{{status === 'APPLIED'}}">等待支付</view>
+    <view class='status' wx:if="{{status === 'PAYED'}}">支付完成</view>
+    <view class='status' wx:if="{{status === 'CONFIRMED'}}">处理中</view>
+    <view class='status' wx:if="{{status === 'DELIVERED'}}">已发货</view>
+    <view class='status' wx:if="{{status === 'FINISHED'}}">交易完成</view>
+    <view class='status' wx:if="{{status === 'CLOSED'}}">交易关闭</view>
+    <view class='status' wx:if="{{status === 'CANCELED'}}">交易取消</view>
+    <view class="page__bd">
+        <view class="weui-panel" style='margin-bottom:20rpx'>
+            <view class="weui-panel__hd item">
+               <view class='left'>订单编号：{{order_id}}</view>
+               <view class='right'>合计{{realPay}}元</view>
+            </view>
+            <view class="weui-panel__bd">
+                <view class="weui-media-box weui-media-box_text">
+                    <view class="weui-media-box__title weui-media-box__title_in-text">{{address}}</view>
+                    <view class="weui-media-box__desc">{{address_detail}}</view>
+                    <view class="weui-media-box__info">
+                        <view class="weui-media-box__info__meta">{{name}}</view>
+                        <view class="weui-media-box__info__meta">{{phone}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+         <view style="background-color:white">
+       <view class="weui-panel weui-panel_access">
+      <view class="weui-panel__hd" style="color:#00a6e4;font-size:17px;padding-bottom:16rpx;padding-top:14rpx">商品详情</view>
+      <view class="weui-panel__bd" style="border:none">
+      <view  class="weui-media-box weui-media-box_appmsg">
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+          <image class="weui-media-box__thumb" src="https://console.gmair.net/drift/device_1.jpeg" /></view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+          <view class="weui-media-box__title">{{equip_name}}</view>
+          <view class="weui-media-box__desc">本甲醛检测仪完全满足GB/T 18204.2《公共场所卫生检验方法 第2部分：化学污染物》7.4光电光度法要求。甲醛气体通过检测单元时，检测单元中浸有发色剂的纸因化学反应其颜色由白色变为黄色。变色的程度所引起反射光强度的变化与甲醛浓度呈函数关系，根据反射光量强度的变化率测定甲醛的浓度。待仪器达到试纸反应时间读取数值。</view>
+          </view>
+        </view>
+        <view  class="weui-media-box weui-media-box_appmsg">
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+          <image class="weui-media-box__thumb" src="../../images/feedback.png" /></view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+          <view class="weui-media-box__title">{{annux_name}}</view>
+          <!-- <view class="weui-media-box__desc">甲醛检测试纸</view> -->
+          </view>
+          <view style="margin-right:30rpx">数量：{{item_quantity}}张</view>
+        </view>
+      </view>
+      </view>
+      </view>
+      <view class="item_panel">
+        <view class="panel_left">下单日期</view>
+        <view class="panel_right">{{time}}</view>
+      </view>
+      <view class='choose_btn_view' style='margin-top:70rpx' wx:if="{{status === 'APPLIED'}}">
+        <button class="weui-btn" type="primary" bindtap="toPay" hover-class='btn_hover'>前往支付</button>
+      </view>
+      <view class='choose_btn_view' style='margin-top:70rpx' wx:if="{{status === 'DELIVERED'}}">
+        <modal hidden="{{modal_hidden}}" title="填写寄回单号" confirm-text="确认提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">
+            <input class='input' placeholder="填写寄回单号" auto-focus/>
+        </modal>
+        <button class="weui-btn" type="primary" bindtap="addOrder" hover-class='btn_hover'>填写寄回单号</button>
+      </view>
+    </view>
+</view>
