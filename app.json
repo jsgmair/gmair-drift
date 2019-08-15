@@ -1,14 +1,14 @@
 {
   "pages": [
-    
     "pages/activity_detail/activity_detail",
     "pages/order_list/order_list",
+    
     "pages/obtain_credit/obtain_credit",
     "pages/order_confirm/order_confirm",
     "pages/apply_detail/apply_detail",
     "pages/index/index",
-    "pages/logs/logs"
-    
+    "pages/logs/logs",
+    "pages/order_detail/order_detail"
   ],
   "tabBar": {
     "selectedColor": "#00A6E4",

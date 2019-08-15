@@ -1,25 +1,32 @@
 /* pages/order_list/order_list.wxss */
+page{
+  height: 100%;
+}
 .page{
   height: 100%;
+  overflow: scroll;
 }
 .weui-media-box__title{
   font-size: 30rpx;
-  padding-bottom: 5rpx;
+  padding-bottom: 10rpx;
 }
 .weui-media-box__desc{
   font-size: 20rpx;
 }
 .item{
-  padding:20rpx 30rpx;
+  padding:30rpx 30rpx;
   margin-bottom: 20rpx;
   background:white;
+}
+.item:active{
+  background-color:  #e6e6e6
 }
 .item_header{
   display: flex;
   flex: 1;
   width: 100%;
   font-size: 26rpx;
-  padding-bottom: 10rpx;
+  padding-bottom: 15rpx;
 }
 .header_1{
   display: flex;
@@ -33,6 +40,7 @@
   display: flex;
   flex: 3;
   justify-content: flex-end;
+  z-index: 100;
 }
 .item_content{
   display: flex;
@@ -40,7 +48,7 @@
   width: 100%;
   align-items: center;
   font-size: 28rpx;
-  padding-bottom: 20rpx;
+  padding-bottom: 25rpx;
 }
 .content_1{
   display: flex;
@@ -66,6 +74,7 @@
 .footer_1{
   display: flex;
   flex: 3;
+  color: #00A6E4
 }
 .footer_2{
   display: flex;

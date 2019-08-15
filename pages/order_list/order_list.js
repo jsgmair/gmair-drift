@@ -11,6 +11,13 @@ Page({
     order_list: [],
     time:'',
   },
+  listClick (e) {
+    console.log(e)
+    let orderId = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/order_detail/order_detail?orderId=' + orderId
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -28,7 +35,7 @@ Page({
         if(response.responseCode == 'RESPONSE_OK') {
           let orders = response.data;
           for (let i =0 ;i<orders.length;i++){
-            orders[i].time = util.formatTimeToDateCN(orders[i].expectedDate) + '至' + util.formatTimeToDateCN(orders[i].expectedDate + orders[i].intervalDate * 86400000)
+            orders[i].time = util.formatTimeToDate(orders[i].expectedDate) + '至' + util.formatTimeToDate(orders[i].expectedDate + orders[i].intervalDate * 86400000)
           }
           console.log(orders)
           that.setData({size: orders.length, order_list: orders})
@@ -48,7 +55,25 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this;
+    let openid = wx.getStorageSync('openid')
+    wx.request({
+      url: app.globalData.protocol + app.globalData.url + '/drift/order/' + openid + '/list',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+      },
+      success: function (response) {
+        response = response.data
+        if (response.responseCode == 'RESPONSE_OK') {
+          let orders = response.data;
+          for (let i = 0; i < orders.length; i++) {
+            orders[i].time = util.formatTimeToDateCN(orders[i].expectedDate) + '至' + util.formatTimeToDateCN(orders[i].expectedDate + orders[i].intervalDate * 86400000)
+          }
+          console.log(orders)
+          that.setData({ size: orders.length, order_list: orders })
+        }
+      }
+    })
   },
 
   /**
