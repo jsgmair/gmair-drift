@@ -61,7 +61,7 @@ Page({
             equip_name: response.data.list[0].itemName,
             annux_name: response.data.list[1].itemName,
             item_quantity: response.data.list[1].quantity,
-            realPay: response.data.realPay * 100,
+            realPay: response.data.realPay,
             status:response.data.status,
             time:time,
           })
