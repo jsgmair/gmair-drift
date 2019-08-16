@@ -27,7 +27,7 @@
          <view class='item_content'>
             <view class='content_1'>
                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-                  <image class="weui-media-box__thumb" src="https://console.gmair.net/drift/device.jpeg" />
+                  <image class="weui-media-box__thumb" src="https://console.gmair.net/drift/device.png" />
                </view>
             </view>
             <view class='content_2'>
