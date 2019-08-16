@@ -39,7 +39,7 @@ page{
 }
 .panel_left{
   display: flex;
-  flex: 1;
+  flex: 2;
 }
 .panel_right{
   display: flex;
