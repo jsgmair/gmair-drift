@@ -75,7 +75,7 @@
             <view class="weui-panel__bd" style="border-top:0.2px solid #00A6E4">
                 <view  class="weui-media-box weui-media-box_appmsg" >
                     <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-                        <image class="weui-media-box__thumb" src="../../images/feedback.png" />
+                        <image class="weui-media-box__thumb" src="https://console.gmair.net/drift/filter.png" />
                     </view>
                     <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
                         <view class="weui-media-box__title">检测试纸</view>
@@ -88,7 +88,7 @@
             </view>
         </view>
         <view class='check'>
-            <checkbox-group bindchange='check_change'><checkbox value="1" checked="{{is_check}}" />我同意<text style='color:#00a6e4'>果麦甲醛漂流协议</text></checkbox-group>
+            <checkbox-group bindchange='check_change'><checkbox value="1" checked="{{is_check}}" />我同意<text style='color:#00a6e4'>果麦甲醛检测仪租借协议</text></checkbox-group>
                 
             </view>
             <view style="padding-bottom:60rpx">

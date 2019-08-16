@@ -22,26 +22,30 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  obtain_list(){
     let that = this;
     let openid = wx.getStorageSync('openid')
     wx.request({
-      url: app.globalData.protocol + app.globalData.url + '/drift/order/'+openid+'/list',
+      url: app.globalData.protocol + app.globalData.url + '/drift/order/' + openid + '/list',
       header: {
         "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
       },
       success: function (response) {
         response = response.data
-        if(response.responseCode == 'RESPONSE_OK') {
+        if (response.responseCode == 'RESPONSE_OK') {
           let orders = response.data;
-          for (let i =0 ;i<orders.length;i++){
+          for (let i = 0; i < orders.length; i++) {
             orders[i].time = util.formatTimeToDate(orders[i].expectedDate) + '至' + util.formatTimeToDate(orders[i].expectedDate + orders[i].intervalDate * 86400000)
           }
           console.log(orders)
-          that.setData({size: orders.length, order_list: orders})
+          orders.reverse()
+          that.setData({ size: orders.length, order_list: orders })
         }
       }
     })
+  },
+  onLoad: function (options) {
+     this.obtain_list()
   },
 
   /**
@@ -55,25 +59,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let that = this;
-    let openid = wx.getStorageSync('openid')
-    wx.request({
-      url: app.globalData.protocol + app.globalData.url + '/drift/order/' + openid + '/list',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
-      },
-      success: function (response) {
-        response = response.data
-        if (response.responseCode == 'RESPONSE_OK') {
-          let orders = response.data;
-          for (let i = 0; i < orders.length; i++) {
-            orders[i].time = util.formatTimeToDateCN(orders[i].expectedDate) + '至' + util.formatTimeToDateCN(orders[i].expectedDate + orders[i].intervalDate * 86400000)
-          }
-          console.log(orders)
-          that.setData({ size: orders.length, order_list: orders })
-        }
-      }
-    })
+    this.obtain_list()
   },
 
   /**
