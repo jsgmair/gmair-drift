@@ -52,10 +52,10 @@
         <view class="panel_left">下单日期</view>
         <view class="panel_right">{{time}}</view>
       </view>
-      <!-- <view class='choose_btn_view' style='margin-top:70rpx' wx:if="{{status === 'APPLIED'}}">
+      <view class='choose_btn_view' style='margin-top:70rpx' wx:if="{{status === 'APPLIED'}}">
         <button class="weui-btn" type="primary" bindtap="toPay" hover-class='btn_hover'>前往支付</button>
-      </view> -->
-      <view class='choose_btn_view' style='margin-top:70rpx' wx:if="{{status !== 'DELIVERED'}}">
+      </view>
+      <view class='choose_btn_view' style='margin-top:70rpx' wx:if="{{status === 'DELIVERED'}}">
         <modal hidden="{{modal_hidden}}" title="填写寄回单号" confirm-text="确认提交" cancel-text="取消" bindcancel="cancel" bindconfirm="expressIdSubmit">
             <input class='input' placeholder="填写寄回单号" auto-focus bindinput='expressIdInput' type="number"/>
             <picker class="picker" bindchange="bindCompanyChange" value="{{index}}" range="{{company_array}}">
