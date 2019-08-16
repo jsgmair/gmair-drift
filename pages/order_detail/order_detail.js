@@ -17,7 +17,67 @@ Page({
     realPay: '',
     status: '',
     time: '',
-    modal_hidden:true
+    modal_hidden:true,
+    company_array:['顺丰快递'],
+    company_index: '0',
+    expressId:''
+  },
+  check_submit(expressId,company){
+    if(expressId === ""||company === ""|| company == undefined){
+      return false
+    }else{
+      return true
+    }
+  },
+  expressIdSubmit(){
+    let orderId = this.data.order_id
+    let expressId = this.data.expressId
+    let expressFlag = 1
+    let company = this.data.company_array[this.data.company_index]
+    let that = this
+    if(this.check_submit(expressId,company)){
+      wx.request({
+        url: app.globalData.protocol + app.globalData.url + '/drift/express/create',
+        method: 'POST',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+        },
+        data: {
+          orderId: orderId,
+          expressId: expressId,
+          expressFlag: expressFlag,
+          company: company
+        },
+        success: function (response) {
+          response = response.data
+          console.log(response)
+          if (response.responseCode === "RESPONSE_OK") {
+            that.obtain_order_detail(that.data.order_id)
+            that.setData({
+              modal_hidden: true
+            })
+          }
+        }
+      })
+    }else{
+      wx.showToast({
+        title: '请检查信息是否填写完整',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+    
+  },
+  expressIdInput(e){
+    this.setData({
+      expressId:e.detail.value
+    })
+  },
+  bindCompanyChange(e){
+    // console.log(e)
+    this.setData({
+      company_index:e.detail.value
+    })
   },
   toPay(e){
     let orderId = this.data.order_id
@@ -31,11 +91,6 @@ Page({
     })
   },
   cancel(e){
-    this.setData({
-      modal_hidden: true
-    })
-  },
-  confirm(e) {
     this.setData({
       modal_hidden: true
     })

@@ -47,7 +47,12 @@ page{
   justify-content: flex-end
 }
 .input{
-  border: 1px solid #d9d9d9;
-  margin:20rpx;
+  border-bottom: 1px solid #d9d9d9;
+  margin:5rpx 40rpx;
+  padding:10rpx 5rpx;
+}
+.picker{
+  border-bottom: 1px solid #d9d9d9;
+  margin:30rpx 40rpx 50rpx 40rpx;
   padding:10rpx 5rpx;
 }
