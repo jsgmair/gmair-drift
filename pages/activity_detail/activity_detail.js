@@ -126,7 +126,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    let that=this
+    //获取活动的报名人数
+    wx.request({
+      url: app.globalData.protocol + app.globalData.url + '/drift/order/summary?activityId=' + that.data.activity_id,
+      success: function (response) {
+        response = response.data
+        // console.log(JSON.stringify(response))
+        if (response.responseCode == 'RESPONSE_OK') {
+          let item = response.data
+          that.setData({ registered_size: item.size })
+        }
+      }
+    });
   },
 
   /**
