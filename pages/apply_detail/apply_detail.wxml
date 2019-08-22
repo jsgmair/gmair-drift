@@ -59,11 +59,11 @@
                     <input class="weui-input" bindinput='detail_address_input' value='{{address_detail}}' placeholder="请输入详细地址" />
                 </view>
             </view>
-            <view class="weui-cell weui-cell_input">
+            <view class="weui-cell weui-cell_input" bindtap='select_day'>
                 <view class="weui-cell__hd">
                     <view class="weui-label">开始时间</view>
                 </view>
-                 <view class="weui-cell__bd" bindtap='select_day'>
+                 <view class="weui-cell__bd">
                     <view class="weui-input">{{starttime}}</view>
                 </view>
                 <view class="weui-cell__ft">

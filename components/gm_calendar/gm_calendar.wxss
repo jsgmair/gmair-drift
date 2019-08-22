@@ -24,39 +24,54 @@
   justify-content: center;
   align-items: center;
   font-size: 30rpx;
-  padding:25rpx 60rpx;
+  height: 100rpx;
 }
 .month_select{
   display: flex;
   flex: 1;
   justify-content: center;
   align-items: center;
+  height: 100%;
 }
 .month_select_left{
   display: flex;
   flex: 1;
   justify-content: flex-start;
-  width: 20rpx;
+  align-items: center;
+  height: 100%;
+  padding-left:50rpx;
+}
+.month_select_left:active{
+  background-color: #e6e6e6
+}
+.month_select_right:active{
+  background-color: #e6e6e6
 }
 .month_select_right{
   display: flex;
   flex: 1;
   justify-content: flex-end;
-  width: 20rpx
+  align-items: center;
+  height: 100%;
+  padding-right:50rpx;
 }
 .left {
   border: solid #00A6E4;
   border-width: 0 5rpx 5rpx 0;
-  display: inline-block;
+  /* display: inline-block; */
   padding: 8rpx;
   transform: rotate(135deg);
+  height: 5rpx;
+  width: 5rpx;
 }
 .right {
   border: solid #00A6E4;
   border-width: 0 5rpx 5rpx 0;
-  display: inline-block;
+  /* display: inline-block; */
   padding: 8rpx;
   transform: rotate(-45deg);
+  height: 5rpx;
+  width: 5rpx;
 }
 .date{
   padding:0rpx 11rpx;
