@@ -63,11 +63,18 @@
                 <view class="weui-cell__hd">
                     <view class="weui-label">开始时间</view>
                 </view>
-                <view class="weui-cell__bd">
+                 <view class="weui-cell__bd" bindtap='select_day'>
+                    <view class="weui-input">{{starttime}}</view>
+                </view>
+                <view class="weui-cell__ft">
+                    <van-tag  class="demo-margin-right" plain type="primary">时间选择</van-tag>
+                    <!-- <view class="weui-cell__ft_in-access"></view> -->
+                </view>
+                <!-- <view class="weui-cell__bd">
                     <picker mode="date" start='{{start}}' end='{{end}}' bindchange="bindStartTimeChange">
                         <view class="weui-input">{{starttime}}</view>
                     </picker>
-                </view>
+                </view> -->
             </view>
             <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__hd">
@@ -101,6 +108,15 @@
             </view>
              <van-action-sheet show="{{add_select}}" bind:close="toggleActionSheet1" bind:select="toggleActionSheet1">
                 <van-area  loading="{{ loading }}" area-list="{{ areaList }}"
-                 bind:cancel="onCityCancel" bind:confirm="onCityConfirm"/></van-action-sheet>
+                 bind:cancel="onCityCancel" bind:confirm="onCityConfirm"/>
+            </van-action-sheet>
 </view>
+<van-popup
+    show="{{ is_select }}"
+    position="bottom"
+    custom-class="bottom"
+    bind:close="toggleBottomPopup"
+  >
+    <gm-calendar day_select="{{starttime}}" can_select_list="{{can_select_list}}" bind:daySelect="daySelect"></gm-calendar>
+  </van-popup>
 

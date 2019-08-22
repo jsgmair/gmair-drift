@@ -190,11 +190,24 @@ Page({
   activity_apply(){
     let activity_id = this.data.activity_id;
     let equip_id = this.data.equip_id;
-    // let openid = wx.getStorageSync('openid');
-    wx.navigateTo({
-      url: '/pages/apply_detail/apply_detail?activityId=' + activity_id + '&equipId=' + equip_id
-    })
+    let openid = wx.getStorageSync('openid');
+    // wx.navigateTo({
+    //   url: '/pages/apply_detail/apply_detail?activityId=' + activity_id + '&equipId=' + equip_id
+    // })
+    // wx.navigateTo({
+    //     url: '/pages/obtain_credit/obtain_credit'
+    // }) 
     // console.log(activity_id)
+    // todo查询身份信息，进行不同的跳转
+    if (wx.getStorageSync("identity")){
+      wx.navigateTo({
+          url: '/pages/apply_detail/apply_detail?activityId=' + activity_id + '&equipId=' + equip_id
+      })
+    }else{
+      wx.navigateTo({
+          url: '/pages/obtain_identity/obtain_identity'
+      }) 
+    }
     // wx.request({
     //   url: app.globalData.protocol + app.globalData.url + '/drift/user/score?openid='+openid,
     //   header: {
@@ -204,7 +217,7 @@ Page({
     //     response = response.data;
     //     if (response.responseCode == 'RESPONSE_OK') {
     //        wx.navigateTo({
-    //          url: '/pages/obtain_credit/obtain_credit'
+    //          url: '/pages/obtain_identity/obtain_identity'
     //       }) 
     //     }else {
     //       wx.navigateTo({

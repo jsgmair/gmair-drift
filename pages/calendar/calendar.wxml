@@ -1,0 +1,21 @@
+<view class="calendar">
+    <view class="month">
+       <view class="month_select_left" bindtap='prevMonth'>
+          <view class='left'></view>
+       </view>
+       <view class="month_select">{{year}}年{{month}}月</view>
+       <view class="month_select_right" bindtap='nextMonth'>
+          <view class='right'></view>
+       </view>
+    </view>
+    <view class="week">
+       <view wx:for="{{weekArr}}" wx:for-index="index" wx:for-item="item" wx:key="key" class='weekday'>{{item}}
+       </view>
+    </view>
+     <view class="date">
+         <block wx:for="{{dateArr}}" wx:for-index="index" wx:for-item="item" wx:key="key">
+             <view class="day {{day_select === item.value&&day_select!=='' ? 'day_select':''}} {{item.canSelect? '':'day_disabled'}}" bindtap='day_click'data-item="{{item}}" >{{item.index}}</view>
+         </block>
+    </view>
+    <!-- <view class='message'>请选择设备开始使用日期，</view> -->
+</view><!--end calendar-->

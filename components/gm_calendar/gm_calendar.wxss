@@ -1,0 +1,81 @@
+/* pages/calendar/gm_calendar.wxss */
+.calendar{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.week{
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background:  #f2f2f2;
+  font-size: 30rpx;
+  padding: 11rpx;
+}
+.weekday{
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+.month{
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+  padding:25rpx 60rpx;
+}
+.month_select{
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+.month_select_left{
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  width: 20rpx;
+}
+.month_select_right{
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  width: 20rpx
+}
+.left {
+  border: solid #00A6E4;
+  border-width: 0 5rpx 5rpx 0;
+  display: inline-block;
+  padding: 8rpx;
+  transform: rotate(135deg);
+}
+.right {
+  border: solid #00A6E4;
+  border-width: 0 5rpx 5rpx 0;
+  display: inline-block;
+  padding: 8rpx;
+  transform: rotate(-45deg);
+}
+.date{
+  padding:0rpx 11rpx;
+  text-align: center;
+  font-size: 30rpx;
+}
+.day{
+   width: 64rpx;
+   float: left;
+   height: 64rpx;
+   line-height: 64rpx;
+   margin:20rpx;
+   /* background: blue; */
+   border-radius: 64rpx;
+}
+.day_disabled{
+  color:  #d9d9d9
+}
+.day_select{
+  background:#00A6E4;
+  color:white;
+}

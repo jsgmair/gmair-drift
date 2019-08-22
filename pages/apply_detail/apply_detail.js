@@ -30,13 +30,16 @@ Page({
     address_detail:'',
     starttime:"",//个人选择时间
     interval:0,
-    endtime:'2019-07-30',
+    endtime:'',
     // day_list:["3","5","7"],//从后台获取可选时间
     // day_index:0,
     annex_num:1,
     is_check:false,
     submit_ready:false,
     obtain_click:false,//获取验证码是否点击
+    //todo 获取可选日期list
+    can_select_list: ['2019-08-22', '2019-08-24', '2019-08-25', '2019-08-26', '2019-08-27', '2019-08-28', '2019-08-29',],
+    is_select:false
   },
   //弹起框选择城市
   city_select(){
@@ -144,15 +147,26 @@ Page({
      })
     this.check_submit_ready(this.data.name, this.data.phone, this.data.address, e.detail.value, this.data.starttime, this.data.interval, this.data.is_check);
   },
-  //开始时间选择
-  bindStartTimeChange(e){
-    let endtime=this.formatEndTime(e.detail.value,this.data.interval)
-     this.setData({
-        starttime:e.detail.value,
-        endtime:endtime
-     })
-    this.check_submit_ready(this.data.name, this.data.phone, this.data.address, this.data.address_detail,e.detail.value, this.data.day_index);
+  daySelect(e){
+    let starttime = e.detail.item.value
+    let endtime = this.formatEndTime(starttime, this.data.interval)
+    this.setData({
+      starttime:starttime,
+      endtime: endtime,
+      is_select: false
+    })
+    this.check_submit_ready(this.data.name, this.data.phone, this.data.address, this.data.address_detail, starttime, this.data.day_index);
   },
+  //开始时间选择
+  // bindStartTimeChange(e){
+  //   console.log(e)
+  //   let endtime=this.formatEndTime(e.detail.value,this.data.interval)
+  //    this.setData({
+  //       starttime:e.detail.value,
+  //       endtime:endtime
+  //    })
+  //   this.check_submit_ready(this.data.name, this.data.phone, this.data.address, this.data.address_detail,e.detail.value, this.data.day_index);
+  // },
   //使用时长选择
   // day_length_change(e){
   //     this.setData({
@@ -251,6 +265,16 @@ Page({
     let start = new Date(start_time)
     result = start.getTime() + 86400000*interval
     return util.formatTimeToDate(result)
+  },
+  select_day(e){
+    this.setData({
+      is_select:true
+    })
+  },
+  toggleBottomPopup(e){
+    this.setData({
+      is_select: false
+    })
   },
 
   /**

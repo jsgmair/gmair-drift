@@ -1,0 +1,27 @@
+/* pages/obtain_identity/obtain_identity.wxss */
+.logo{
+  display: flex;
+  flex:1;
+  flex-direction: column;
+  margin: 120rpx 240rpx;
+}
+.logo_text{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top:18rpx;
+  color:#00A6E4;
+  font-size: 32rpx
+}
+.form{
+  margin: 0rpx 80rpx;
+}
+.item{
+  margin-bottom: 36rpx;
+}
+.btn{
+  margin-top: 150rpx;
+}
+.myBtn{
+  width: 450rpx;
+}
