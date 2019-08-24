@@ -1,4 +1,5 @@
 // pages/obtain_identity/obtain_identity.js
+const app = getApp();
 Page({
 
   /**
@@ -19,6 +20,8 @@ Page({
     })
   },
   submit_identity(){
+    let that = this
+    let openid = wx.getStorageSync('openid');
     // console.log(this.data)
     if(!this.check_name(this.data.username)){
       wx.showToast({
@@ -34,17 +37,34 @@ Page({
       })
     }else{
       // todo 将身份信息传至后台
-      wx.setStorageSync("identity", true)
-      wx.showToast({
-        title: "成功",
-        icon: 'success',
-        duration: 1000
+      wx.request({
+        url: app.globalData.protocol + app.globalData.url + '/drift/user/check',
+        method: 'POST',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+        },
+        data: {
+          openid: openid,
+          name: that.data.username,
+          idno: that.data.idcard
+        },
+        success: function (response) {
+          console.log(response.data)
+          response = response.data
+          if (response.responseCode === "RESPONSE_OK") {
+             wx.showToast({
+                title: "成功",
+                icon: 'success',
+                duration: 1000
+             })
+             setTimeout(()=>{
+                 wx.switchTab({
+                    url: '/pages/activity_detail/activity_detail'
+                 })
+            },1000)
+          }
+        }
       })
-      setTimeout(()=>{
-        wx.switchTab({
-          url: '/pages/activity_detail/activity_detail'
-        })
-      },1000)
     }
   },
 

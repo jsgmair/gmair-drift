@@ -1,6 +1,7 @@
 <!--pages/obtain_credit/obtain_credit.wxml-->
 <!-- <web-view src="{{web_src}}"></web-view> -->
 <view>
+<!-- <video src="../../videos/1.mp4" style='width:100%'   controls ></video> -->
 <view class='url_qrcode'>
 <canvas class='canvas' canvas-id='canvas'></canvas>
 </view>

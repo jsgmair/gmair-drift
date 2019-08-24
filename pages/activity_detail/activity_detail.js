@@ -199,15 +199,22 @@ Page({
     // }) 
     // console.log(activity_id)
     // todo查询身份信息，进行不同的跳转
-    if (wx.getStorageSync("identity")){
-      wx.navigateTo({
-          url: '/pages/apply_detail/apply_detail?activityId=' + activity_id + '&equipId=' + equip_id
-      })
-    }else{
-      wx.navigateTo({
-          url: '/pages/obtain_identity/obtain_identity'
-      }) 
-    }
+    wx.request({
+      url: app.globalData.protocol + app.globalData.url + '/drift/user/authorized?openid='+openid,
+      success: function (response) {
+        console.log(response)
+        response = response.data;
+        if (response.responseCode == 'RESPONSE_OK') {
+          wx.navigateTo({
+            url: '/pages/apply_detail/apply_detail?activityId=' + activity_id + '&equipId=' + equip_id
+          })
+        } else {
+          wx.navigateTo({
+            url: '/pages/obtain_identity/obtain_identity'
+          })
+        }
+      }
+    });
     // wx.request({
     //   url: app.globalData.protocol + app.globalData.url + '/drift/user/score?openid='+openid,
     //   header: {
