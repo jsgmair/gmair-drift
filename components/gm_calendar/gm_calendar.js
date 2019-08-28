@@ -24,6 +24,7 @@ Component({
     day: '',
     weekArr: ['日', '一', '二', '三', '四', '五', '六'],
     dateArr: [],
+    columnArr:[],
     firstDay: '',
     lastDay: '',
   },
@@ -74,9 +75,19 @@ Component({
         json['canSelect'] = this.check_select(value)
         dateArr.push(json)
       }
-      console.log(dateArr)
+      let columnArr = []
+      let array = []
+      for (let i = 0; i < dateArr.length; i++) {
+        array.push(dateArr[i])
+        if (i % 7 === 6) {
+          columnArr.push(array)
+          array = []
+        }
+      }
+      console.log(columnArr)
       this.setData({
-        dateArr: dateArr
+        dateArr: dateArr,
+        columnArr: columnArr
       })
     },
     //判断某日期是不是在可选范围内
