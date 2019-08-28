@@ -100,7 +100,7 @@
             </view>
         </view>
         <!-- <view class='notification'>{{notification}}</view> -->
-        <van-notice-bar text="{{notification}}" left-icon="https://console.gmair.net/drift/alert.png"/>
+        <van-notice-bar wx:if="{{notification!==''}}" text="{{notification}}" left-icon="https://console.gmair.net/drift/alert.png"/>
         <view class='check'>
             <checkbox-group bindchange='check_change'><checkbox value="1" checked="{{is_check}}" />我同意<text style='color:#00a6e4' bindtap='text_click'>果麦甲醛检测仪租借协议</text></checkbox-group>
                 

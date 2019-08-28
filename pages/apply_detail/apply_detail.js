@@ -40,7 +40,7 @@ Page({
     can_select_list: [],
     list:[],//日期范围list
     is_select:false,
-    note:''
+    notification:''
   },
   //弹起框选择城市
   city_select(){

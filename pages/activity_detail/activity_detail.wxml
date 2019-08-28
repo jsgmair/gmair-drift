@@ -36,7 +36,7 @@
           </view>
         </view>
       </view>
-      <van-notice-bar text="{{notification}}" left-icon="https://console.gmair.net/drift/alert.png"/>
+      <van-notice-bar wx:if="{{notification!==''}}" text="{{notification}}" left-icon="https://console.gmair.net/drift/alert.png"/>
       <view class="activity_time">
          <view class='page__desc'><text>活动时间：</text>{{start_date}} — {{end_date}}
          </view>
