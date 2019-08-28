@@ -22,5 +22,5 @@
   text-align: center;
 }
 .activity_time{
-  padding:0rpx 50rpx 20rpx 50rpx
+  padding:6px 15px
 }

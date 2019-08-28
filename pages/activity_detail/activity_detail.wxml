@@ -10,12 +10,12 @@
     </view>
   </view>
 
-  <view class="activity_time">
+  <!-- <view class="activity_time">
     <!-- <view class="page__title" style="color:#00a6e4">{{act_name}}</view>
     <view class="page__desc">{{act_desc}}</view>
-    <view class='page__desc'><text style="color:#00a6e4">主办方：</text>{{host}}</view> -->
+    <view class='page__desc'><text style="color:#00a6e4">主办方：</text>{{host}}</view>
     <view class='page__desc'><text style="color:#00a6e4">活动时间：</text>{{start_date}} — {{end_date}}</view>
-  </view>
+  </view> -->
   <view class="page__bd" style="background-color:white">
     <view class="weui-panel weui-panel_access">
       <view class="weui-panel__hd" style="color:#00a6e4;font-size:17px;padding-bottom:0rpx">设备介绍</view>
@@ -37,12 +37,17 @@
         </view>
       </view>
       <van-notice-bar text="{{notification}}" left-icon="https://console.gmair.net/drift/alert.png"/>
+      <view class="activity_time">
+         <view class='page__desc'><text style="color:#00a6e4">活动时间：</text>{{start_date}} — {{end_date}}
+         </view>
+      </view>
       <view class="weui-cells weui-cells_after-title" style="font-size:14px">
         <view class="weui-cell">
           <view class="weui-cell__bd">当前预约人数</view>
           <view class="weui-cell__ft">{{registered_size}}人</view>
         </view>
       </view>
+      
       <view wx:if="{{activity_type===0}}"  class='choose_btn_view' style='margin-top:70rpx'>
         <button class="weui-btn" type="default" disabled="true">活动尚未开始</button>
       </view>
