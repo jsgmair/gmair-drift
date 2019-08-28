@@ -299,6 +299,7 @@ Page({
       url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + that.data.activity_id + '/notification',
       success: function (response) {
         response = response.data;
+        // console.log(response)
         if (response.responseCode == 'RESPONSE_OK') {
           let list = response.data;
           let message = '';
