@@ -37,8 +37,7 @@ Page({
     is_check:false,
     submit_ready:false,
     obtain_click:false,//获取验证码是否点击
-    //todo 获取可选日期list
-    can_select_list: ['2019-08-22', '2019-08-24', '2019-08-25', '2019-08-26', '2019-08-27', '2019-08-28', '2019-08-29',],
+    can_select_list: [],
     is_select:false
   },
   //弹起框选择城市
@@ -298,10 +297,53 @@ Page({
         if (response.responseCode == 'RESPONSE_OK') {
           let item = response.data;
           let start_time = that.formatStartTime(item.startTime, new Date())
-          that.setData({ act_name: item.activityName, act_desc: item.introduction, start_date: util.formatTimeToDateCN(item.startTime), end_date: util.formatTimeToDateCN(item.endTime), host: item.host, interval: item.reservableDays, starttime: start_time, endtime: that.formatEndTime(start_time, item.reservableDays), start: util.formatTimeToDate(item.startTime), end: util.formatTimeToDate(item.endTime)});
+          that.setData({ act_name: item.activityName, act_desc: item.introduction, start_date: util.formatTimeToDateCN(item.startTime), end_date: util.formatTimeToDateCN(item.endTime), host: item.host, interval: item.reservableDays, start: util.formatTimeToDate(item.startTime), end: util.formatTimeToDate(item.endTime)});
+          //获取日期list
+          wx.request({
+            url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + activity_id + '/available',
+            success: function (response) {
+              console.log(response)
+              response = response.data;
+              if (response.responseCode == 'RESPONSE_OK') {
+                console.log(that.formatSelectList(response.data))
+                that.setData({
+                  can_select_list: that.formatSelectList(response.data)
+                })
+                for (let i = 0; i < response.data.length; i++) {
+                  let json = response.data[i]
+                  // console.log(json)
+                  for (let key in json) {
+                    if (json[key] === true) {
+                      let starttime = key
+                      that.setData({
+                        starttime: starttime,
+                        endtime: that.formatEndTime(starttime, that.data.interval)
+                      })
+                      return
+                    }
+                  }
+                }
+              }
+            }
+          });
         }
       }
     });
+  },
+
+  formatSelectList(data){
+    let array = []
+    for (let i = 0; i < data.length; i++) {
+      let json = data[i]
+      console.log(json)
+      for (let key in json) {
+        if (json[key] === true) {
+          console.log(key)
+          array.push(key)
+        }
+      }
+    }
+    return array
   },
 
   /**

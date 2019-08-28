@@ -112,6 +112,7 @@
             </van-action-sheet>
 </view>
 <van-popup
+    wx:if="{{is_select}}"
     show="{{ is_select }}"
     position="bottom"
     custom-class="bottom"

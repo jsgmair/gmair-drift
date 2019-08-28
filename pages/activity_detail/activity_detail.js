@@ -205,8 +205,19 @@ Page({
         console.log(response)
         response = response.data;
         if (response.responseCode == 'RESPONSE_OK') {
-          wx.navigateTo({
-            url: '/pages/apply_detail/apply_detail?activityId=' + activity_id + '&equipId=' + equip_id
+          wx.showModal({
+            title: '使用提示',
+            content: '仪器使用完毕后，需按照约定时间顺丰寄回，邮费用户自理',
+            confirmText: '确认申请',
+            success(res) {
+              if (res.confirm) {
+                wx.navigateTo({
+                  url: '/pages/apply_detail/apply_detail?activityId=' + activity_id + '&equipId=' + equip_id
+                })
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
           })
         } else {
           wx.navigateTo({
