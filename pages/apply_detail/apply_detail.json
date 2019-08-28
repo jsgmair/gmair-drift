@@ -9,6 +9,7 @@
       "van-area": "/miniprogram_npm/vant-weapp/area/index",
       "van-button": "/miniprogram_npm/vant-weapp/button/index",
       "van-popup": "/miniprogram_npm/vant-weapp/popup/index",
-      "gm-calendar": "/components/gm_calendar/gm_calendar"
+      "gm-calendar": "/components/gm_calendar/gm_calendar",
+      "van-notice-bar": "/miniprogram_npm/vant-weapp/notice-bar/index"
   }
 }

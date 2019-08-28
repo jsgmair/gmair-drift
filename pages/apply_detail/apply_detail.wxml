@@ -39,7 +39,7 @@
                 </view>
             </view> -->
         </view>
-        <view class="weui-cells__title">信息详情</view>
+        <view class="weui-cells__title">订单详情</view>
     <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell weui-cell_input" bindtap='city_select'>
                 <view class="weui-cell__hd">
@@ -91,7 +91,7 @@
                     </view>
                     <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
                         <view class="weui-media-box__title">检测试纸</view>
-                        <view class="weui-media-box__desc">用于检测空气质量</view>
+                        <view class="text">一张试纸仅能检测一次，重复使用无效。如需多次检测，请加购试纸数量</view>
                     </view>
                     <view>
                          <demo-block title="基础用法" padding><van-stepper value="{{ annex_num }}" bind:change="num_change"/></demo-block>
@@ -99,8 +99,10 @@
                 </view>
             </view>
         </view>
+        <!-- <view class='notification'>{{notification}}</view> -->
+        <van-notice-bar text="{{notification}}" left-icon="https://console.gmair.net/drift/alert.png"/>
         <view class='check'>
-            <checkbox-group bindchange='check_change'><checkbox value="1" checked="{{is_check}}" />我同意<text style='color:#00a6e4'>果麦甲醛检测仪租借协议</text></checkbox-group>
+            <checkbox-group bindchange='check_change'><checkbox value="1" checked="{{is_check}}" />我同意<text style='color:#00a6e4' bindtap='text_click'>果麦甲醛检测仪租借协议</text></checkbox-group>
                 
             </view>
             <view style="padding-bottom:60rpx">

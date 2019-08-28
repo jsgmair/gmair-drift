@@ -2,7 +2,6 @@
   "pages": [
     "pages/activity_detail/activity_detail",
     "pages/obtain_credit/obtain_credit",
-    
     "pages/order_list/order_list",
     "pages/order_confirm/order_confirm",
     "pages/apply_detail/apply_detail",
@@ -10,7 +9,8 @@
     "pages/logs/logs",
     "pages/calendar/calendar",
     "pages/obtain_identity/obtain_identity",
-    "pages/order_detail/order_detail"
+    "pages/order_detail/order_detail",
+    "pages/protocol/protocol"
   ],
   "tabBar": {
     "selectedColor": "#00A6E4",

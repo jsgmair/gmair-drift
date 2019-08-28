@@ -39,7 +39,8 @@ Page({
     obtain_click:false,//获取验证码是否点击
     can_select_list: [],
     list:[],//日期范围list
-    is_select:false
+    is_select:false,
+    note:''
   },
   //弹起框选择城市
   city_select(){
@@ -276,7 +277,11 @@ Page({
       is_select: false
     })
   },
-
+  text_click(e){
+     wx.navigateTo({
+       url: '/pages/protocol/protocol',
+     })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -290,6 +295,22 @@ Page({
         equip_id: equip_id
      })
     let that = this;
+    wx.request({
+      url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + that.data.activity_id + '/notification',
+      success: function (response) {
+        response = response.data;
+        if (response.responseCode == 'RESPONSE_OK') {
+          let list = response.data;
+          let message = '';
+          // console.log(JSON.stringify(list[0].context))
+          for (let i = 0; i < list.length; i++) {
+            message += list[i].context;
+          }
+          // console.log(message)
+          that.setData({ notification: message })
+        }
+      }
+    })
     wx.request({
       url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + activity_id + '/profile',
       success: function (response) {
