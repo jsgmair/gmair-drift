@@ -4,7 +4,7 @@
         <view class="page__title" style="color:#00a6e4">{{act_name}}</view>
         <view class="page__desc">{{act_desc}}</view>
         <view class='page__desc'><text style="color:#00a6e4">主办方：</text>{{host}}</view>
-        <view class='page__desc'><text style="color:#00a6e4">活动时间：</text>{{start_date}} — {{end_date}}</view>
+        <view class='page__desc'><text style="color:#00a6e4">使用时间：</text>{{start_date}} — {{end_date}}</view>
     </view>
     <view class="weui-cells__title">个人信息</view>
     <view class="weui-cells weui-cells_after-title">

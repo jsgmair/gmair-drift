@@ -21,3 +21,6 @@
 .weui-article__section {
   text-align: center;
 }
+.activity_time{
+  padding:0rpx 50rpx 20rpx 50rpx
+}

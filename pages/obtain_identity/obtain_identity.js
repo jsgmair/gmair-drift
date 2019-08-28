@@ -53,7 +53,7 @@ Page({
           response = response.data
           if (response.responseCode === "RESPONSE_OK") {
              wx.showToast({
-                title: "成功",
+                title: "认证成功",
                 icon: 'success',
                 duration: 1000
              })
