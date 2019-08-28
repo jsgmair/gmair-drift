@@ -62,7 +62,7 @@ Component({
     },
     //构建日历数组
     setDate() {
-      console.log(this.data.list)
+      console.log(this.data)
       var dateArr = []
       let json = {}
       for (var i = 0; i < this.data.firstDay; i++) {
@@ -80,6 +80,15 @@ Component({
         json['value'] = value
         json['canSelect'] = this.check_select(value)
         json['canSelectRange'] = this.check_select_range(value)
+        dateArr.push(json)
+      }
+      let last = 7 - this.data.lastDay%7
+      for (var i = 0; i < last; i++) {
+        json = {}
+        json['index'] = ''
+        json['value'] = ''
+        json['canSelect'] = false
+        json['canSelectRange'] = false
         dateArr.push(json)
       }
       let columnArr = []
