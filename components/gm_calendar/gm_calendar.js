@@ -12,6 +12,10 @@ Component({
     can_select_list:{
       type:Array,
       value:[]
+    },
+    list:{
+      type: Array,
+      value: []
     }
   },
 
@@ -58,6 +62,7 @@ Component({
     },
     //构建日历数组
     setDate() {
+      console.log(this.data.list)
       var dateArr = []
       let json = {}
       for (var i = 0; i < this.data.firstDay; i++) {
@@ -65,6 +70,7 @@ Component({
         json['index'] = ''
         json['value'] = ''
         json['canSelect'] = false
+        json['canSelectRange'] = false
         dateArr.push(json)
       }
       for (var i = 1; i < this.data.lastDay + 1; i++) {
@@ -73,6 +79,7 @@ Component({
         let value = util.formatTimeToDate(this.data.year + '-' + this.data.month + '-' + i)
         json['value'] = value
         json['canSelect'] = this.check_select(value)
+        json['canSelectRange'] = this.check_select_range(value)
         dateArr.push(json)
       }
       let columnArr = []
@@ -90,11 +97,21 @@ Component({
         columnArr: columnArr
       })
     },
-    //判断某日期是不是在可选范围内
+    //判断某日期是不是可选
     check_select(date) {
       let can_select_list = this.data.can_select_list
       for (let i = 0; i < can_select_list.length; i++) {
         if (date === can_select_list[i]) {
+          return true
+        }
+      }
+      return false
+    },
+    //判断某日期是不是在可选范围内
+    check_select_range(date) {
+      let list = this.data.list
+      for (let i = 0; i < list.length; i++) {
+        if (date === list[i]) {
           return true
         }
       }

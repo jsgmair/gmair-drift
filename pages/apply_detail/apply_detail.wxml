@@ -118,6 +118,6 @@
     custom-class="bottom"
     bind:close="toggleBottomPopup"
   >
-    <gm-calendar day_select="{{starttime}}" can_select_list="{{can_select_list}}" bind:daySelect="daySelect"></gm-calendar>
+    <gm-calendar day_select="{{starttime}}" list="{{list}}" can_select_list="{{can_select_list}}" bind:daySelect="daySelect"></gm-calendar>
   </van-popup>
 

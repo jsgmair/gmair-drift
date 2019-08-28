@@ -16,7 +16,7 @@
     <view class="date">
       <view class="column" wx:for="{{columnArr}}" wx:for-index="index" wx:for-item="item" wx:key="key">
         <view class="day" wx:for="{{item}}" wx:for-index="index2" wx:for-item="item2" wx:key="key2" bindtap="day_click" data-item="{{item2}}">
-          <view class="day_text,{{day_select === item2.value&&day_select!==''?'day_select':''}},{{item2.canSelect? '':'day_disabled'}}">{{item2.index}}</view>
+          <view class="day_text,{{day_select === item2.value&&day_select!==''?'day_select':''}},{{item2.canSelect? '':'day_disabled'}},{{item2.canSelectRange?'day_range':''}}">{{item2.index}}</view>
         </view>
       </view>
     </view>

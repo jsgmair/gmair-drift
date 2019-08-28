@@ -120,8 +120,11 @@
   /* font-size: 24px; */
 }
 .day_text{
+  display: flex;
   width: 64rpx;
-  float: left;
+  /* float: left; */
+  justify-content: center;
+  align-items: center;
   height: 64rpx;
   line-height: 64rpx;
   /*margin:20px;*/
@@ -134,4 +137,7 @@
 .day_select{
  background:#00A6E4;
  color:white;
+}
+.day_range{
+  border: 0.5px dotted  red
 }

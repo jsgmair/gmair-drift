@@ -38,6 +38,7 @@ Page({
     submit_ready:false,
     obtain_click:false,//获取验证码是否点击
     can_select_list: [],
+    list:[],//日期范围list
     is_select:false
   },
   //弹起框选择城市
@@ -295,19 +296,23 @@ Page({
         console.log(response)
         response = response.data;
         if (response.responseCode == 'RESPONSE_OK') {
+          
           let item = response.data;
+          // console.log(util.formatTimeToDate(item.startTime))
+          // console.log(util.formatTimeToDate(item.endTime))
           let start_time = that.formatStartTime(item.startTime, new Date())
           that.setData({ act_name: item.activityName, act_desc: item.introduction, start_date: util.formatTimeToDateCN(item.startTime), end_date: util.formatTimeToDateCN(item.endTime), host: item.host, interval: item.reservableDays, start: util.formatTimeToDate(item.startTime), end: util.formatTimeToDate(item.endTime)});
           //获取日期list
           wx.request({
             url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + activity_id + '/available',
             success: function (response) {
-              console.log(response)
+              // console.log(response)
               response = response.data;
               if (response.responseCode == 'RESPONSE_OK') {
-                console.log(that.formatSelectList(response.data))
+                // console.log(that.formatSelectList(response.data))
                 that.setData({
-                  can_select_list: that.formatSelectList(response.data)
+                  can_select_list: that.formatSelectList(response.data),
+                  list: that.formatList(response.data)
                 })
                 for (let i = 0; i < response.data.length; i++) {
                   let json = response.data[i]
@@ -335,12 +340,22 @@ Page({
     let array = []
     for (let i = 0; i < data.length; i++) {
       let json = data[i]
-      console.log(json)
+      // console.log(json)
       for (let key in json) {
         if (json[key] === true) {
-          console.log(key)
+          // console.log(key)
           array.push(key)
         }
+      }
+    }
+    return array
+  },
+  formatList(data) {
+    let array = []
+    for (let i = 0; i < data.length; i++) {
+      let json = data[i]
+      for (let key in json) {
+          array.push(key)
       }
     }
     return array
