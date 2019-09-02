@@ -1,4 +1,4 @@
 <!--pages/equip_detail/equip_detail.wxml-->
 <view style='width:100%;height:100%'>
-  <image style='width:100%' mode="widthFix" src="../../images/equip_detail.jpg" />
+  <image style='width:100%' mode="widthFix" src="https://console.gmair.net/drift/device_intro.jpeg" lazy-load='true' />
 </view>
