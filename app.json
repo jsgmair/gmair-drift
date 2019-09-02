@@ -10,7 +10,8 @@
     "pages/calendar/calendar",
     "pages/obtain_identity/obtain_identity",
     "pages/order_detail/order_detail",
-    "pages/protocol/protocol"
+    "pages/protocol/protocol",
+    "pages/equip_detail/equip_detail"
   ],
   "tabBar": {
     "selectedColor": "#00A6E4",

@@ -40,7 +40,9 @@ Page({
     can_select_list: [],
     list:[],//日期范围list
     is_select:false,
-    notification:''
+    notification:'',
+    annux_name: '',
+    annux_price: ''
   },
   //弹起框选择城市
   city_select(){
@@ -295,6 +297,16 @@ Page({
         equip_id: equip_id
      })
     let that = this;
+    // wx.request({
+    //   url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + that.data.activity_id + '/annux',
+    //   success: function (response) {
+    //     response = response.data;
+    //     // console.log(response)
+    //     if (response.responseCode == 'RESPONSE_OK') {
+    //       
+    //     }
+    //   }
+    // })
     wx.request({
       url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + that.data.activity_id + '/notification',
       success: function (response) {

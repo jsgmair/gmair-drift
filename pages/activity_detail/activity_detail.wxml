@@ -9,7 +9,14 @@
     </view>
     </view>
   </view>
-
+  <view style='padding:0rpx 50rpx 30rpx 50rpx' class='content'>
+         <view class='second_title'>甲醛检测服务活动规则：</view>
+         <view>(1）果麦新用户享仪器上新租赁价199元/2天，试纸28元/张，最少购买一张试纸。</view>
+         <view>(2）果麦新风机老用户，可凭机身唯一二维码，扫码兑换价值226元抵用券一张，实付1元即可参与本次活动。</view>
+         <view>(3）租赁期满，用户需将仪器顺丰寄回，邮费由用户承担，不可到付。</view>
+         <view>(4）一张试纸仅能使用一次，重复使用无效，建议一个房间检测一次，如需检测多个房间，请根据需求加购试纸数量。</view>
+         <view>(5）因顺丰空运无法邮寄电池，使用仪器时请自备5节5号电池。</view>
+      </view>
   <!-- <view class="activity_time">
     <!-- <view class="page__title" style="color:#00a6e4">{{act_name}}</view>
     <view class="page__desc">{{act_desc}}</view>
@@ -25,7 +32,7 @@
           <image class="weui-media-box__thumb" src="https://console.gmair.net/drift/device.png" /></view>
         <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
           <view class="weui-media-box__title">{{equip_name}}</view>
-          <view class="weui-media-box__desc">本甲醛检测仪完全满足GB/T 18204.2《公共场所卫生检验方法 第2部分：化学污染物》7.4光电光度法要求。甲醛气体通过检测单元时，检测单元中浸有发色剂的纸因化学反应其颜色由白色变为黄色。变色的程度所引起反射光强度的变化与甲醛浓度呈函数关系，根据反射光量强度的变化率测定甲醛的浓度。待仪器达到试纸反应时间读取数值。</view>
+          <view class="weui-media-box__desc">使用国标光电度法</view>
           </view>
         </view>
       </view>
