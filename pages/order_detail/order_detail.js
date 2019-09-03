@@ -20,7 +20,9 @@ Page({
     modal_hidden:true,
     company_array:['顺丰快递'],
     company_index: '0',
-    expressId:''
+    expressId:'',
+    equipPrice:'',
+    annexPrice:''
   },
   check_submit(expressId,company){
     if(expressId === ""||company === ""|| company == undefined){
@@ -109,8 +111,10 @@ Page({
         if (response.responseCode === "RESPONSE_OK") {
           let time = util.formatTimeToDate(response.data.expectedDate) + '至' + util.formatTimeToDate(response.data.expectedDate + response.data.intervalDate * 86400000)
           let num = 0
+          let price = 0
           for (let i = 1; i < response.data.list.length; i++) {
             num += response.data.list[i].quantity * response.data.list[i].singleNum
+            price+= response.data.list[i].quantity * response.data.list[i].itemPrice
           }
           that.setData({
             address: response.data.province + response.data.city + response.data.district,
@@ -123,6 +127,8 @@ Page({
             realPay: response.data.realPay,
             status:response.data.status,
             time:time,
+            equipPrice: response.data.list[0].itemPrice,
+            annexPrice: price
           })
         }
       }

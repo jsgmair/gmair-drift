@@ -33,8 +33,10 @@ Page({
         response = response.data
         if (response.responseCode === "RESPONSE_OK") {
           let num = 0
+          let price = 0
           for(let i = 1;i<response.data.list.length;i++){
             num += response.data.list[i].quantity * response.data.list[i].singleNum
+            price += response.data.list[i].quantity * response.data.list[i].itemPrice
           }
           that.setData({
             address: response.data.province + response.data.city + response.data.district,
@@ -44,7 +46,9 @@ Page({
             equip_name: response.data.list[0].itemName,
             annux_name: response.data.list[1].itemName,
             item_quantity: num,
-            realPay:response.data.realPay*100
+            realPay:response.data.realPay*100,
+            equipPrice: response.data.list[0].itemPrice,
+            annexPrice: price
           })
         }
       }
@@ -103,7 +107,7 @@ Page({
               // total_fee: response.data[0].total_fee,
               success(res) {
                 // wx.showToast({
-                //   title: '支付成功',
+                //   title: '支付成功',jk
                 //   icon: 'success',
                 //   duration: 2000
                 // })
