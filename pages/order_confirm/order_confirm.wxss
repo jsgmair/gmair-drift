@@ -5,3 +5,41 @@ page{
 .page{
   height: 100%
 }
+.scan{
+    display: flex;
+    align-items: center;
+    width: 36rpx;
+    height: 36rpx;
+}
+.scan_panel{
+  display: flex;
+  flex: 1;
+  padding:10px 15px;
+  justify-content: center;
+  align-items: center;
+}
+.scan_left{
+  display: flex;
+  flex: 2;
+  align-items: center;
+}
+.scan_middle{
+  display: flex;
+  flex: 4
+}
+.scan_right{
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+  color: #00A6E4
+}
+.scan_right_active{
+  color:  #e6e6e6
+}
+.scan_right:active{
+  background: #f2f2f2
+}
+.scan_left:active{
+  background: #f2f2f2
+}

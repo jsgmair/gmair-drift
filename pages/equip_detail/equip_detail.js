@@ -5,14 +5,39 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    loadImage:false,
+    dot:'',
+    interval:''
   },
 
+  load(){
+    clearInterval(this.data.interval)
+    this.setData({
+      loadImage:true
+    })
+  },
+  judgeDot(){
+    let dot = this.data.dot;
+    // console.log(dot)
+    if(dot === '...'){
+      dot = '.'
+    }else{
+      dot+="."
+    }
+    this.setData({
+      dot:dot
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let interval = setInterval(()=>{
+      this.judgeDot()
+    },500)
+    this.setData({
+      interval:interval
+    })
   },
 
   /**

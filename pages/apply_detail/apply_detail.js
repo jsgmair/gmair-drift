@@ -34,6 +34,12 @@ Page({
     // day_list:["3","5","7"],//从后台获取可选时间
     // day_index:0,
     annex_num:1,
+    annex_num1: 1,
+    attachId1:'ATT00000001',
+    attachId2: 'ATT00000002',
+    attachId3: 'ATT00000003',
+    annex_num2: 0,
+    annex_num3: 0,
     is_check:false,
     submit_ready:false,
     obtain_click:false,//获取验证码是否点击
@@ -63,7 +69,7 @@ Page({
        city:value[1].name,
        district:value[2].name,
      })
-    this.check_submit_ready(this.data.name, this.data.phone, address, this.data.address_detail, this.data.starttime, this.data.interval,this.data.is_check);
+    this.check_submit_ready(this.data.name, this.data.phone, address, this.data.address_detail, this.data.starttime, this.data.interval,this.data.is_check,this.data.annex_num1,this.data.annex_num2,this.data.annex_num3);
   },
   //城市选择取消
   onCityCancel(e){
@@ -76,7 +82,7 @@ Page({
       this.setData({
         name:e.detail.value,
       })
-    this.check_submit_ready(e.detail.value, this.data.phone, this.data.address, this.data.address_detail, this.data.starttime, this.data.interval, this.data.is_check);
+    this.check_submit_ready(e.detail.value, this.data.phone, this.data.address, this.data.address_detail, this.data.starttime, this.data.interval, this.data.is_check, this.data.annex_num1, this.data.annex_num2, this.data.annex_num3);
   },
  //电话输入
   phone_input(e){
@@ -92,7 +98,7 @@ Page({
        phone_true:phone_true,
      })
      console.log(phone_true)
-    this.check_submit_ready(this.data.name, phone,this.data.address, this.data.address_detail, this.data.starttime, this.data.interval, this.data.is_check);
+    this.check_submit_ready(this.data.name, phone, this.data.address, this.data.address_detail, this.data.starttime, this.data.interval, this.data.is_check, this.data.annex_num1, this.data.annex_num2, this.data.annex_num3);
   },
   //验证码按钮点击
   btn_obtain_click(e){
@@ -101,11 +107,13 @@ Page({
     // that.setData({
     //    obtain_click:true,
     // })
+    console.log(e)
     if (e.detail.errMsg === "getPhoneNumber:ok"){
       let iv = e.detail.iv
       let data = e.detail.encryptedData
       wx.request({
-        url: app.globalData.protocol + app.globalData.url + '/drift/user/decode/phone',
+        url:  'https://microservice.gmair.net/drift/user/decode/phone',
+        // url: app.globalData.protocol + app.globalData.url + '/drift/user/decode/phone',
         method: 'POST',
         header: {
           "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
@@ -142,13 +150,13 @@ Page({
      this.setData({
         code:e.detail.value,
      })
-    this.check_submit_ready(this.data.name, this.data.phone, this.data.address, this.data.address_detail, this.data.starttime, this.data.interval,this.data.is_check);
+    this.check_submit_ready(this.data.name, this.data.phone, this.data.address, this.data.address_detail, this.data.starttime, this.data.interval, this.data.is_check, this.data.annex_num1, this.data.annex_num2, this.data.annex_num3);
   },
   detail_address_input(e){
      this.setData({
         address_detail:e.detail.value,
      })
-    this.check_submit_ready(this.data.name, this.data.phone, this.data.address, e.detail.value, this.data.starttime, this.data.interval, this.data.is_check);
+    this.check_submit_ready(this.data.name, this.data.phone, this.data.address, e.detail.value, this.data.starttime, this.data.interval, this.data.is_check, this.data.annex_num1, this.data.annex_num2, this.data.annex_num3);
   },
   daySelect(e){
     let starttime = e.detail.item.value
@@ -158,7 +166,7 @@ Page({
       endtime: endtime,
       is_select: false
     })
-    this.check_submit_ready(this.data.name, this.data.phone, this.data.address, this.data.address_detail, starttime, this.data.day_index);
+    this.check_submit_ready(this.data.name, this.data.phone, this.data.address, this.data.address_detail, starttime, this.data.day_index,this.data.annex_num1, this.data.annex_num2, this.data.annex_num3);
   },
   //开始时间选择
   // bindStartTimeChange(e){
@@ -178,10 +186,34 @@ Page({
   //   this.check_submit_ready(this.data.name, this.data.phone, this.data.phone_true, this.data.code, this.data.code_send, this.data.address, this.data.address_detail, this.data.time, e.detail.value, this.data.is_check);
   // },
   //试纸等数量
-  num_change(e){
+  num_change1(e){
+    console.log(e.detail)
     this.setData({
-      annex_num:e.detail,
+      annex_num1:e.detail,
     })
+    this.check_sum(e.detail,this.data.annex_num2, this.data.annex_num3)
+  },
+  num_change2(e) {
+    this.setData({
+      annex_num2: e.detail,
+    })
+    this.check_sum( this.data.annex_num1,e.detail, this.data.annex_num3)
+  },
+  num_change3(e) {
+    this.setData({
+      annex_num3: e.detail,
+    })
+    this.check_sum( this.data.annex_num1, this.data.annex_num2,e.detail)
+  },
+  check_sum(annex_num1, annex_num2, annex_num3){
+    if (annex_num1 + annex_num2 + annex_num3===0){
+      wx.showToast({
+        title: '请记得选择试纸哦',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+    this.check_submit_ready(this.data.name, this.data.phone, this.data.address, this.data.address_detail, this.data.starttime, this.data.interval, this.data.is_check, annex_num1, annex_num2, annex_num3);
   },
   //协议check
   check_change(e){
@@ -192,17 +224,19 @@ Page({
       }else{
         is_check=false;
       }
-    this.check_submit_ready(this.data.name, this.data.phone, this.data.address, this.data.address_detail, this.data.starttime, this.data.interval, is_check);
+    this.check_submit_ready(this.data.name, this.data.phone, this.data.address, this.data.address_detail, this.data.starttime, this.data.interval, is_check, this.data.annex_num1, this.data.annex_num2, this.data.annex_num3);
       that.setData({
         is_check:is_check,
       })
   },
   //判断是否可以提交，满足姓名、手机号、验证码正确、地址、详细地址、开始时间、使用天数均已选择填写
-  check_submit_ready(name, phone,address, address_detail, starttime, interval, is_check){
+  check_submit_ready(name, phone, address, address_detail, starttime, interval, is_check, annex_num1, annex_num2, annex_num3){
     var submit_ready;
     var that=this;
+    let sum = annex_num1 + annex_num2 + annex_num3
+    console.log(sum)
     //将开始时间和使用天数删除后判断条件更改
-    if (name !== "" && phone !== ""&&address !== "" && address_detail !== "" && starttime !== ""&&interval!==''&&is_check===true){
+    if (name !== "" && phone !== ""&&address !== "" && address_detail !== "" && starttime !== ""&&interval!==''&&is_check===true&&sum!==0){
     // if (name !== "" && phone !== "" && phone_true === true && code === code_send && address !== "" && address_detail !== "" && is_check === true) {
       submit_ready=true;
     }else{
@@ -218,6 +252,12 @@ Page({
       submit_ready:false,
     })
     // console.log(that.data)
+    let attachItem = {}
+    attachItem[this.data.attachId1] = this.data.annex_num1
+    attachItem[this.data.attachId2] = this.data.annex_num2
+    attachItem[this.data.attachId3] = this.data.annex_num3
+    console.log(attachItem)
+    attachItem = JSON.stringify(attachItem)
     wx.request({
       url: app.globalData.protocol + app.globalData.url + '/drift/order/create',
       method:'POST',
@@ -237,10 +277,11 @@ Page({
         description:'',
         expectedDate:that.data.starttime,
         intervalDate:that.data.interval,
-        itemQuantity:that.data.annex_num
+        attachItem: attachItem
+        // itemQuantity:that.data.annex_num
       },
       success: function (response) {
-        // console.log(response)
+        console.log(response)
         response = response.data;
         if (response.responseCode == 'RESPONSE_OK') {
           console.log(response)
@@ -251,7 +292,7 @@ Page({
         }
       }
     });
-    
+
   },
   formatStartTime(start_date,new_date){
     // console.log(new_date.getTime())
@@ -303,7 +344,7 @@ Page({
     //     response = response.data;
     //     // console.log(response)
     //     if (response.responseCode == 'RESPONSE_OK') {
-    //       
+    //
     //     }
     //   }
     // })
@@ -324,13 +365,27 @@ Page({
         }
       }
     })
+    //获取试纸详情
+    wx.request({
+      // url:'http://192.168.30.94:8015/drift/activity/attachment/list?activityId='+this.data.activity_id,
+      url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + that.data.activity_id + '/notification',
+      success: function (response) {
+        response = response.data;
+        console.log(response)
+        if (response.responseCode == 'RESPONSE_OK') {
+          that.setData({
+            annex:response.data
+          })
+        }
+      }
+    })
     wx.request({
       url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + activity_id + '/profile',
       success: function (response) {
         console.log(response)
         response = response.data;
         if (response.responseCode == 'RESPONSE_OK') {
-          
+
           let item = response.data;
           // console.log(util.formatTimeToDate(item.startTime))
           // console.log(util.formatTimeToDate(item.endTime))

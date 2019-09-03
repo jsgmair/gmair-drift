@@ -1,1 +1,10 @@
 /* pages/equip_detail/equip_detail.wxss */
+page{
+  height: 100%
+}
+.toast{
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  padding: 50rpx;
+}

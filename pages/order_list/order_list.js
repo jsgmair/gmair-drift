@@ -36,6 +36,13 @@ Page({
           let orders = response.data;
           for (let i = 0; i < orders.length; i++) {
             orders[i].time = util.formatTimeToDate(orders[i].expectedDate) + '至' + util.formatTimeToDate(orders[i].expectedDate + orders[i].intervalDate * 86400000)
+            let num = 0
+            for (let j = 1; j < orders[i].list.length; j++) {
+              // console.log(orders[i].list[j].quantity)
+              num += orders[i].list[j].quantity * orders[i].list[j].singleNum
+            }
+            // console.log(num)
+            orders[i].item_quantity = num
           }
           console.log(orders)
           orders.reverse()

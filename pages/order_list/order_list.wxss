@@ -18,9 +18,6 @@ page{
   font-size: 30rpx;
   padding-bottom: 10rpx;
 }
-.weui-media-box__desc{
-  font-size: 20rpx;
-}
 .item{
   padding:30rpx 30rpx;
   margin-bottom: 20rpx;

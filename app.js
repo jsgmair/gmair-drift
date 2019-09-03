@@ -2,8 +2,11 @@
 App({
   globalData: {
     openid: '',
+    // http://192.168.30.94:8015
     protocol: 'https://',
+    // protocol: 'http://',
     url: 'microservice.gmair.net',
+    // url: '192.168.30.94:8015',
     port: 443,
   },
   onLaunch: function () {

@@ -1,12 +1,20 @@
 <!--pages/apply_detail/apply_detail.wxml-->
 <view class="page">
     <view class="page__hd">
-        <view class="page__title" style="color:#00a6e4">{{act_name}}</view>
-        <view class="page__desc">{{act_desc}}</view>
-        <view class='page__desc'><text style="color:#00a6e4">主办方：</text>{{host}}</view>
-        <view class='page__desc'><text style="color:#00a6e4">使用时间：</text>{{start_date}} — {{end_date}}</view>
+        <view class="page__title" style="color:#00a6e4">{{act_name}}活动规则</view>
+        <!-- <view class="page__desc">{{act_desc}}</view> -->
+        <view style='padding-top:20rpx' class='content'>
+         <!-- <view class='second_title'></view> -->
+         <view>(1）果麦新用户享仪器上新租赁价199元/2天，试纸28元/张，最少购买一张试纸。</view>
+         <view>(2）果麦新风机老用户，可凭机身唯一二维码，扫码兑换价值226元抵用券一张，实付1元即可参与本次活动。</view>
+         <view>(3）租赁期满，用户需将仪器顺丰寄回，邮费由用户承担，不可到付。</view>
+         <view>(4）一张试纸仅能使用一次，重复使用无效，建议一个房间检测一次，如需检测多个房间，请根据需求加购试纸数量。</view>
+         <view>(5）因顺丰空运无法邮寄电池，使用仪器时请自备5节5号电池。</view>
+      </view>
+        <!-- <view class='page__desc'><text style="color:#00a6e4">主办方：</text>{{host}}</view> -->
+        <!-- <view class='page__desc'><text style="color:#00a6e4">使用时间：</text>{{start_date}} — {{end_date}}   </view>  -->
     </view>
-    <view class="weui-cells__title">个人信息</view>
+    <view class="weui-cells__title" style='margin-top:0rpx'>个人信息</view>
     <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__hd">
@@ -84,7 +92,7 @@
                     <view class="weui-input">{{endtime}}</view>
                 </view>
             </view> 
-            <view class="weui-panel__bd" style="border-top:0.2px solid #00A6E4">
+            <!-- <view class="weui-panel__bd" style="border-top:0.2px solid #00A6E4">
                 <view  class="weui-media-box weui-media-box_appmsg" >
                     <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
                         <image class="weui-media-box__thumb" src="https://console.gmair.net/drift/filter.png" />
@@ -97,7 +105,29 @@
                          <demo-block title="基础用法" padding><van-stepper value="{{ annex_num }}" bind:change="num_change"/></demo-block>
                     </view>
                 </view>
-            </view>
+            </view> -->
+        </view>
+        <view class="annux_panel">
+           <view class='annux_left'>
+               <view class="weui-media-box__hd weui-media-box__hd_in-appmsg annux_image">
+                  <image class="weui-media-box__thumb" src="https://console.gmair.net/drift/filter.png" />
+               </view>
+               <view class='annux_text'>甲醛检测试纸</view>
+           </view>
+           <view class='annux_right'>
+              <view class='annux_item' >
+                 <view class='item_text'><text class='_text'>单片装（20元）</text></view>
+                 <view class='item_count'><demo-block title="基础用法" padding><van-stepper value="{{ annex_num1 }}" bind:change="num_change1"/></demo-block></view>
+              </view>
+              <view class='annux_item'>
+                 <view class='item_text'><text class='_text'>三片装（54元）</text></view>
+                 <view class='item_count'><demo-block title="基础用法" padding><van-stepper value="{{ annex_num2 }}" bind:change="num_change2"/></demo-block></view>
+              </view>
+              <view class='annux_item'>
+                 <view class='item_text'><text class='_text'>六片装（108元）</text></view>
+                 <view class='item_count'><demo-block title="基础用法" padding><van-stepper value="{{ annex_num3 }}" bind:change="num_change3"/></demo-block></view>
+              </view>
+           </view>        
         </view>
         <!-- <view class='notification'>{{notification}}</view> -->
         <van-notice-bar wx:if="{{notification!==''}}" text="{{notification}}" left-icon="https://console.gmair.net/drift/alert.png"/>
