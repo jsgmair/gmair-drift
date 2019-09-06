@@ -1,0 +1,68 @@
+/* pages/address/address.wxss */
+page{
+  height: 100%;
+  width:100%;
+}
+.page{
+  height: 100%;
+  width: 100%;
+  background: white
+}
+.content{
+  margin-bottom:150px
+}
+.list_item{
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30rpx;
+  padding:20rpx 20rpx 20rpx 0;
+  border-bottom: 1px solid #e6e6e6
+}
+.list_detail{
+  display: flex;
+  flex: 3.5;
+  flex-direction: column;
+}
+.detail_user{
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  font-size: 32rpx;
+  padding-bottom: 10rpx;
+}
+.user_name{
+  display: flex;
+  flex: 1;
+  font-weight: bold;
+}
+.user_phone{
+  display: flex;
+  flex: 2;
+  font-weight: 330;
+}
+.detail_address{
+  display: flex;
+  flex: 1;
+  color:  #a6a6a6;
+  font: 28rpx;
+  align-items: center;
+}
+.list_edit{
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  padding-right: 20rpx;
+}
+.edit_image{
+  width: 55rpx;
+  height: 55rpx;
+}
+.add_btn{
+  position: fixed;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}

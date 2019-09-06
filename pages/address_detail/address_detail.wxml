@@ -1,0 +1,59 @@
+<!--pages/address_detail/address_detail.wxml-->
+<view class='page'>
+   <view class='edit_content'>
+      <view class='edit_item'>
+          <view class='edit_name'>
+              收货人
+          </view>
+          <view class='edit_value'>
+              <input placeholder='请填写收货人姓名' value='{{name}}' bindinput='nameInput'></input>
+          </view>
+      </view>
+      <view class='edit_item'>
+          <view class='edit_name'>
+              手机号码
+          </view>
+          <view class='edit_value'>
+              <input placeholder='请填写收货人手机号' value="{{phone}}" bindinput='phoneInput'></input>
+          </view>
+      </view>
+      <view class='edit_item'>
+          <view class='edit_name'>
+              所在地区
+          </view>
+          <view class='edit_value' bindtap='city_select'>
+              <input style='width:80%' placeholder='省市区选择' disabled='true' value='{{province+city+district}}'></input>
+          </view>
+          <van-action-sheet show="{{add_select}}">
+                <van-area  loading="{{ loading }}" area-list="{{ areaList }}"
+                 bind:cancel="onCityCancel" bind:confirm="onCityConfirm"/>
+            </van-action-sheet>
+      </view>
+      <view class='edit_item'>
+          <view class='edit_name'>
+              详细地址
+          </view>
+          <view class='edit_value'>
+              <textarea style="width:90%" placeholder='街道、楼牌号等' bindinput='detailInput' value="{{address_detail}}" auto-height></textarea>
+          </view>
+      </view>
+   </view>
+   <view class='blank_30'></view>
+   <view class='default_address'>
+      <view class='default_left'>
+         <view class='left_title'>设置默认地址</view>
+         <view class='left_tips'>提醒：每次下单会默认推荐使用该地址</view>
+      </view>
+      <view class='default_right'>
+         <van-switch checked="{{ checked }}" active-color="#00A6E4" inactive-color=" #e6e6e6" bind:change="onChange" size="24px"
+  />
+      </view>
+   </view>
+   <view class='blank_30'></view>
+   <view class='delete' bindtap='delete' wx:if="{{type===1}}">
+      删除收货地址
+   </view>
+   <view class='add_btn'>
+      <button class="weui-btn" type="primary" bindtap='save' hover-class='btn_hover'>保存</button>
+   </view>
+</view>

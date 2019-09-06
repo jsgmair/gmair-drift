@@ -1,7 +1,10 @@
 {
   "pages": [
-    
     "pages/activity_detail/activity_detail",
+    "pages/address/address",
+    "pages/address_detail/address_detail",
+    
+    
     "pages/obtain_credit/obtain_credit",
     "pages/order_list/order_list",
     "pages/order_confirm/order_confirm",

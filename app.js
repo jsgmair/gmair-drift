@@ -49,6 +49,7 @@ App({
     let that = this;
     wx.request({
       url: 'https://microservice.gmair.net/drift/user/openid',
+      // url: app.globalData.protocol+app.globalData.url+'/drift/user/openid',
       method: "POST",
       data: {
         code: code

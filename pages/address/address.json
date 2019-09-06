@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "收获地址管理",
+  "usingComponents": {
+    "van-tag": "/miniprogram_npm/vant-weapp/tag/index"
+  }
+}

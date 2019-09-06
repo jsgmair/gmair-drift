@@ -125,6 +125,7 @@ Page({
         },
         success: function (response) {
           response=response.data
+          console.log(response)
           if(response.responseCode==="RESPONSE_OK"){
             that.setData({
               phone:response.data
