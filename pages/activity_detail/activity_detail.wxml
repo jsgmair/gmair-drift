@@ -42,7 +42,7 @@
       </view>
       <view class="weui-cells weui-cells_after-title" style="font-size:14px">
         <view class="weui-cell">
-          <view class="weui-cell__bd">当前预约人数</view>
+          <view class="weui-cell__bd">当前服务人数</view>
           <view class="weui-cell__ft">{{registered_size}}人</view>
         </view>
       </view>
@@ -51,7 +51,7 @@
         <button class="weui-btn" type="default" disabled="true">活动尚未开始</button>
       </view>
       <view wx:if="{{activity_type===1}}"  class='choose_btn_view' style='margin-top:70rpx'>
-        <button class="weui-btn" type="primary" bindtap="activity_apply" hover-class='btn_hover'>活动申请</button>
+        <button class="weui-btn" open-type="getUserInfo" type="primary" bindgetuserinfo="activity_apply" hover-class='btn_hover'>活动申请</button>
       </view>
       <view wx:if="{{activity_type===2}}"  class='choose_btn_view' style='margin-top:70rpx'>
         <button class="weui-btn" type="default" disabled="true">活动已结束</button>

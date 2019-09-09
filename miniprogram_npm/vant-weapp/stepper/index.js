@@ -15,7 +15,7 @@ VantComponent({
         disableInput: Boolean,
         min: {
             type: null,
-            value: 0
+            value: 1
         },
         max: {
             type: null,

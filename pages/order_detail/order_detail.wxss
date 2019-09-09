@@ -56,3 +56,28 @@ page{
   margin:30rpx 40rpx 50rpx 40rpx;
   padding:10rpx 5rpx;
 }
+.panel{
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+.panel:active{
+  background:  #f2f2f2
+}
+.detail{
+   flex: 3.5
+}
+.arrow{
+   display: flex;
+   flex: 1;
+   justify-content: flex-end;
+   padding-right: 20rpx;
+   align-items: center;
+   font-size: 28rpx;
+}
+.cancel{
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  color:  #999999
+}

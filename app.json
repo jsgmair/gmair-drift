@@ -1,10 +1,10 @@
 {
   "pages": [
+   
     "pages/activity_detail/activity_detail",
+    "pages/order_detail/order_detail",
     "pages/address/address",
     "pages/address_detail/address_detail",
-    
-    
     "pages/obtain_credit/obtain_credit",
     "pages/order_list/order_list",
     "pages/order_confirm/order_confirm",
@@ -13,9 +13,9 @@
     "pages/logs/logs",
     "pages/calendar/calendar",
     "pages/obtain_identity/obtain_identity",
-    "pages/order_detail/order_detail",
     "pages/protocol/protocol",
-    "pages/equip_detail/equip_detail"
+    "pages/equip_detail/equip_detail",
+    "pages/express/express"
   ],
   "tabBar": {
     "selectedColor": "#00A6E4",

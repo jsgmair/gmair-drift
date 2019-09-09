@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    address_list:[]
+    address_list:[],
+    address:'',
   },
   //获取地址list
   obtain_data(){
@@ -21,6 +22,10 @@ Page({
         if (response.responseCode === "RESPONSE_OK") {
           that.setData({
             address_list:response.data
+          })
+        } else if (response.responseCode === "RESPONSE_NULL"){
+          that.setData({
+            address_list: []
           })
         }
       }
@@ -40,12 +45,31 @@ Page({
       url: '/pages/address_detail/address_detail',
     })
   },
+  //点击地址item
+  address_select(e){
+     let addressId = e.currentTarget.dataset.id
+     let address = this.data.address
+     address['addressId'] = addressId
+     console.log(address)
+     this.setData({
+       address:address
+     })
+     wx.redirectTo({
+       url: '/pages/apply_detail/apply_detail?address='+JSON.stringify(address),
+     })
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.obtain_data()
+    let address = JSON.parse(options.address)
+    if(address){
+      this.setData({
+        address:address
+      })
+    }
   },
 
   /**

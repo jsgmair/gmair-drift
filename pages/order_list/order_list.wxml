@@ -35,7 +35,7 @@
                <view class="weui-media-box__desc">使用国标光电度法</view>
             </view>
             <view class='content_3'>
-              {{item.list[1].itemName}} x {{item.item_quantity}}
+              {{item.list[2].itemName}} x {{item.list[2].quantity}}
             </view>
          </view>
          <view class='item_footer'>

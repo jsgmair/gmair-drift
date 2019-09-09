@@ -13,14 +13,18 @@
                <view class='left'>订单编号：{{order_id}}</view>
                <view class='right'>合计{{realPay}}元</view>
             </view>
-            <view class="weui-panel__bd">
-                <view class="weui-media-box weui-media-box_text">
+            <view class="weui-panel__bd panel" bindtap='express'>
+                <view class="weui-media-box weui-media-box_text detail">
                     <view class="weui-media-box__title weui-media-box__title_in-text">{{address}}</view>
                     <view class="weui-media-box__desc">{{address_detail}}</view>
                     <view class="weui-media-box__info">
                         <view class="weui-media-box__info__meta">{{name}}</view>
                         <view class="weui-media-box__info__meta">{{phone}}</view>
                     </view>
+                </view>
+                <view class='arrow'>
+                   <view style='display:flex;align-items:center'>查看物流</view>
+                   <van-icon style='display:flex;align-items:center' font-size='18px' name="arrow" custom-class="icon"/>
                 </view>
             </view>
         </view>
@@ -39,14 +43,33 @@
         </view>
         <view  class="weui-media-box weui-media-box_appmsg">
         <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+          <image class="weui-media-box__thumb"  src="https://console.gmair.net/drift/filter.png" /></view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+           <view class="weui-media-box__title">{{attach2.itemName}}x{{attach2.quantity}}</view>
+          <!-- <view class="weui-media-box__desc">甲醛检测试纸</view> -->
+          </view>
+          <view style="margin-right:30rpx">价格：{{attach2.itemPrice*attach2.quantity}}元</view>
+        </view>
+      </view>
+      <view  class="weui-media-box weui-media-box_appmsg">
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+          <image class="weui-media-box__thumb" src="../../images/express.png" /></view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+           <view class="weui-media-box__title">{{attach1.itemName}}x{{attach1.quantity}}</view>
+          <!-- <view class="weui-media-box__desc">甲醛检测试纸</view> -->
+          </view>
+          <view style="margin-right:30rpx">价格：{{attach1.itemPrice*attach1.quantity}}元</view>
+        </view>
+        <!-- <view  class="weui-media-box weui-media-box_appmsg">
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
           <image class="weui-media-box__thumb" src="https://console.gmair.net/drift/filter.png" /></view>
         <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
           <view class="weui-media-box__title">{{annux_name}}x{{item_quantity}}</view>
           <!-- <view class="weui-media-box__desc">甲醛检测试纸</view> -->
-          </view>
-          <view style="margin-right:30rpx">价格：{{annexPrice}}元</view>
-        </view>
-      </view>
+          <!-- </view>
+          <view style="margin-right:30rpx">价格：{{annexPrice}}元</view>-->
+        <!-- </view>
+      </view> -->
       </view>
       </view>
       <view class="item_panel">
@@ -55,6 +78,9 @@
       </view>
       <view class='choose_btn_view' style='margin-top:70rpx' wx:if="{{status === 'APPLIED'}}">
         <button class="weui-btn" type="primary" bindtap="toPay" hover-class='btn_hover'>前往支付</button>
+      </view>
+      <view class='choose_btn_view cancel' bindtap='order_cancel' style='margin-top:40rpx' wx:if="{{status === 'APPLIED'}}">
+          取消订单
       </view>
       <view class='choose_btn_view' style='margin-top:70rpx' wx:if="{{status === 'DELIVERED'}}">
         <modal hidden="{{modal_hidden}}" title="填写寄回单号" confirm-text="确认提交" cancel-text="取消" bindcancel="cancel" bindconfirm="expressIdSubmit">

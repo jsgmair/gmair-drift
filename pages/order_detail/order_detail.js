@@ -22,7 +22,9 @@ Page({
     company_index: '0',
     expressId:'',
     equipPrice:'',
-    annexPrice:''
+    annexPrice:'',
+    attach1: {},
+    attach2: {},
   },
   check_submit(expressId,company){
     if(expressId === ""||company === ""|| company == undefined){
@@ -112,10 +114,10 @@ Page({
           let time = util.formatTimeToDate(response.data.expectedDate) + '至' + util.formatTimeToDate(response.data.expectedDate + response.data.intervalDate * 86400000)
           let num = 0
           let price = 0
-          for (let i = 1; i < response.data.list.length; i++) {
-            num += response.data.list[i].quantity * response.data.list[i].singleNum
-            price+= response.data.list[i].quantity * response.data.list[i].itemPrice
-          }
+          // for (let i = 1; i < response.data.list.length; i++) {
+          //   num += response.data.list[i].quantity * response.data.list[i].singleNum
+          //   price+= response.data.list[i].quantity * response.data.list[i].itemPrice
+          // }
           that.setData({
             address: response.data.province + response.data.city + response.data.district,
             address_detail: response.data.address,
@@ -127,9 +129,52 @@ Page({
             realPay: response.data.realPay,
             status:response.data.status,
             time:time,
+            attach1: response.data.list[1],
+            attach2: response.data.list[2],
             equipPrice: response.data.list[0].itemPrice,
             annexPrice: price
           })
+        }
+      }
+    })
+  },
+  express(e){
+     console.log(e);
+     wx.navigateTo({
+       url: '/pages/express/express?orderId='+this.data.order_id,
+     })
+  },
+  order_cancel(e){
+    let that = this
+    // console.log(order_id)
+    wx.showModal({
+      title: '取消订单',
+      content: '确定要取消该订单吗？',
+      confirmText: '取消订单',
+      cancelText: '点错了',
+      success(res) {
+        if (res.confirm) {
+          wx.request({
+            url: app.globalData.protocol + app.globalData.url + '/drift/order/cancel',
+            method: 'POST',
+            data: {
+              orderId: that.data.order_id,
+            },
+            header: {
+              "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+            },
+            success: function (response) {
+              console.log(response)
+              response = response.data
+              if (response.responseCode === "RESPONSE_OK") {
+                wx.switchTab({
+                  url: '/pages/order_list/order_list'
+                })
+              }
+            }
+          })
+        } else if (res.cancel) {
+          console.log('取消')
         }
       }
     })
@@ -140,6 +185,7 @@ Page({
   onLoad: function (options) {
     let that = this;
     let order_id = options.orderId;
+    // order_id ="GMO20190909zh2l8o5"
     this.obtain_order_detail(order_id)
     that.setData({
       order_id: order_id

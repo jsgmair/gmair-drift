@@ -8,6 +8,14 @@ page{
   width: 100%;
   background: white
 }
+.nodata{
+  display: flex;
+  flex: 1;
+  margin: 80rpx 20rpx;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 .content{
   margin-bottom:150px
 }
@@ -36,6 +44,7 @@ page{
   display: flex;
   flex: 1;
   font-weight: bold;
+  margin-right: 10rpx;
 }
 .user_phone{
   display: flex;
@@ -65,4 +74,7 @@ page{
   left: 0;
   right: 0;
   z-index: 100;
+}
+.list_detail:active{
+  background: #e6e6e6
 }

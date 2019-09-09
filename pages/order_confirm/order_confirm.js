@@ -18,7 +18,11 @@ Page({
     item_quantity:'',
     realPay:'',
     code:'',
-    input_disabled:false
+    input_disabled:false,
+    attach1:{},
+    attach2:{},
+    excode:'',
+    cutPrice:0
   },
   obtain_order_detail(order_id){
     let that = this
@@ -29,26 +33,30 @@ Page({
         "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
       },
       success: function (response) {
-        console.log(response)
+        console.log(response.data.data)
         response = response.data
         if (response.responseCode === "RESPONSE_OK") {
           let num = 0
-          let price = 0
-          for(let i = 1;i<response.data.list.length;i++){
-            num += response.data.list[i].quantity * response.data.list[i].singleNum
-            price += response.data.list[i].quantity * response.data.list[i].itemPrice
-          }
+          // let price = 0
+          // for(let i = 1;i<response.data.list.length;i++){
+          //   num += response.data.list[i].quantity * response.data.list[i].singleNum
+          //   price += response.data.list[i].quantity * response.data.list[i].itemPrice
+          // }
           that.setData({
             address: response.data.province + response.data.city + response.data.district,
             address_detail: response.data.address,
             name: response.data.consignee,
             phone: response.data.phone,
             equip_name: response.data.list[0].itemName,
-            annux_name: response.data.list[1].itemName,
+            // annux_name: response.data.list[1].itemName,
             item_quantity: num,
             realPay:response.data.realPay*100,
+            cutPrice: response.data.totalPrice-response.data.realPay,
             equipPrice: response.data.list[0].itemPrice,
-            annexPrice: price
+            // annexPrice: price
+            attach1:response.data.list[1],
+            attach2:response.data.list[2],
+            excode:response.data.excode
           })
         }
       }
@@ -149,8 +157,8 @@ Page({
       success: (res) => {
         console.log(res)
         wx.request({
-          url: 'https://microservice.gmair.net/install-mp/qrcode/decode',
-          // url: app.globalData.protocol + app.globalData.url + '/install-mp/qrcode/decode',
+          // url: 'https://microservice.gmair.net/install-mp/qrcode/decode',
+          url: app.globalData.protocol + app.globalData.url + '/install-mp/qrcode/decode',
           method: 'post',
           data: {
             url: res.result,
@@ -179,7 +187,7 @@ Page({
   onLoad: function (options) {
     let that=this;
     let order_id=options.orderId;
-    // order_id = 'GMO201909035ngzfn55'
+    // order_id = 'GMO20190903airhwu31'
     this.obtain_order_detail(order_id)
     that.setData({
       order_id:order_id

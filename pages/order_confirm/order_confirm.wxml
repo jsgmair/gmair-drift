@@ -35,17 +35,26 @@
         </view>
         <view  class="weui-media-box weui-media-box_appmsg">
         <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-          <image class="weui-media-box__thumb" src="https://console.gmair.net/drift/filter.png" /></view>
+          <image class="weui-media-box__thumb"  src="https://console.gmair.net/drift/filter.png" /></view>
         <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-           <view class="weui-media-box__title">{{annux_name}}x{{item_quantity}}</view>
+           <view class="weui-media-box__title">{{attach2.itemName}}x{{attach2.quantity}}</view>
           <!-- <view class="weui-media-box__desc">甲醛检测试纸</view> -->
           </view>
-          <view style="margin-right:30rpx">价格：{{annexPrice}}元</view>
+          <view style="margin-right:30rpx">价格：{{attach2.itemPrice*attach2.quantity}}元</view>
+        </view>
+      </view>
+      <view  class="weui-media-box weui-media-box_appmsg">
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+          <image class="weui-media-box__thumb" src="../../images/express.png" /></view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+           <view class="weui-media-box__title">{{attach1.itemName}}x{{attach1.quantity}}</view>
+          <!-- <view class="weui-media-box__desc">甲醛检测试纸</view> -->
+          </view>
+          <view style="margin-right:30rpx">价格：{{attach1.itemPrice*attach1.quantity}}元</view>
         </view>
       </view>
       </view>
-      </view>
-      <view class="weui-cells weui-cells_after-title" style='margin-top:20rpx;margin-bottom:20rpx'>
+      <view class="weui-cells weui-cells_after-title" style='margin-top:20rpx;margin-bottom:100rpx' wx:if="{{!excode}}">
             <view class="scan_panel">
                 <view class="scan_left" bindtap='scan'>
                     <image class="scan" src="../../images/scan.png"></image><text style='padding-left:15rpx;color: #5cd65c'>扫一扫</text>
@@ -58,6 +67,16 @@
                 </view>
             </view>
         </view>
+        <view class="weui-cells weui-cells_after-title" style='margin-top:20rpx;margin-bottom:100rpx' wx:if="{{excode}}">
+            <view class="scan_panel">
+                <view class="scan_left">
+                    优惠
+                </view>
+                <view class="scan_right">
+                    {{cutPrice}}元
+                </view>
+            </view>
+    </view>
     </view>
     <demo-block title="基础用法">
        <van-submit-bar

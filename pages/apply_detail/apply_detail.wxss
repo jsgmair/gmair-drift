@@ -120,3 +120,44 @@ annux_image{
   padding:5rpx 15rpx;
   border-radius: 10rpx;
 }
+.address{
+  background: white;
+  margin:0 20rpx;
+  border-radius: 30rpx;
+  padding:20rpx 30rpx;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  box-shadow: #ddd 3rpx 0 10rpx 3rpx;
+}
+.address_detail{
+  display: flex;
+  flex: 5;
+  flex-direction: column;
+}
+.address_icon{
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+}
+.area{
+  font-size: 30rpx;
+  padding-bottom: 10rpx;
+  display: flex;
+  align-items: center;
+}
+.detail{
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.user{
+  display: flex;
+  flex: 1;
+  font-size: 30rpx;
+  padding-top: 10rpx;
+}
+.name{
+  padding-right: 20rpx;
+}

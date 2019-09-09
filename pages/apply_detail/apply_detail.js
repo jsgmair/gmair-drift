@@ -35,9 +35,12 @@ Page({
     // day_index:0,
     annex_num:1,
     annex_num1: 1,
-    attachId1:'ATT00000001',
-    attachId2: 'ATT00000002',
-    attachId3: 'ATT00000003',
+    attach1:{},
+    attach2:{},
+    // attachId1:'',
+    // attachId2: '',
+    // attachName1:'',
+    // attachName2:'',
     annex_num2: 0,
     annex_num3: 0,
     is_check:false,
@@ -48,7 +51,9 @@ Page({
     is_select:false,
     notification:'',
     annux_name: '',
-    annux_price: ''
+    annux_price: '',
+    address_data:'',
+    address_id:''
   },
   //弹起框选择城市
   city_select(){
@@ -167,7 +172,7 @@ Page({
       endtime: endtime,
       is_select: false
     })
-    this.check_submit_ready(this.data.name, this.data.phone, this.data.address, this.data.address_detail, starttime, this.data.day_index,this.data.annex_num1, this.data.annex_num2, this.data.annex_num3);
+    this.check_submit_ready(this.data.address_id,starttime, this.data.day_index,this.data.annex_num);
   },
   //开始时间选择
   // bindStartTimeChange(e){
@@ -187,6 +192,13 @@ Page({
   //   this.check_submit_ready(this.data.name, this.data.phone, this.data.phone_true, this.data.code, this.data.code_send, this.data.address, this.data.address_detail, this.data.time, e.detail.value, this.data.is_check);
   // },
   //试纸等数量
+  num_change(e) {
+    console.log(e.detail)
+    this.setData({
+      annex_num: e.detail,
+    })
+  this.check_submit_ready(this.data.address_id,this.data.starttime, this.data.interval, this.data.is_check, e.detail);
+  },
   num_change1(e){
     console.log(e.detail)
     this.setData({
@@ -225,19 +237,19 @@ Page({
       }else{
         is_check=false;
       }
-    this.check_submit_ready(this.data.name, this.data.phone, this.data.address, this.data.address_detail, this.data.starttime, this.data.interval, is_check, this.data.annex_num1, this.data.annex_num2, this.data.annex_num3);
+   this.check_submit_ready(this.data.addressId,this.data.starttime, this.data.interval, is_check, this.data.annex_num);
       that.setData({
         is_check:is_check,
       })
   },
   //判断是否可以提交，满足姓名、手机号、验证码正确、地址、详细地址、开始时间、使用天数均已选择填写
-  check_submit_ready(name, phone, address, address_detail, starttime, interval, is_check, annex_num1, annex_num2, annex_num3){
+  check_submit_ready(addressId,starttime, interval, is_check, annex_num){
     var submit_ready;
     var that=this;
-    let sum = annex_num1 + annex_num2 + annex_num3
-    console.log(sum)
+    // let sum = annex_num1 + annex_num2 + annex_num3
+    // console.log(sum)
     //将开始时间和使用天数删除后判断条件更改
-    if (name !== "" && phone !== ""&&address !== "" && address_detail !== "" && starttime !== ""&&interval!==''&&is_check===true&&sum!==0){
+    if (addressId !== "" && starttime !== "" && interval !== '' && is_check === true && annex_num!==0){
     // if (name !== "" && phone !== "" && phone_true === true && code === code_send && address !== "" && address_detail !== "" && is_check === true) {
       submit_ready=true;
     }else{
@@ -252,12 +264,14 @@ Page({
     this.setData({
       submit_ready:false,
     })
+    let address_data = that.data.address_data
     // console.log(that.data)
     let attachItem = {}
-    attachItem[this.data.attachId1] = this.data.annex_num1
-    attachItem[this.data.attachId2] = this.data.annex_num2
-    attachItem[this.data.attachId3] = this.data.annex_num3
-    console.log(attachItem)
+    attachItem[this.data.attach1.attachId] = this.data.annex_num
+    attachItem[this.data.attach2.attachId] = 2
+    // attachItem[this.data.attachId2] = this.data.annex_num2
+    // attachItem[this.data.attachId3] = this.data.annex_num3
+    // console.log(attachItem)
     attachItem = JSON.stringify(attachItem)
     wx.request({
       url: app.globalData.protocol + app.globalData.url + '/drift/order/create',
@@ -269,12 +283,12 @@ Page({
         consumerId: wx.getStorageSync('openid'),
         activityId:that.data.activity_id,
         equipId:that.data.equip_id,
-        consignee:that.data.name,
-        phone:that.data.phone,
-        address:that.data.address_detail,
-        province:that.data.province,
-        city:that.data.city,
-        district:that.data.district,
+        consignee: address_data.consignee,
+        phone: address_data.phone,
+        address: address_data.addressDetail,
+        province: address_data.province,
+        city: address_data.city,
+        district: address_data.district,
         description:'',
         expectedDate:that.data.starttime,
         intervalDate:that.data.interval,
@@ -326,19 +340,93 @@ Page({
        url: '/pages/protocol/protocol',
      })
   },
+  //获取地址list
+  obtain_data() {
+    let openid = wx.getStorageSync('openid')
+    let that = this
+    wx.request({
+      url: app.globalData.protocol + app.globalData.url + '/drift/address/list/byopenid?consumerId=' + openid,
+      success: response => {
+        response = response.data
+        console.log(response)
+        if (response.responseCode === "RESPONSE_OK") {
+          that.setData({
+            address_data:response.data[0],
+            address_id: response.data[0].addressId,
+          })
+        }
+      }
+    });
+  },
+  address_select(e){
+    let json = {}
+    json['activityId'] = this.data.activity_id
+    json['equipId'] = this.data.equip_id
+    json['addressId'] = this.data.address_id
+    // console.log(json)
+    wx.navigateTo({
+      url: '/pages/address/address?address=' + JSON.stringify(json),
+    })
+  },
+  obtain_data_by_id(addressId){
+    let that = this
+    wx.request({
+      url: app.globalData.protocol + app.globalData.url + '/drift/address/by/addressid?addressId=' + addressId,
+      success: response => {
+        response = response.data
+        console.log(response)
+        if (response.responseCode === "RESPONSE_OK") {
+          that.setData({
+            address_data: response.data[0]
+          })
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     // console.log(options)
-    let activity_id = options.activityId
-    let equip_id = options.equipId
-    // console.log(activity_id)
-     this.setData({
-        activity_id:activity_id,
-        equip_id: equip_id
-     })
-    let that = this;
+    let that = this
+    let address = options.address
+    let activity_id
+    let equip_id
+    console.log(address)
+    if(address){
+      address=JSON.parse(address)
+      console.log(address)
+      activity_id = address.activityId
+      equip_id = address.equipId
+      let address_id = address.addressId
+      this.obtain_data_by_id(address_id)
+      this.setData({
+        address_id:address_id
+      })
+    } else{
+      activity_id = options.activityId
+      equip_id = options.equipId
+      that.obtain_data()
+      // console.log(activity_id)
+    }
+    that.setData({
+      activity_id: activity_id,
+      equip_id: equip_id,
+    })
+    //获取attachment
+    wx.request({
+      url: app.globalData.protocol + app.globalData.url + '/drift/attach/list?equipId='+equip_id,
+      success: function (response) {
+        response = response.data;
+        console.log(response)
+        if (response.responseCode == 'RESPONSE_OK') {
+           that.setData({
+             attach1:response.data[0],
+             attach2:response.data[1],
+           })
+        }
+      }
+    })
     // wx.request({
     //   url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + that.data.activity_id + '/annux',
     //   success: function (response) {
@@ -381,7 +469,7 @@ Page({
       }
     })
     wx.request({
-      url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + activity_id + '/profile',
+      url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + that.data.activity_id + '/profile',
       success: function (response) {
         console.log(response)
         response = response.data;
@@ -394,7 +482,7 @@ Page({
           that.setData({ act_name: item.activityName, act_desc: item.introduction, start_date: util.formatTimeToDateCN(item.startTime), end_date: util.formatTimeToDateCN(item.endTime), host: item.host, interval: item.reservableDays, start: util.formatTimeToDate(item.startTime), end: util.formatTimeToDate(item.endTime)});
           //获取日期list
           wx.request({
-            url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + activity_id + '/available',
+            url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + that.data.activity_id + '/available',
             success: function (response) {
               // console.log(response)
               response = response.data;

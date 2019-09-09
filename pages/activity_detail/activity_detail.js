@@ -201,24 +201,21 @@ Page({
     //   }
     // });
   },
-  activity_apply(){
+  activity_apply(e){
     let activity_id = this.data.activity_id;
     let equip_id = this.data.equip_id;
     let openid = wx.getStorageSync('openid');
-    // wx.navigateTo({
-    //   url: '/pages/apply_detail/apply_detail?activityId=' + activity_id + '&equipId=' + equip_id
-    // })
-    // wx.navigateTo({
-    //     url: '/pages/obtain_credit/obtain_credit'
-    // }) 
-    // console.log(activity_id)
-    // todo查询身份信息，进行不同的跳转
+    console.log(e)
     wx.request({
-      url: app.globalData.protocol + app.globalData.url + '/drift/user/authorized?openid='+openid,
-      success: function (response) {
-        console.log(response)
+      url: app.globalData.protocol+app.globalData.url+'/drift/user/info?openid='+openid,
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+      },
+      success: function(response){
         response = response.data;
-        if (response.responseCode == 'RESPONSE_OK') {
+        console.log(response)
+        if(response.responseCode==="RESPONSE_OK"){
+          // console.log('hhh')
           wx.showModal({
             title: '使用提示',
             content: '仪器使用完毕后，需按照约定时间顺丰寄回，邮费用户自理',
@@ -233,13 +230,69 @@ Page({
               }
             }
           })
-        } else {
-          wx.navigateTo({
-            url: '/pages/obtain_identity/obtain_identity'
-          })
+        }else{
+          if (e.detail.errMsg === "getUserInfo:ok") {
+            let iv = e.detail.iv
+            let data = e.detail.encryptedData
+            wx.request({
+              // url: 'https://microservice.gmair.net/drift/user/decode/phone',
+              url: app.globalData.protocol + app.globalData.url + '/drift/user/decode/user',
+              method: 'POST',
+              header: {
+                "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+              },
+              data: {
+                openid: openid,
+                iv: iv,
+                data: data
+              },
+              success: function (response) {
+                response = response.data
+                console.log(response)
+                if (response.responseCode === "RESPONSE_OK") {
+
+                }
+              }
+            })
+          }
         }
       }
-    });
+    })
+    // wx.navigateTo({
+    //   url: '/pages/apply_detail/apply_detail?activityId=' + activity_id + '&equipId=' + equip_id
+    // })
+    // wx.navigateTo({
+    //     url: '/pages/obtain_credit/obtain_credit'
+    // }) 
+    // console.log(activity_id)
+    // todo查询身份信息，进行不同的跳转
+    // wx.request({
+    //   url: app.globalData.protocol + app.globalData.url + '/drift/user/authorized?openid='+openid,
+    //   success: function (response) {
+    //     console.log(response)
+    //     response = response.data;
+    //     if (response.responseCode == 'RESPONSE_OK') {
+    //       wx.showModal({
+    //         title: '使用提示',
+    //         content: '仪器使用完毕后，需按照约定时间顺丰寄回，邮费用户自理',
+    //         confirmText: '确认申请',
+    //         success(res) {
+    //           if (res.confirm) {
+    //             wx.navigateTo({
+    //               url: '/pages/apply_detail/apply_detail?activityId=' + activity_id + '&equipId=' + equip_id
+    //             })
+    //           } else if (res.cancel) {
+    //             console.log('用户点击取消')
+    //           }
+    //         }
+    //       })
+    //     } else {
+    //       wx.navigateTo({
+    //         url: '/pages/obtain_identity/obtain_identity'
+    //       })
+    //     }
+    //   }
+    // });
     // wx.request({
     //   url: app.globalData.protocol + app.globalData.url + '/drift/user/score?openid='+openid,
     //   header: {

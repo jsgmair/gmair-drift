@@ -1,0 +1,16 @@
+<!--pages/express/express.wxml-->
+<view class="timeline-container">
+  <block wx:for="{{list}}" wx:key="item.id" hidden="{{list.length==0}}">
+    <view class="timeline">
+      <view class="dotline">
+        <view class="line"></view>
+        <view class="dot"></view>
+      </view>
+      <view class="content">
+        <text class="course">{{item.time}}</text>
+        <text class="chapter">{{item.desc}}</text>
+      </view>
+    </view>
+  </block>
+  <view hidden='{{list.length>0}}'>无任务详情</view>
+</view>
