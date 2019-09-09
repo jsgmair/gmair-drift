@@ -43,7 +43,7 @@
             {{item.time}}
             </view>
             <view class='footer_2'>
-              合计<span style='color:red'>{{item.realPay}}</span>元
+              合计<span style='color:red'>{{item.price}}</span>元
             </view>
          </view>
       </view>

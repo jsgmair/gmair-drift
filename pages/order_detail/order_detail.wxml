@@ -84,7 +84,7 @@
       </view>
       <view class='choose_btn_view' style='margin-top:70rpx' wx:if="{{status === 'DELIVERED'}}">
         <modal hidden="{{modal_hidden}}" title="填写寄回单号" confirm-text="确认提交" cancel-text="取消" bindcancel="cancel" bindconfirm="expressIdSubmit">
-            <input class='input' placeholder="填写寄回单号" auto-focus bindinput='expressIdInput' type="number"/>
+            <input class='input' placeholder="填写寄回单号" auto-focus bindtap='expressIdInput' disabled='true'/>
             <picker class="picker" bindchange="bindCompanyChange" value="{{index}}" range="{{company_array}}">
                 <view>
                    快递公司：{{company_array[company_index]}}

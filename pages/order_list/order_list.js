@@ -42,6 +42,7 @@ Page({
               num += orders[i].list[j].quantity * orders[i].list[j].singleNum
             }
             // console.log(num)
+            orders[i].price = orders[i].realPay.toFixed(2)
             orders[i].item_quantity = num
           }
           console.log(orders)

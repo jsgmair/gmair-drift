@@ -66,6 +66,7 @@ Page({
     let that = this
     wx.request({
       url: app.globalData.protocol + app.globalData.url + '/drift/order/pay/confirm',
+      // url: 'http://localhost:8015/drift/order/pay/confirm',
       // url: app.globalData.protocol + app.globalData.url + '/drift/user/decode/phone',
       method: 'POST',
       header: {
@@ -81,7 +82,9 @@ Page({
         if (response.responseCode === "RESPONSE_OK") {
            that.setData({
              input_disabled:true,
-             realPay: response.data.realPay * 100
+             realPay: response.data.realPay * 100,
+             excode:response.data.excode,
+             cutPrice: response.data.totalPrice - response.data.realPay,
            })
         }else{
           wx.showToast({

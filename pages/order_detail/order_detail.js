@@ -73,6 +73,11 @@ Page({
     
   },
   expressIdInput(e){
+    wx.scanCode({
+      success: (res) => {
+        console.log(res)
+      }
+    })
     this.setData({
       expressId:e.detail.value
     })
@@ -126,7 +131,7 @@ Page({
             equip_name: response.data.list[0].itemName,
             annux_name: response.data.list[1].itemName,
             item_quantity: num,
-            realPay: response.data.realPay,
+            realPay: response.data.realPay.toFixed(2),
             status:response.data.status,
             time:time,
             attach1: response.data.list[1],
