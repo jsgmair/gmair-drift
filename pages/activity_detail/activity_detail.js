@@ -25,7 +25,8 @@ Page({
     },
     equip_id:'',
     equip_name:'',
-    activity_type:0
+    activity_type:0,
+    type:0
   },
 
   /**
@@ -150,6 +151,7 @@ Page({
         }
       }
     });
+    that.obtain_info();
   },
 
   /**
@@ -201,116 +203,111 @@ Page({
     //   }
     // });
   },
-  activity_apply(e){
-    let activity_id = this.data.activity_id;
-    let equip_id = this.data.equip_id;
-    let openid = wx.getStorageSync('openid');
-    console.log(e)
+  obtain_info(){
+    let that = this
+    let openid = wx.getStorageSync('openid')
     wx.request({
-      url: app.globalData.protocol+app.globalData.url+'/drift/user/info?openid='+openid,
+      url: app.globalData.protocol + app.globalData.url + '/drift/user/info?openid=' + openid,
       header: {
         "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
       },
-      success: function(response){
+      success: function (response) {
         response = response.data;
         console.log(response)
-        if(response.responseCode==="RESPONSE_OK"){
-          // console.log('hhh')
-          wx.showModal({
-            title: '使用提示',
-            content: '仪器使用完毕后，需按照约定时间顺丰寄回，邮费用户自理',
-            confirmText: '确认申请',
-            success(res) {
-              if (res.confirm) {
-                wx.navigateTo({
-                  url: '/pages/apply_detail/apply_detail?activityId=' + activity_id + '&equipId=' + equip_id
-                })
-              } else if (res.cancel) {
-                console.log('用户点击取消')
-              }
-            }
+        if (response.responseCode === "RESPONSE_OK") {
+          if (response.data[0].phone) {
+            that.setData({
+              type:2
+            })
+          }else{
+            that.setData({
+              type:1
+            })
+          }
+        }else {
+          that.setData({
+            type: 0
           })
-        }else{
-          if (e.detail.errMsg === "getUserInfo:ok") {
-            let iv = e.detail.iv
-            let data = e.detail.encryptedData
-            wx.request({
-              // url: 'https://microservice.gmair.net/drift/user/decode/phone',
-              url: app.globalData.protocol + app.globalData.url + '/drift/user/decode/user',
-              method: 'POST',
-              header: {
-                "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
-              },
-              data: {
-                openid: openid,
-                iv: iv,
-                data: data
-              },
-              success: function (response) {
-                response = response.data
-                console.log(response)
-                if (response.responseCode === "RESPONSE_OK") {
-
-                }
-              }
+        } 
+      }
+  })
+},
+  activity_apply1(e){
+    let openid = wx.getStorageSync('openid');
+    let that = this;
+    if(e.detail.errMsg === "getUserInfo:ok") {
+      let iv = e.detail.iv
+      let data = e.detail.encryptedData
+      wx.request({
+        url: app.globalData.protocol + app.globalData.url + '/drift/user/decode/user',
+        method: 'POST',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+        },
+        data: {
+          openid: openid,
+          iv: iv,
+          data: data
+        },
+        success: function (response) {
+          response = response.data
+          console.log(response)
+          if (response.responseCode === "RESPONSE_OK") {
+            that.setData({
+              type:1
             })
           }
         }
+      })
+    }
+  },
+  activity_apply2(e) {
+    let openid = wx.getStorageSync('openid');
+    let that = this;
+    console.log(e)
+    if (e.detail.errMsg === "getPhoneNumber:ok") {
+      let iv = e.detail.iv
+      let data = e.detail.encryptedData
+      wx.request({
+        // url: 'https://microservice.gmair.net/drift/user/decode/phone',
+        url: app.globalData.protocol + app.globalData.url + '/drift/user/decode/phone',
+        method: 'POST',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+        },
+        data: {
+          openid: openid,
+          iv: iv,
+          data: data
+        },
+        success: function (response) {
+          response = response.data
+          console.log(response)
+          if (response.responseCode === "RESPONSE_OK") {
+            that.setData({
+              type:2
+            })
+          }
+        }
+      })
+    }
+  },
+  activity_apply3(e) {
+    let activity_id=this.data.activity_id;
+    let equip_id = this.data.equip_id;
+    wx.showModal({
+      title: '使用提示',
+      content: '仪器使用完毕后，需按照约定时间顺丰寄回，邮费用户自理',
+      confirmText: '确认申请',
+      success(res) {
+        if (res.confirm) {
+          wx.navigateTo({
+            url: '/pages/apply_detail/apply_detail?activityId=' + activity_id + '&equipId=' + equip_id
+          })
+        } else if (res.cancel) {
+            console.log('用户点击取消')
+        }
       }
     })
-    // wx.navigateTo({
-    //   url: '/pages/apply_detail/apply_detail?activityId=' + activity_id + '&equipId=' + equip_id
-    // })
-    // wx.navigateTo({
-    //     url: '/pages/obtain_credit/obtain_credit'
-    // }) 
-    // console.log(activity_id)
-    // todo查询身份信息，进行不同的跳转
-    // wx.request({
-    //   url: app.globalData.protocol + app.globalData.url + '/drift/user/authorized?openid='+openid,
-    //   success: function (response) {
-    //     console.log(response)
-    //     response = response.data;
-    //     if (response.responseCode == 'RESPONSE_OK') {
-    //       wx.showModal({
-    //         title: '使用提示',
-    //         content: '仪器使用完毕后，需按照约定时间顺丰寄回，邮费用户自理',
-    //         confirmText: '确认申请',
-    //         success(res) {
-    //           if (res.confirm) {
-    //             wx.navigateTo({
-    //               url: '/pages/apply_detail/apply_detail?activityId=' + activity_id + '&equipId=' + equip_id
-    //             })
-    //           } else if (res.cancel) {
-    //             console.log('用户点击取消')
-    //           }
-    //         }
-    //       })
-    //     } else {
-    //       wx.navigateTo({
-    //         url: '/pages/obtain_identity/obtain_identity'
-    //       })
-    //     }
-    //   }
-    // });
-    // wx.request({
-    //   url: app.globalData.protocol + app.globalData.url + '/drift/user/score?openid='+openid,
-    //   header: {
-    //     "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
-    //   },
-    //   success: function (response) {
-    //     response = response.data;
-    //     if (response.responseCode == 'RESPONSE_OK') {
-    //        wx.navigateTo({
-    //          url: '/pages/obtain_identity/obtain_identity'
-    //       }) 
-    //     }else {
-    //       wx.navigateTo({
-    //         url: '/pages/apply_detail/apply_detail?activityId=' + activity_id + '&equipId=' + equip_id
-    //       })
-    //     }
-    //   }
-    // })
-   
   }
 })

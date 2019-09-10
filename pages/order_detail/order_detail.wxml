@@ -4,6 +4,7 @@
     <view class='status' wx:if="{{status === 'PAYED'}}">支付完成</view>
     <view class='status' wx:if="{{status === 'CONFIRMED'}}">处理中</view>
     <view class='status' wx:if="{{status === 'DELIVERED'}}">已发货</view>
+    <view class='status' wx:if="{{status === 'BACK'}}">已寄回</view>
     <view class='status' wx:if="{{status === 'FINISHED'}}">交易完成</view>
     <view class='status' wx:if="{{status === 'CLOSED'}}">交易关闭</view>
     <view class='status' wx:if="{{status === 'CANCELED'}}">交易取消</view>
@@ -84,7 +85,7 @@
       </view>
       <view class='choose_btn_view' style='margin-top:70rpx' wx:if="{{status === 'DELIVERED'}}">
         <modal hidden="{{modal_hidden}}" title="填写寄回单号" confirm-text="确认提交" cancel-text="取消" bindcancel="cancel" bindconfirm="expressIdSubmit">
-            <input class='input' placeholder="填写寄回单号" auto-focus bindtap='expressIdInput' disabled='true'/>
+            <input class='input' placeholder="填写寄回单号" value='{{expressId}}' auto-focus bindtap='expressIdInput' disabled='true'/>
             <picker class="picker" bindchange="bindCompanyChange" value="{{index}}" range="{{company_array}}">
                 <view>
                    快递公司：{{company_array[company_index]}}

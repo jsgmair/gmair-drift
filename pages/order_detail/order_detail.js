@@ -41,16 +41,17 @@ Page({
     let that = this
     if(this.check_submit(expressId,company)){
       wx.request({
-        url: app.globalData.protocol + app.globalData.url + '/drift/express/create',
+        url: app.globalData.protocol + app.globalData.url + '/drift/order/express/create',
         method: 'POST',
         header: {
           "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
         },
         data: {
           orderId: orderId,
-          expressId: expressId,
+          expressNum: expressId,
           expressFlag: expressFlag,
-          company: company
+          company: company,
+          message:'',
         },
         success: function (response) {
           response = response.data
@@ -73,13 +74,22 @@ Page({
     
   },
   expressIdInput(e){
+    let that = this
     wx.scanCode({
       success: (res) => {
-        console.log(res)
+        console.log(res.result)
+        let str = res.result;
+        let index = str.indexOf("\'k5\'")
+        let index2 = str.indexOf("\'k6\'")
+        console.log(index)
+        str = str.substring(index+6,index2-2)
+        console.log(str)
+        // console.log(JSON.parse(str))
+        // let expressId = JSON.parse(str).k5
+        that.setData({
+          expressId: str
+        })
       }
-    })
-    this.setData({
-      expressId:e.detail.value
     })
   },
   bindCompanyChange(e){
@@ -134,8 +144,8 @@ Page({
             realPay: response.data.realPay.toFixed(2),
             status:response.data.status,
             time:time,
-            attach1: response.data.list[1],
-            attach2: response.data.list[2],
+            attach2: response.data.list[1],
+            attach1: response.data.list[2],
             equipPrice: response.data.list[0].itemPrice,
             annexPrice: price
           })

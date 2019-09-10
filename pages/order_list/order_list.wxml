@@ -19,6 +19,7 @@
               <van-tag class="demo-margin-right" plain type="danger" wx:if="{{item.status ==='PAYED'}}">支付完成</van-tag>
               <van-tag class="demo-margin-right" plain type="danger" wx:if="{{item.status === 'CONFIRMED'}}">处理中</van-tag>
               <van-tag class="demo-margin-right" plain type="success" wx:if="{{item.status === 'DELIVERED'}}">已发货</van-tag>
+              <van-tag class="demo-margin-right" plain type="success" wx:if="{{item.status === 'BACK'}}">已寄回</van-tag>
               <van-tag class="demo-margin-right" plain type="success" wx:if="{{item.status === 'FINISHED'}}">交易完成</van-tag>
               <van-tag class="demo-margin-right" plain wx:if="{{item.status === 'CLOSED'}}">交易关闭</van-tag>
               <van-tag class="demo-margin-right" plain wx:if="{{item.status === 'CANCELED'}}">交易取消</van-tag>
@@ -35,7 +36,7 @@
                <view class="weui-media-box__desc">使用国标光电度法</view>
             </view>
             <view class='content_3'>
-              {{item.list[2].itemName}} x {{item.list[2].quantity}}
+              {{item.list[1].itemName}} x {{item.list[1].quantity}}
             </view>
          </view>
          <view class='item_footer'>

@@ -54,8 +54,8 @@ Page({
             cutPrice: response.data.totalPrice-response.data.realPay,
             equipPrice: response.data.list[0].itemPrice,
             // annexPrice: price
-            attach1:response.data.list[1],
-            attach2:response.data.list[2],
+            attach2:response.data.list[1],
+            attach1:response.data.list[2],
             excode:response.data.excode
           })
         }

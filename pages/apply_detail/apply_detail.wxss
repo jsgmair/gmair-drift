@@ -122,7 +122,7 @@ annux_image{
 }
 .address{
   background: white;
-  margin:0 20rpx;
+  margin:30rpx 20rpx;
   border-radius: 30rpx;
   padding:20rpx 30rpx;
   display: flex;

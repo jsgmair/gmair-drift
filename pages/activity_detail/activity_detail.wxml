@@ -25,17 +25,19 @@
         <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
           <view class="weui-media-box__title">{{equip_name}}</view>
           <view class="weui-media-box__desc">使用国标光电度法</view>
-          </view>
         </view>
+        <view style='font-size:34rpx;color:#00A6E4' bindtap='more'>查看详情</view>
+        </view>
+        
       </view>
-      <view class="weui-panel__ft" bindtap='more'>
+      <!-- <view class="weui-panel__ft" bindtap='more'>
         <view class="weui-cell weui-cell_access weui-cell_link">
           <view class="weui-cell__bd">查看详情</view>
             <view class="weui-cell__ft weui-cell__ft_in-access"></view>
           </view>
-        </view>
+        </view>-->
       </view>
-      <van-notice-bar wx:if="{{notification!==''}}" text="{{notification}}" left-icon="https://console.gmair.net/drift/alert.png"/>
+      <!-- <van-notice-bar wx:if="{{notification!==''}}" text="{{notification}}" left-icon="https://console.gmair.net/drift/alert.png"/> -->
       <view class="activity_time">
          <view class='page__desc'><text>活动时间：</text>{{start_date}} — {{end_date}}
          </view>
@@ -50,8 +52,14 @@
       <view wx:if="{{activity_type===0}}"  class='choose_btn_view' style='margin-top:70rpx'>
         <button class="weui-btn" type="default" disabled="true">活动尚未开始</button>
       </view>
-      <view wx:if="{{activity_type===1}}"  class='choose_btn_view' style='margin-top:70rpx'>
-        <button class="weui-btn" open-type="getUserInfo" type="primary" bindgetuserinfo="activity_apply" hover-class='btn_hover'>活动申请</button>
+      <view wx:if="{{activity_type===1&&type===0}}"  class='choose_btn_view' style='margin-top:70rpx'>
+        <button class="weui-btn" open-type="getUserInfo" type="primary" bindgetuserinfo="activity_apply1" hover-class='btn_hover'>活动申请</button>
+      </view>
+      <view wx:if="{{activity_type===1&&type===1}}"  class='choose_btn_view' style='margin-top:70rpx'>
+        <button class="weui-btn" open-type="getPhoneNumber" type="primary" bindgetphonenumber="activity_apply2" hover-class='btn_hover'>活动申请</button>
+      </view>
+      <view wx:if="{{activity_type===1&&type===2}}"  class='choose_btn_view' style='margin-top:70rpx'>
+        <button class="weui-btn"  type="primary" bindtap="activity_apply3" hover-class='btn_hover'>活动申请</button>
       </view>
       <view wx:if="{{activity_type===2}}"  class='choose_btn_view' style='margin-top:70rpx'>
         <button class="weui-btn" type="default" disabled="true">活动已结束</button>

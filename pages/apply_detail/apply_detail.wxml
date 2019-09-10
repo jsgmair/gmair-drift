@@ -5,9 +5,9 @@
         <!-- <view class="page__desc">{{act_desc}}</view> -->
         <view style='padding-top:20rpx' class='content'>
          <!-- <view class='second_title'></view> -->
-         <view>(1）果麦新用户享仪器上新租赁价199元/2天，试纸20元/张，最少购买一张试纸。</view>
+         <view>(1）果麦手持甲醛检测仪，价格4580元（含3年校准费用），租赁服务价199元/2天，试纸20元/张</view>
          <view>(2）果麦新风机老用户，可凭机身唯一二维码，扫码兑换价值218.99元抵用券一张，实付0.01元即可参与本次活动。</view>
-         <view>(3）租赁期满，用户需将仪器顺丰寄回，邮费由用户承担，不可到付。</view>
+         <view>(3）租赁期满，用户需将仪器顺丰寄回，邮费由用户承担</view>
          <view>(4）一张试纸仅能使用一次，重复使用无效，建议一个房间检测一次，如需检测多个房间，请根据需求加购试纸数量。</view>
          <view>(5）因顺丰空运无法邮寄电池，使用仪器时请自备5节5号电池。</view>
       </view>
@@ -47,20 +47,6 @@
                 </view>
             </view>
         </view> -->
-        <view class='address' bindtap='address_select'>
-           <view class='address_detail' wx:if="{{address_data!==''}}">
-              <view class='area'>
-              <van-tag wx:if="{{address_data.defaultAddress === 1}}" style="margin-right:10rpx" class="demo-margin-right" type="primary">默认</van-tag> 
-              {{address_data.province+address_data.city+address_data.district}}</view>
-              <view class='detail'>{{address_data.addressDetail}}</view>
-              <view class='user'>
-                  <view class='name'>{{address_data.consignee}}</view>
-                  <view class='phone'>{{address_data.phone}}</view>          
-              </view>
-           </view>
-           <view class='address_detail' wx:if="{{address_data===''}}">选择地址</view>
-           <view class='address_icon'><van-icon name="arrow" size="18px" custom-class="icon"/></view>
-        </view>
         <view class="weui-cells__title">订单详情</view>
     <view class="weui-cells weui-cells_after-title">
             <!-- <view class="weui-cell weui-cell_input" bindtap='city_select'>
@@ -112,14 +98,29 @@
                         <image class="weui-media-box__thumb" src="https://console.gmair.net/drift/filter.png" />
                     </view>
                     <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-                        <view class="weui-media-box__title">{{attach1.attachName}}</view>
-                        <view class="text">一张试纸仅能检测一次，重复使用无效。如需多次检测，请加购试纸数量</view>
+                        <view class="weui-media-box__title" style='font-size:32rpx'>{{attach1.attachName}}({{attach1.attachPrice}}元/张)</view>
+                        <view class="text" style='margin-top:10rpx'>{{attach1.meal}}</view>
                     </view>
                     <view>
                          <demo-block title="基础用法" padding><van-stepper value="{{ annex_num }}" bind:change="num_change"/></demo-block>
                     </view>
                 </view>
             </view>
+        </view>
+        <van-notice-bar wx:if="{{notification!==''}}" text="{{notification}}" left-icon="https://console.gmair.net/drift/alert.png"/>
+        <view class='address' bindtap='address_select'>
+           <view class='address_detail' wx:if="{{address_data!==''}}">
+              <view class='area'>
+              <van-tag wx:if="{{address_data.defaultAddress === 1}}" style="margin-right:10rpx" class="demo-margin-right" type="primary">默认</van-tag> 
+              {{address_data.province+address_data.city+address_data.district}}</view>
+              <view class='detail'>{{address_data.addressDetail}}</view>
+              <view class='user'>
+                  <view class='name'>{{address_data.consignee}}</view>
+                  <view class='phone'>{{address_data.phone}}</view>          
+              </view>
+           </view>
+           <view class='address_detail' wx:if="{{address_data===''}}">选择地址</view>
+           <view class='address_icon'><van-icon name="arrow" size="18px" custom-class="icon"/></view>
         </view>
         <!-- <view class="annux_panel">
            <view class='annux_left'>
@@ -144,7 +145,6 @@
            </view>        
         </view> -->
         <!-- <view class='notification'>{{notification}}</view> -->
-        <van-notice-bar wx:if="{{notification!==''}}" text="{{notification}}" left-icon="https://console.gmair.net/drift/alert.png"/>
         <view class='check'>
             <checkbox-group bindchange='check_change'><checkbox value="1" checked="{{is_check}}" />我同意<text style='color:#00a6e4' bindtap='text_click'>果麦甲醛检测仪租借协议</text></checkbox-group>
                 
