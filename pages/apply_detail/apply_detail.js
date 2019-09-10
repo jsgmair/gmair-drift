@@ -53,7 +53,18 @@ Page({
     annux_name: '',
     annux_price: '',
     address_data:'',
-    address_id:''
+    address_id:'',
+    service_show:false
+  },
+  show_service(e) {
+    this.setData({
+      service_show: true
+    })
+  },
+  togglePopup(e) {
+    this.setData({
+      service_show: false
+    })
   },
   //弹起框选择城市
   city_select(){
@@ -172,6 +183,7 @@ Page({
       endtime: endtime,
       is_select: false
     })
+    // console.log(this.data.address_id)
     this.check_submit_ready(this.data.address_id,starttime, this.data.day_index,this.data.annex_num);
   },
   //开始时间选择
@@ -237,7 +249,7 @@ Page({
       }else{
         is_check=false;
       }
-   this.check_submit_ready(this.data.addressId,this.data.starttime, this.data.interval, is_check, this.data.annex_num);
+   this.check_submit_ready(this.data.address_id,this.data.starttime, this.data.interval, is_check, this.data.annex_num);
       that.setData({
         is_check:is_check,
       })
@@ -246,10 +258,11 @@ Page({
   check_submit_ready(addressId,starttime, interval, is_check, annex_num){
     var submit_ready;
     var that=this;
+    console.log(addressId)
     // let sum = annex_num1 + annex_num2 + annex_num3
     // console.log(sum)
     //将开始时间和使用天数删除后判断条件更改
-    if (addressId !== "" && starttime !== "" && interval !== '' && is_check === true && annex_num!==0){
+    if (addressId !== "" && addressId !=undefined && starttime !== "" && interval !== '' && is_check === true && annex_num!==0){
     // if (name !== "" && phone !== "" && phone_true === true && code === code_send && address !== "" && address_detail !== "" && is_check === true) {
       submit_ready=true;
     }else{

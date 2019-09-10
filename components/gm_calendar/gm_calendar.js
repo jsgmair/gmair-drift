@@ -76,7 +76,7 @@ Component({
       for (var i = 1; i < this.data.lastDay + 1; i++) {
         json = {}
         json['index'] = i
-        let value = util.formatTimeToDate(this.data.year + '-' + this.data.month + '-' + i)
+        let value = util.formatTimeToDate(this.data.year + '/' + this.data.month + '/' + i)
         json['value'] = value
         json['canSelect'] = this.check_select(value)
         json['canSelectRange'] = this.check_select_range(value)

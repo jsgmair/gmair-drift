@@ -26,7 +26,28 @@ Page({
     equip_id:'',
     equip_name:'',
     activity_type:0,
-    type:0
+    type:0,
+    service_show:false
+  },
+  handleContact(e){
+      console.log(e.detail.path)
+      console.log(e.detail.query)
+  },
+  show_service(e){
+    let current = "https://monitor.gmair.net/image/wechat.png"
+    wx.previewImage({
+      current: current,
+      urls: [current]
+    })
+      // this.setData({
+      //   service_show:true
+      // })
+  },
+
+  togglePopup(e){
+     this.setData({
+       service_show: false
+     })
   },
 
   /**
@@ -295,19 +316,22 @@ Page({
   activity_apply3(e) {
     let activity_id=this.data.activity_id;
     let equip_id = this.data.equip_id;
-    wx.showModal({
-      title: '使用提示',
-      content: '仪器使用完毕后，需按照约定时间顺丰寄回，邮费用户自理',
-      confirmText: '确认申请',
-      success(res) {
-        if (res.confirm) {
-          wx.navigateTo({
-            url: '/pages/apply_detail/apply_detail?activityId=' + activity_id + '&equipId=' + equip_id
-          })
-        } else if (res.cancel) {
-            console.log('用户点击取消')
-        }
-      }
+    wx.navigateTo({
+      url: '/pages/apply_detail/apply_detail?activityId=' + activity_id + '&equipId=' + equip_id
     })
+    // wx.showModal({
+    //   title: '使用提示',
+    //   content: '仪器使用完毕后，需按照约定时间顺丰寄回，邮费用户自理',
+    //   confirmText: '确认申请',
+    //   success(res) {
+    //     if (res.confirm) {
+    //       wx.navigateTo({
+    //         url: '/pages/apply_detail/apply_detail?activityId=' + activity_id + '&equipId=' + equip_id
+    //       })
+    //     } else if (res.cancel) {
+    //         console.log('用户点击取消')
+    //     }
+    //   }
+    // })
   }
 })

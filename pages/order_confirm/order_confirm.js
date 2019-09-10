@@ -177,6 +177,7 @@ Page({
               that.setData({
                 code:codeValue
               })
+              that.submit_code();
             }
           }
         })

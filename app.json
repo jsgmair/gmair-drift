@@ -1,6 +1,5 @@
 {
   "pages": [
-   
     "pages/activity_detail/activity_detail",
     "pages/order_detail/order_detail",
     "pages/address/address",
@@ -15,7 +14,8 @@
     "pages/obtain_identity/obtain_identity",
     "pages/protocol/protocol",
     "pages/equip_detail/equip_detail",
-    "pages/express/express"
+    "pages/express/express",
+    "pages/service/service"
   ],
   "tabBar": {
     "selectedColor": "#00A6E4",

@@ -24,11 +24,11 @@
           <image class="weui-media-box__thumb" src="https://console.gmair.net/drift/device.png" /></view>
         <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
           <view class="weui-media-box__title">{{equip_name}}</view>
-          <view class="weui-media-box__desc">使用国标光电度法</view>
+          <view class="weui-media-box__desc">国标光电光度法</view>
         </view>
         <view style='font-size:34rpx;color:#00A6E4' bindtap='more'>查看详情</view>
+        <van-icon style='display:flex;align-items:center;color:#00A6E4' font-size='50rpx' name="arrow" custom-class="icon"/>
         </view>
-        
       </view>
       <!-- <view class="weui-panel__ft" bindtap='more'>
         <view class="weui-cell weui-cell_access weui-cell_link">
@@ -38,10 +38,10 @@
         </view>-->
       </view>
       <!-- <van-notice-bar wx:if="{{notification!==''}}" text="{{notification}}" left-icon="https://console.gmair.net/drift/alert.png"/> -->
-      <view class="activity_time">
-         <view class='page__desc'><text>活动时间：</text>{{start_date}} — {{end_date}}
+      <!-- <view class="activity_time">
+         <view class='page__desc'><text>申请时间：</text>{{start_date}} — {{end_date}}
          </view>
-      </view>
+      </view> -->
       <view class="weui-cells weui-cells_after-title" style="font-size:14px">
         <view class="weui-cell">
           <view class="weui-cell__bd">当前服务人数</view>
@@ -65,4 +65,17 @@
         <button class="weui-btn" type="default" disabled="true">活动已结束</button>
       </view>
     </view>
+    <button class='service' open-type="contact" bindcontact="handleContact"><van-icon name="service" size="60rpx" custom-class="icon" color='#00A6E4' style='opacity:1'/></button>
+    <van-popup
+    show="{{service_show}}"
+    custom-class="center"
+    transition="none"
+    bind:close="togglePopup"
+    bind:transitionEnd="onTransitionEnd"
+  >
+    <view style='width:360rpx;height:360rpx;'>
+       <image class="weui-media-box__thumb" style='height:300rpx' src="https://console.gmair.net/drift/device.png" />
+       <view class='service_text'>请截图添加客服微信</view>
+    </view>
+  </van-popup>
 </view>

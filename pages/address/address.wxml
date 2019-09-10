@@ -8,11 +8,11 @@
    <view class='list_item' wx:for="{{address_list}}" wx:key="{{item.addressId}}"  wx:for-item="item">
       <view class='list_detail' bindtap='address_select' data-id='{{item.addressId}}'>
           <view class='detail_user'>
+          <van-tag wx:if="{{item.defaultAddress === 1}}" style="margin-right:10rpx;"  class="demo-margin-right" type="primary">默认</van-tag> 
               <view class='user_name'>{{item.consignee}}</view>
               <view class='user_phone'>{{item.phone}}</view>
           </view>
           <view class='detail_address'>
-              <van-tag wx:if="{{item.defaultAddress === 1}}" style="margin-right:10rpx" class="demo-margin-right" type="primary">默认</van-tag> 
               {{item.province+item.city+item.district}} {{item.addressDetail}}
           </view>
       </view>

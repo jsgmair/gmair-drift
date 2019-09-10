@@ -14,7 +14,7 @@
               手机号码
           </view>
           <view class='edit_value'>
-              <input placeholder='请填写收货人手机号' value="{{phone}}" bindinput='phoneInput'></input>
+              <input placeholder='请填写收货人手机号' type='number' value="{{phone}}" bindinput='phoneInput'></input>
           </view>
       </view>
       <view class='edit_item'>

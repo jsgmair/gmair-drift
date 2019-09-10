@@ -38,7 +38,7 @@
           <image class="weui-media-box__thumb" src="https://console.gmair.net/drift/device.png" /></view>
         <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
           <view class="weui-media-box__title">{{equip_name}}</view>
-          <view class="weui-media-box__desc">使用国标光电度法</view>
+          <view class="weui-media-box__desc">国标光电光度法</view>
           </view>
           <view style="margin-right:30rpx">价格：{{equipPrice}}元</view>
         </view>

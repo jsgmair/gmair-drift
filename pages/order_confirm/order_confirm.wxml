@@ -29,7 +29,7 @@
           <image class="weui-media-box__thumb" src="https://console.gmair.net/drift/device.jpeg" /></view>
         <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
           <view class="weui-media-box__title">{{equip_name}}</view>
-          <view class="weui-media-box__desc">使用国标光电度法</view>
+          <view class="weui-media-box__desc">国标光电光度法</view>
           </view>
           <view style="margin-right:30rpx">价格：{{equipPrice}}元</view>
         </view>
@@ -60,7 +60,7 @@
                     <image class="scan" src="../../images/scan.png"></image><text style='padding-left:15rpx;color: #5cd65c'>扫一扫</text>
                 </view>
                 <view class="scan_middle">
-                    <input placeholder="扫描二维码/输入优惠码" disabled='{{input_disabled}}' value='{{code}}' bindinput='codeInput'/>
+                    <input placeholder="扫描新风机二维码/输入优惠码" style='font-size:28rpx;width:100%' disabled='{{input_disabled}}' value='{{code}}' bindinput='codeInput'/>
                 </view>
                 <view class="scan_right" bindtap='submit_code'>
                     提交

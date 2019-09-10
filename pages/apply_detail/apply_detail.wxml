@@ -5,10 +5,10 @@
         <!-- <view class="page__desc">{{act_desc}}</view> -->
         <view style='padding-top:20rpx' class='content'>
          <!-- <view class='second_title'></view> -->
-         <view>(1）果麦手持甲醛检测仪，价格4580元（含3年校准费用），租赁服务价199元/2天，试纸20元/张</view>
-         <view>(2）果麦新风机老用户，可凭机身唯一二维码，扫码兑换价值218.99元抵用券一张，实付0.01元即可参与本次活动。</view>
-         <view>(3）租赁期满，用户需将仪器顺丰寄回，邮费由用户承担</view>
-         <view>(4）一张试纸仅能使用一次，重复使用无效，建议一个房间检测一次，如需检测多个房间，请根据需求加购试纸数量。</view>
+         <view>(1）果麦甲醛检测仪，售价4580元（含3年校准费用），租赁服务199元/2天，试纸20元/片；</view>
+         <view>(2）果麦新风机老用户，可凭机身唯一二维码，扫码兑换价值218.99元抵用券一张，实付0.01元即可参与本次活动；</view>
+         <view>(3）租赁期满，用户需将仪器顺丰寄回，邮费由用户承担，如逾期未还，按实际使用天数缴纳租赁费；</view>
+         <view>(4）一片试纸仅能使用一次，重复使用无效，建议一个房间检测一次，如需检测多个房间，请根据需求加购试纸数量；</view>
          <view>(5）因顺丰空运无法邮寄电池，使用仪器时请自备5节5号电池。</view>
       </view>
         <!-- <view class='page__desc'><text style="color:#00a6e4">主办方：</text>{{host}}</view> -->
@@ -47,7 +47,7 @@
                 </view>
             </view>
         </view> -->
-        <view class="weui-cells__title">订单详情</view>
+        <view class="weui-cells__title">预约检测时间</view>
     <view class="weui-cells weui-cells_after-title">
             <!-- <view class="weui-cell weui-cell_input" bindtap='city_select'>
                 <view class="weui-cell__hd">
@@ -86,7 +86,7 @@
             </view>
             <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__hd">
-                    <view class="weui-label">结束时间</view>
+                    <view class="weui-label">寄回时间</view>
                 </view>
                 <view class="weui-cell__bd">
                     <view class="weui-input">{{endtime}}</view>
@@ -98,8 +98,8 @@
                         <image class="weui-media-box__thumb" src="https://console.gmair.net/drift/filter.png" />
                     </view>
                     <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-                        <view class="weui-media-box__title" style='font-size:32rpx'>{{attach1.attachName}}({{attach1.attachPrice}}元/张)</view>
-                        <view class="text" style='margin-top:10rpx'>{{attach1.meal}}</view>
+                        <view class="weui-media-box__title" style='font-size:32rpx'>{{attach1.attachName}}({{attach1.attachPrice}}元/片)</view>
+                        <text class="text" decode='true' style='margin-top:5rpx'>一片试纸仅能使用一次，重复使用无效&ensp;&ensp;&ensp;{{attach1.meal}}</text>
                     </view>
                     <view>
                          <demo-block title="基础用法" padding><van-stepper value="{{ annex_num }}" bind:change="num_change"/></demo-block>
@@ -165,5 +165,18 @@
     bind:close="toggleBottomPopup"
   >
     <gm-calendar day_select="{{starttime}}" list="{{list}}" can_select_list="{{can_select_list}}" bind:daySelect="daySelect"></gm-calendar>
+  </van-popup>
+  <button class='service' open-type="contact" bindcontact="handleContact"><van-icon name="service" size="60rpx" custom-class="icon" color='#00A6E4' style='opacity:1'/></button>
+    <van-popup
+    show="{{service_show}}"
+    custom-class="center"
+    transition="none"
+    bind:close="togglePopup"
+    bind:transitionEnd="onTransitionEnd"
+  >
+    <view style='width:360rpx;height:360rpx;'>
+       <image class="weui-media-box__thumb" style='height:300rpx' src="https://console.gmair.net/drift/device.png" />
+       <view class='service_text'>请截图添加客服微信</view>
+    </view>
   </van-popup>
 
