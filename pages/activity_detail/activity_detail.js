@@ -274,11 +274,22 @@ Page({
           response = response.data
           console.log(response)
           if (response.responseCode === "RESPONSE_OK") {
+            wx.showToast({
+              title: '获取信息成功',
+              icon: 'success',
+              duration: 2000
+            })
             that.setData({
               type:1
             })
           }
         }
+      })
+    }else{
+      wx.showToast({
+        title: '需获取个人信息才能继续申请',
+        icon: 'none',
+        duration: 2000
       })
     }
   },
@@ -305,11 +316,22 @@ Page({
           response = response.data
           console.log(response)
           if (response.responseCode === "RESPONSE_OK") {
+            wx.showToast({
+              title: '获取手机号成功',
+              icon: 'success',
+              duration: 2000
+            })
             that.setData({
               type:2
             })
           }
         }
+      })
+    } else {
+      wx.showToast({
+        title: '需获取个人手机号才能继续申请',
+        icon: 'none',
+        duration: 2000
       })
     }
   },

@@ -33,7 +33,7 @@
             </view>
             <view class='content_2'>
                <view class="weui-media-box__title">{{item.list[0].itemName}} x {{item.list[0].quantity}}</view>
-               <view class="weui-media-box__desc">使用国标光电度法</view>
+               <view class="weui-media-box__desc">国标光电光度法</view>
             </view>
             <view class='content_3'>
               {{item.list[1].itemName}} x {{item.list[1].quantity}}

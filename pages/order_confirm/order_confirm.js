@@ -90,7 +90,7 @@ Page({
           wx.showToast({
             title: response.description,
             icon: 'none',
-            duration: 2000
+            duration: 4000
           })
         }
       }
