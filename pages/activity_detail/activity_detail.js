@@ -294,6 +294,8 @@ Page({
     }
   },
   activity_apply2(e) {
+    let activity_id = this.data.activity_id;
+    let equip_id = this.data.equip_id;
     let openid = wx.getStorageSync('openid');
     let that = this;
     console.log(e)
@@ -320,6 +322,9 @@ Page({
               title: '获取手机号成功',
               icon: 'success',
               duration: 2000
+            })
+            wx.navigateTo({
+              url: '/pages/apply_detail/apply_detail?activityId=' + activity_id + '&equipId=' + equip_id
             })
             that.setData({
               type:2
