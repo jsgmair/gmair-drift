@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "编辑收获地址",
+  "navigationBarTitleText": "编辑收货地址",
   "usingComponents": {
     "van-action-sheet": "/miniprogram_npm/vant-weapp/action-sheet/index",
     "van-switch": "/miniprogram_npm/vant-weapp/switch/index",

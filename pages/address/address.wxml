@@ -2,7 +2,7 @@
 <view class='page'>
 <view class='nodata' wx:if="{{address_list.length ===0}}">
       <van-icon name="todo-list-o" size="80rpx" custom-class="icon" color='#00A6E4'/>
-      <view>您还没有收获地址哦！</view>
+      <view>您还没有收货地址哦！</view>
   </view>
 <view class='content'>
    <view class='list_item' wx:for="{{address_list}}" wx:key="{{item.addressId}}"  wx:for-item="item">
