@@ -7,14 +7,38 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: [{ time: '2019-08-22', desc: '待收货' }, { time: '2019-08-23', desc: '已发货' }, { time: '2019-08-23', desc: '快递到达南京分拨中心' }, { time: '2019-08-23', desc: '快递从南京发往上海' }, { time: '2019-08-24', desc: '快递到达上海浦东分拨中心' }, { time: '2019-08-24', desc: '等待配送' }, { time: '2019-08-25', desc: '已收货' }],
+    orderId:'',
+    status:0,
+    list:[],
+    // list: [{ time: '2019-08-22', desc: '待收货' }, { time: '2019-08-23', desc: '已发货' }, { time: '2019-08-23', desc: '快递到达南京分拨中心' }, { time: '2019-08-23', desc: '快递从南京发往上海' }, { time: '2019-08-24', desc: '快递到达上海浦东分拨中心' }, { time: '2019-08-24', desc: '等待配送' }, { time: '2019-08-25', desc: '已收货' }],
+    express_show:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     console.log(options.orderId)
+     let orderId = options.orderId;
+     let status = this.data.status;
+     let that = this
+     wx.request({
+        url: app.globalData.protocol + app.globalData.url + '/drift/order/express/list?orderId='+orderId+"&status="+status,
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+        },
+        success: function (response) {
+          response = response.data
+          console.log(response)
+          if (response.responseCode === "RESPONSE_OK") {
+            let data = response.data[0].data;
+            data = JSON.parse(data);
+             that.setData({
+               express_show:true,
+               list:data,
+             })
+          }
+        }
+    })
   },
 
   /**

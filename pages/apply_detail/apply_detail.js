@@ -128,8 +128,8 @@ Page({
       let iv = e.detail.iv
       let data = e.detail.encryptedData
       wx.request({
-        url:  'https://microservice.gmair.net/drift/user/decode/phone',
-        // url: app.globalData.protocol + app.globalData.url + '/drift/user/decode/phone',
+        // url:  'https://microservice.gmair.net/drift/user/decode/phone',
+        url: app.globalData.protocol + app.globalData.url + '/drift/user/decode/phone',
         method: 'POST',
         header: {
           "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
@@ -184,7 +184,7 @@ Page({
       is_select: false
     })
     // console.log(this.data.address_id)
-    this.check_submit_ready(this.data.address_id,starttime, this.data.day_index,this.data.annex_num);
+    this.check_submit_ready(this.data.address_id, starttime, this.data.interval, this.data.is_check, this.data.annex_num);
   },
   //开始时间选择
   // bindStartTimeChange(e){

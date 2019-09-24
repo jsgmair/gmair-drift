@@ -80,12 +80,19 @@
       <view class='choose_btn_view' style='margin-top:70rpx' wx:if="{{status === 'APPLIED'}}">
         <button class="weui-btn" type="primary" bindtap="toPay" hover-class='btn_hover'>前往支付</button>
       </view>
-      <view class='choose_btn_view cancel' bindtap='order_cancel' style='margin-top:40rpx' wx:if="{{status === 'APPLIED'}}">
+      <view class='choose_btn_view cancel' bindtap='order_cancel' style='margin-top:40rpx' wx:if="{{status === 'APPLIED'||status === 'PAYED'}}">
           取消订单
       </view>
       <view class='choose_btn_view' style='margin-top:70rpx' wx:if="{{status === 'DELIVERED'}}">
         <modal hidden="{{modal_hidden}}" title="填写寄回单号" confirm-text="确认提交" cancel-text="取消" bindcancel="cancel" bindconfirm="expressIdSubmit">
-            <input class='input' placeholder="填写寄回单号" value='{{expressId}}' auto-focus bindtap='expressIdInput' disabled='true'/>
+        <view class="scan_panel">
+                <view class="scan_middle">
+                    <input class='input' placeholder="扫描单号条形码/填写单号" value='{{expressId}}' auto-focus bindinput='expressIdInput'/>
+                </view>
+                <view class="scan_right" bindtap='scan'>
+                    <image class="scan" src="../../images/scan.png"></image><text style='padding-left:10rpx;color: #5cd65c'>扫一扫</text>
+                </view>
+            </view>
             <picker class="picker" bindchange="bindCompanyChange" value="{{index}}" range="{{company_array}}">
                 <view>
                    快递公司：{{company_array[company_index]}}

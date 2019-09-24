@@ -70,7 +70,7 @@
         <view class="weui-cells weui-cells_after-title" style='margin-top:20rpx;margin-bottom:100rpx' wx:if="{{excode}}">
             <view class="scan_panel">
                 <view class="scan_left">
-                    优惠价值
+                    优惠券价值
                 </view>
                 <view class="scan_right">
                     {{cutPrice}}元

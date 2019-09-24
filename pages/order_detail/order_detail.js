@@ -20,6 +20,7 @@ Page({
     modal_hidden:true,
     company_array:['顺丰快递'],
     company_index: '0',
+    company_value:['shunfeng'],
     expressId:'',
     equipPrice:'',
     annexPrice:'',
@@ -37,29 +38,40 @@ Page({
     let orderId = this.data.order_id
     let expressId = this.data.expressId
     let expressFlag = 1
-    let company = this.data.company_array[this.data.company_index]
+    let company = this.data.company_value[this.data.company_index]
     let that = this
     if(this.check_submit(expressId,company)){
       wx.request({
         url: app.globalData.protocol + app.globalData.url + '/drift/order/express/create',
+        // url:'http://192.168.31.124:8015/drift/order/express/create',
         method: 'POST',
         header: {
           "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
         },
         data: {
           orderId: orderId,
-          expressNum: expressId,
+          expressNo: expressId,
           expressFlag: expressFlag,
           company: company,
-          message:'',
         },
         success: function (response) {
           response = response.data
           console.log(response)
           if (response.responseCode === "RESPONSE_OK") {
             that.obtain_order_detail(that.data.order_id)
+            wx.showToast({
+              title: '提交成功',
+              icon: 'success',
+              duration: 2000
+            })
             that.setData({
               modal_hidden: true
+            })
+          } else {
+            wx.showToast({
+              title: '提交失败',
+              icon: 'none',
+              duration: 2000
             })
           }
         }
@@ -74,18 +86,15 @@ Page({
     
   },
   expressIdInput(e){
+    this.setData({
+      expressId:e.detail.value
+    })
+  },
+  scan(e){
     let that = this
     wx.scanCode({
       success: (res) => {
-        console.log(res.result)
         let str = res.result;
-        let index = str.indexOf("\'k5\'")
-        let index2 = str.indexOf("\'k6\'")
-        console.log(index)
-        str = str.substring(index+6,index2-2)
-        console.log(str)
-        // console.log(JSON.parse(str))
-        // let expressId = JSON.parse(str).k5
         that.setData({
           expressId: str
         })
