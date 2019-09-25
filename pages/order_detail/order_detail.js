@@ -58,14 +58,14 @@ Page({
           response = response.data
           console.log(response)
           if (response.responseCode === "RESPONSE_OK") {
+            that.setData({
+              modal_hidden: true
+            })
             that.obtain_order_detail(that.data.order_id)
             wx.showToast({
               title: '提交成功',
               icon: 'success',
               duration: 2000
-            })
-            that.setData({
-              modal_hidden: true
             })
           } else {
             wx.showToast({
