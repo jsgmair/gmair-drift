@@ -1,27 +1,29 @@
 <!--pages/address/address.wxml-->
 <view class='page'>
-<view class='nodata' wx:if="{{address_list.length ===0}}">
-      <van-icon name="todo-list-o" size="80rpx" custom-class="icon" color='#00A6E4'/>
-      <view>您还没有收货地址哦！</view>
-  </view>
-<view class='content'>
-   <view class='list_item' wx:for="{{address_list}}" wx:key="{{item.addressId}}"  wx:for-item="item">
-      <view class='list_detail' bindtap='address_select' data-id='{{item.addressId}}'>
-          <view class='detail_user'>
-          <van-tag wx:if="{{item.defaultAddress === 1}}" style="margin-right:10rpx;"  class="demo-margin-right" type="primary">默认</van-tag> 
-              <view class='user_name'>{{item.consignee}}</view>
-              <view class='user_phone'>{{item.phone}}</view>
-          </view>
-          <view class='detail_address'>
-              {{item.province+item.city+item.district}} {{item.addressDetail}}
-          </view>
-      </view>
-      <view class='list_edit' bindtap='edit_select' data-id='{{item.addressId}}'>
-         <image class='edit_image' src='../../images/activity_select.png'></image>
-      </view>
-   </view>
-</view>
-   <view class='add_btn'>
-      <button class="weui-btn" type="primary" bindtap='add_select'  hover-class='btn_hover'>添加地址</button>
-   </view>
+    <view class='nodata' wx:if="{{address_list.length ===0}}">
+        <van-icon name="todo-list-o" size="80rpx" custom-class="icon" color='#00A6E4'/>
+        <view>您还没有收货地址哦！</view>
+    </view>
+    <view class='content'>
+        <view class='list_item' wx:for="{{address_list}}" wx:key="{{item.addressId}}" wx:for-item="item">
+            <view class='list_detail' bindtap='address_select' data-id='{{item.addressId}}'>
+                <view class='detail_user'>
+                    <van-tag wx:if="{{item.defaultAddress === 1}}" style="margin-right:10rpx;" class="demo-margin-right"
+                             type="primary">默认
+                    </van-tag>
+                    <view class='user_name'>{{item.consignee}}</view>
+                    <view class='user_phone'>{{item.phone}}</view>
+                </view>
+                <view class='detail_address'>
+                    {{item.province+item.city+item.district}} {{item.addressDetail}}
+                </view>
+            </view>
+            <view class='list_edit' bindtap='edit_select' data-id='{{item.addressId}}'>
+                <image class='edit_image' src='../../images/activity_select.png'></image>
+            </view>
+        </view>
+    </view>
+    <view class='add_btn'>
+        <button class="weui-btn" type="primary" bindtap='add_select' hover-class='btn_hover'>添加地址</button>
+    </view>
 </view>

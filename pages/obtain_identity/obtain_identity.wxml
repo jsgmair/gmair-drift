@@ -1,20 +1,21 @@
 <!--pages/obtain_identity/obtain_identity.wxml-->
 <view>
-   <view class='logo'>
-     <cover-image src='../../images/gmair_blue.png'></cover-image>
-     <view class='logo_text'>果麦新风</view>
-   </view>
-   <view class='form'>
-      <view  class="item">
-         <van-field value="{{ username }}" label="姓名" placeholder="请输入姓名" clearable required bindinput="username_input"/>
-      </view>
-      <view class="item">
-          <van-field value="{{ idcard }}" type="number" label="身份证号" placeholder="请输入18位身份证号" required
-           clearable bindinput="idcard_input"
-      />
-      </view>
-   </view>
-   <view class='btn'>
-      <button class="weui-btn myBtn" type="primary" bindtap="submit_identity" hover-class='btn_hover'>身份验证</button>
-   </view>  
+    <view class='logo'>
+        <cover-image src='../../images/gmair_blue.png'></cover-image>
+        <view class='logo_text'>果麦新风</view>
+    </view>
+    <view class='form'>
+        <view class="item">
+            <van-field value="{{ username }}" label="姓名" placeholder="请输入姓名" clearable required
+                       bindinput="username_input"/>
+        </view>
+        <view class="item">
+            <van-field value="{{ idcard }}" type="number" label="身份证号" placeholder="请输入18位身份证号" required
+                       clearable bindinput="idcard_input"
+            />
+        </view>
+    </view>
+    <view class='btn'>
+        <button class="weui-btn myBtn" type="primary" bindtap="submit_identity" hover-class='btn_hover'>身份验证</button>
+    </view>
 </view>

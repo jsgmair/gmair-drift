@@ -1,53 +1,62 @@
 <!--pages/order_list/order_list.wxml-->
 <!--pages/order_confirm/order_confirm.wxml-->
 <view class='page'>
-  <view wx:if="{{size === 0}}" class='nodata'>
-      <van-icon name="todo-list-o" size="80rpx" custom-class="icon" color='#00A6E4'/>
-      <view>您还没有相关的订单</view>
-  </view>
-  <view class="page__bd" style='padding-top:20rpx;' wx:else>      
-      <view class='item'  wx:for="{{order_list}}" wx:key="item.orderId"  wx:for-item="item" bindtap='listClick' data-id="{{item.orderId}}">
-         <view class='item_header'>
-            <view class='header_1'>
-              <van-icon name="shop-o" size="42rpx" custom-class="icon" color='red'/>
+    <view wx:if="{{size === 0}}" class='nodata'>
+        <van-icon name="todo-list-o" size="80rpx" custom-class="icon" color='#00A6E4'/>
+        <view>您还没有相关的订单</view>
+    </view>
+    <view class="page__bd" style='padding-top:20rpx;' wx:else>
+        <view class='item' wx:for="{{order_list}}" wx:key="item.orderId" wx:for-item="item" bindtap='listClick'
+              data-id="{{item.orderId}}">
+            <view class='item_header'>
+                <view class='header_1'>
+                    <van-icon name="shop-o" size="42rpx" custom-class="icon" color='red'/>
+                </view>
+                <view class='header_2'>
+                    {{item.orderId}}
+                </view>
+                <view class='header_3'>
+                    <van-tag class="demo-margin-right" plain type="primary" wx:if="{{item.status == 'APPLIED'}}">等待支付
+                    </van-tag>
+                    <van-tag class="demo-margin-right" plain type="danger" wx:if="{{item.status ==='PAYED'}}">支付完成
+                    </van-tag>
+                    <van-tag class="demo-margin-right" plain type="danger" wx:if="{{item.status === 'CONFIRMED'}}">处理中
+                    </van-tag>
+                    <van-tag class="demo-margin-right" plain type="success" wx:if="{{item.status === 'DELIVERED'}}">
+                        已发货
+                    </van-tag>
+                    <van-tag class="demo-margin-right" plain type="success" wx:if="{{item.status === 'BACK'}}">已寄回
+                    </van-tag>
+                    <van-tag class="demo-margin-right" plain type="success" wx:if="{{item.status === 'FINISHED'}}">
+                        交易完成
+                    </van-tag>
+                    <van-tag class="demo-margin-right" plain wx:if="{{item.status === 'CLOSED'}}">交易关闭</van-tag>
+                    <van-tag class="demo-margin-right" plain wx:if="{{item.status === 'CANCELED'}}">交易取消</van-tag>
+                </view>
             </view>
-            <view class='header_2'>
-              {{item.orderId}}
+            <view class='item_content'>
+                <view class='content_1'>
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image class="weui-media-box__thumb" src="https://console.gmair.net/drift/device.png"/>
+                    </view>
+                </view>
+                <view class='content_2'>
+                    <view class="weui-media-box__title">{{item.list[0].itemName}} x {{item.list[0].quantity}}</view>
+                    <view class="weui-media-box__desc">国标光电光度法</view>
+                </view>
+                <view class='content_3'>
+                    {{item.list[1].itemName}} x {{item.list[1].quantity}}
+                </view>
             </view>
-            <view class='header_3'>
-              <van-tag class="demo-margin-right" plain type="primary" wx:if="{{item.status == 'APPLIED'}}">等待支付</van-tag>
-              <van-tag class="demo-margin-right" plain type="danger" wx:if="{{item.status ==='PAYED'}}">支付完成</van-tag>
-              <van-tag class="demo-margin-right" plain type="danger" wx:if="{{item.status === 'CONFIRMED'}}">处理中</van-tag>
-              <van-tag class="demo-margin-right" plain type="success" wx:if="{{item.status === 'DELIVERED'}}">已发货</van-tag>
-              <van-tag class="demo-margin-right" plain type="success" wx:if="{{item.status === 'BACK'}}">已寄回</van-tag>
-              <van-tag class="demo-margin-right" plain type="success" wx:if="{{item.status === 'FINISHED'}}">交易完成</van-tag>
-              <van-tag class="demo-margin-right" plain wx:if="{{item.status === 'CLOSED'}}">交易关闭</van-tag>
-              <van-tag class="demo-margin-right" plain wx:if="{{item.status === 'CANCELED'}}">交易取消</van-tag>
+            <view class='item_footer'>
+                <view class='footer_1'>
+                    {{item.time}}
+                </view>
+                <view class='footer_2'>
+                    合计<span style='color:red'>{{item.price}}</span>元
+                </view>
             </view>
-         </view>
-         <view class='item_content'>
-            <view class='content_1'>
-               <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-                  <image class="weui-media-box__thumb" src="https://console.gmair.net/drift/device.png" />
-               </view>
-            </view>
-            <view class='content_2'>
-               <view class="weui-media-box__title">{{item.list[0].itemName}} x {{item.list[0].quantity}}</view>
-               <view class="weui-media-box__desc">国标光电光度法</view>
-            </view>
-            <view class='content_3'>
-              {{item.list[1].itemName}} x {{item.list[1].quantity}}
-            </view>
-         </view>
-         <view class='item_footer'>
-            <view class='footer_1'>
-            {{item.time}}
-            </view>
-            <view class='footer_2'>
-              合计<span style='color:red'>{{item.price}}</span>元
-            </view>
-         </view>
-      </view>
+        </view>
     </view>
 </view>
 
