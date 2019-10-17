@@ -13,8 +13,8 @@
             </view>
         </view>
     </block>
-    <view class='nodata' wx:if='{{!express_show}}'>
+</view>
+<view class='nodata' wx:if='{{!express_show}}'>
         暂无物流信息
     </view>
-</view>
 
