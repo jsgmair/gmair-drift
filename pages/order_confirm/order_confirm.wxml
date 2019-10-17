@@ -20,54 +20,43 @@
                 <view class="weui-cell__ft" style='color: #5cd65c'>微信支付</view>
             </view>
         </view>
-         <view style="background-color:white">
-    <view class="weui-panel weui-panel_access">
-      <view class="weui-panel__hd" style="color:#00a6e4;font-size:17px;padding-bottom:16rpx;padding-top:14rpx">商品详情</view>
-      <view class="weui-panel__bd" style="border:none">
-      <view  class="weui-media-box weui-media-box_appmsg">
-        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-          <image class="weui-media-box__thumb" src="https://console.gmair.net/drift/device.jpeg" /></view>
-        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-          <view class="weui-media-box__title">{{equip_name}}</view>
-          <view class="weui-media-box__desc">国标光电光度法</view>
-          </view>
-          <view style="margin-right:30rpx">价格：{{equipPrice}}元</view>
+        <view style="background-color:white">
+            <view class="weui-panel weui-panel_access">
+                <view class="weui-panel__hd"
+                      style="color:#00a6e4;font-size:17px;padding-bottom:16rpx;padding-top:14rpx">商品详情
+                </view>
+                <view class="weui-panel__bd" style="border:none">
+                    <view class="weui-media-box weui-media-box_appmsg" wx:for="{{list}}" wx:for-item="item">
+                        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                            <image class="weui-media-box__thumb" src="{{item.url}}"/>
+                        </view>
+                        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                            <view class="weui-media-box__title">{{item.itemName}}x{{item.quantity}}</view>
+                            <view class="weui-media-box__desc" wx:if="{{item.text!==null}}">{{item.text}}</view>
+                        </view>
+                        <view style="margin-right:30rpx">价格：{{item.itemPrice*item.quantity}}元</view>
+                    </view>
+                </view>
+            </view>
         </view>
-        <view  class="weui-media-box weui-media-box_appmsg">
-        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-          <image class="weui-media-box__thumb"  src="https://console.gmair.net/drift/filter.png" /></view>
-        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-           <view class="weui-media-box__title">{{attach2.itemName}}x{{attach2.quantity}}</view>
-          <!-- <view class="weui-media-box__desc">甲醛检测试纸</view> -->
-          </view>
-          <view style="margin-right:30rpx">价格：{{attach2.itemPrice*attach2.quantity}}元</view>
-        </view>
-      </view>
-      <view  class="weui-media-box weui-media-box_appmsg">
-        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-          <image class="weui-media-box__thumb" src="../../images/express.png" /></view>
-        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-           <view class="weui-media-box__title">{{attach1.itemName}}x{{attach1.quantity}}</view>
-          <!-- <view class="weui-media-box__desc">甲醛检测试纸</view> -->
-          </view>
-          <view style="margin-right:30rpx">价格：{{attach1.itemPrice*attach1.quantity}}元</view>
-        </view>
-      </view>
-      </view>
-      <view class="weui-cells weui-cells_after-title" style='margin-top:20rpx;margin-bottom:100rpx' wx:if="{{!excode}}">
+        <view class="weui-cells weui-cells_after-title" style='margin-top:20rpx;margin-bottom:100rpx'
+              wx:if="{{!excode}}">
             <view class="scan_panel">
                 <view class="scan_left" bindtap='scan'>
-                    <image class="scan" src="../../images/scan.png"></image><text style='padding-left:15rpx;color: #5cd65c'>扫一扫</text>
+                    <image class="scan" src="../../images/scan.png"></image>
+                    <text style='padding-left:15rpx;color: #5cd65c'>扫一扫</text>
                 </view>
                 <view class="scan_middle">
-                    <input placeholder="扫描新风机二维码/输入优惠码" style='font-size:28rpx;width:100%' disabled='{{input_disabled}}' value='{{code}}' bindinput='codeInput'/>
+                    <input placeholder="扫描新风机二维码/输入优惠码" style='font-size:28rpx;width:100%' disabled='{{input_disabled}}'
+                           value='{{code}}' bindinput='codeInput'/>
                 </view>
                 <view class="scan_right" bindtap='submit_code'>
                     提交
                 </view>
             </view>
         </view>
-        <view class="weui-cells weui-cells_after-title" style='margin-top:20rpx;margin-bottom:100rpx' wx:if="{{excode}}">
+        <view class="weui-cells weui-cells_after-title" style='margin-top:20rpx;margin-bottom:100rpx'
+              wx:if="{{excode}}">
             <view class="scan_panel">
                 <view class="scan_left">
                     优惠券价值
@@ -76,16 +65,16 @@
                     {{cutPrice}}元
                 </view>
             </view>
-    </view>
+        </view>
     </view>
     <demo-block title="基础用法">
-       <van-submit-bar
-         price="{{realPay}}"
-         button-text="支付"
-         bind:submit="onClickButton"
-         custom-class="van-submit-bar"
-         safe-area-inset-bottom="{{ false }}"
-         buttonType="info"
-       />
-</demo-block>
+        <van-submit-bar
+                price="{{realPay}}"
+                button-text="支付"
+                bind:submit="onClickButton"
+                custom-class="van-submit-bar"
+                safe-area-inset-bottom="{{ false }}"
+                buttonType="info"
+        />
+    </demo-block>
 </view>

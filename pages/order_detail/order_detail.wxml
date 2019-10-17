@@ -11,8 +11,8 @@
     <view class="page__bd">
         <view class="weui-panel" style='margin-bottom:20rpx'>
             <view class="weui-panel__hd item">
-               <view class='left'>订单编号：{{order_id}}</view>
-               <view class='right'>合计{{realPay}}元</view>
+                <view class='left'>订单编号：{{order_id}}</view>
+                <view class='right'>合计{{realPay}}元</view>
             </view>
             <view class="weui-panel__bd panel" bindtap='express'>
                 <view class="weui-media-box weui-media-box_text detail">
@@ -24,82 +24,62 @@
                     </view>
                 </view>
                 <view class='arrow'>
-                   <view style='display:flex;align-items:center'>查看物流</view>
-                   <van-icon style='display:flex;align-items:center' font-size='18px' name="arrow" custom-class="icon"/>
+                    <view style='display:flex;align-items:center'>查看物流</view>
+                    <van-icon style='display:flex;align-items:center' font-size='18px' name="arrow"
+                              custom-class="icon"/>
                 </view>
             </view>
         </view>
-         <view style="background-color:white">
-       <view class="weui-panel weui-panel_access">
-      <view class="weui-panel__hd" style="color:#00a6e4;font-size:17px;padding-bottom:16rpx;padding-top:14rpx">商品详情</view>
-      <view class="weui-panel__bd" style="border:none">
-      <view  class="weui-media-box weui-media-box_appmsg">
-        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-          <image class="weui-media-box__thumb" src="https://console.gmair.net/drift/device.png" /></view>
-        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-          <view class="weui-media-box__title">{{equip_name}}</view>
-          <view class="weui-media-box__desc">国标光电光度法</view>
-          </view>
-          <view style="margin-right:30rpx">价格：{{equipPrice}}元</view>
-        </view>
-        <view  class="weui-media-box weui-media-box_appmsg">
-        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-          <image class="weui-media-box__thumb"  src="https://console.gmair.net/drift/filter.png" /></view>
-        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-           <view class="weui-media-box__title">{{attach2.itemName}}x{{attach2.quantity}}</view>
-          <!-- <view class="weui-media-box__desc">甲醛检测试纸</view> -->
-          </view>
-          <view style="margin-right:30rpx">价格：{{attach2.itemPrice*attach2.quantity}}元</view>
-        </view>
-      </view>
-      <view  class="weui-media-box weui-media-box_appmsg">
-        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-          <image class="weui-media-box__thumb" src="../../images/express.png" /></view>
-        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-           <view class="weui-media-box__title">{{attach1.itemName}}x{{attach1.quantity}}</view>
-          <!-- <view class="weui-media-box__desc">甲醛检测试纸</view> -->
-          </view>
-          <view style="margin-right:30rpx">价格：{{attach1.itemPrice*attach1.quantity}}元</view>
-        </view>
-        <!-- <view  class="weui-media-box weui-media-box_appmsg">
-        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-          <image class="weui-media-box__thumb" src="https://console.gmair.net/drift/filter.png" /></view>
-        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-          <view class="weui-media-box__title">{{annux_name}}x{{item_quantity}}</view>
-          <!-- <view class="weui-media-box__desc">甲醛检测试纸</view> -->
-          <!-- </view>
-          <view style="margin-right:30rpx">价格：{{annexPrice}}元</view>-->
-        <!-- </view>
-      </view> -->
-      </view>
-      </view>
-      <view class="item_panel">
-        <view class="panel_left">预约使用日期</view>
-        <view class="panel_right">{{time}}</view>
-      </view>
-      <view class='choose_btn_view' style='margin-top:70rpx' wx:if="{{status === 'APPLIED'}}">
-        <button class="weui-btn" type="primary" bindtap="toPay" hover-class='btn_hover'>前往支付</button>
-      </view>
-      <view class='choose_btn_view cancel' bindtap='order_cancel' style='margin-top:40rpx' wx:if="{{status === 'APPLIED'||status === 'PAYED'}}">
-          取消订单
-      </view>
-      <view class='choose_btn_view' style='margin-top:70rpx' wx:if="{{status === 'DELIVERED'}}">
-        <modal hidden="{{modal_hidden}}" title="填写寄回单号" confirm-text="确认提交" cancel-text="取消" bindcancel="cancel" bindconfirm="expressIdSubmit">
-        <view class="scan_panel">
-                <view class="scan_middle">
-                    <input class='input' placeholder="扫描单号条形码/填写单号" value='{{expressId}}' auto-focus bindinput='expressIdInput'/>
+        <view style="background-color:white">
+            <view class="weui-panel weui-panel_access">
+                <view class="weui-panel__hd"
+                      style="color:#00a6e4;font-size:17px;padding-bottom:16rpx;padding-top:14rpx">商品详情
                 </view>
-                <view class="scan_right" bindtap='scan'>
-                    <image class="scan" src="../../images/scan.png"></image><text style='padding-left:10rpx;color: #5cd65c'>扫一扫</text>
+                <view class="weui-panel__bd" style="border:none">
+                    <view class="weui-media-box weui-media-box_appmsg" wx:for="{{list}}" wx:for-item="item">
+                        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                            <image class="weui-media-box__thumb" src="{{item.url}}"/>
+                        </view>
+                        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                            <view class="weui-media-box__title">{{item.itemName}}x{{item.quantity}}</view>
+                            <view class="weui-media-box__desc" wx:if="{{item.text!==null}}">{{item.text}}</view>
+                        </view>
+                        <view style="margin-right:30rpx">价格：{{item.itemPrice*item.quantity}}元</view>
+                    </view>
                 </view>
             </view>
-            <picker class="picker" bindchange="bindCompanyChange" value="{{index}}" range="{{company_array}}">
-                <view>
-                   快递公司：{{company_array[company_index]}}
+        </view>
+        <view class="item_panel">
+            <view class="panel_left">预约使用日期</view>
+            <view class="panel_right">{{time}}</view>
+        </view>
+        <view class='choose_btn_view' style='margin-top:70rpx' wx:if="{{status === 'APPLIED'}}">
+            <button class="weui-btn" type="primary" bindtap="toPay" hover-class='btn_hover'>前往支付</button>
+        </view>
+        <view class='choose_btn_view cancel' bindtap='order_cancel' style='margin-top:40rpx'
+              wx:if="{{status === 'APPLIED'||status === 'PAYED'}}">
+            取消订单
+        </view>
+        <view class='choose_btn_view' style='margin-top:70rpx' wx:if="{{status === 'DELIVERED'}}">
+            <modal hidden="{{modal_hidden}}" title="填写寄回单号" confirm-text="确认提交" cancel-text="取消" bindcancel="cancel"
+                   bindconfirm="expressIdSubmit">
+                <view class="scan_panel">
+                    <view class="scan_middle">
+                        <input class='input' placeholder="扫描单号条形码/填写单号" value='{{expressId}}' auto-focus
+                               bindinput='expressIdInput'/>
+                    </view>
+                    <view class="scan_right" bindtap='scan'>
+                        <image class="scan" src="../../images/scan.png"></image>
+                        <text style='padding-left:10rpx;color: #5cd65c'>扫一扫</text>
+                    </view>
                 </view>
-            </picker>
-        </modal>
-        <button class="weui-btn" type="primary" bindtap="addOrder" hover-class='btn_hover'>填写寄回单号</button>
-      </view>
+                <picker class="picker" bindchange="bindCompanyChange" value="{{index}}" range="{{company_array}}">
+                    <view>
+                        快递公司：{{company_array[company_index]}}
+                    </view>
+                </picker>
+            </modal>
+            <button class="weui-btn" type="primary" bindtap="addOrder" hover-class='btn_hover'>填写寄回单号</button>
+        </view>
     </view>
 </view>

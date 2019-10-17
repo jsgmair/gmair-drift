@@ -492,7 +492,7 @@ Page({
           // console.log(util.formatTimeToDate(item.startTime))
           // console.log(util.formatTimeToDate(item.endTime))
           let start_time = that.formatStartTime(item.startTime, new Date())
-          that.setData({ act_name: item.activityName, act_desc: item.introduction, start_date: util.formatTimeToDateCN(item.startTime), end_date: util.formatTimeToDateCN(item.endTime), host: item.host, interval: item.reservableDays, start: util.formatTimeToDate(item.startTime), end: util.formatTimeToDate(item.endTime)});
+          that.setData({ act_name: item.reservationName, act_desc: JSON.parse(item.reservationText), start_date: util.formatTimeToDateCN(item.startTime), end_date: util.formatTimeToDateCN(item.endTime), host: item.host, interval: item.reservableDays, start: util.formatTimeToDate(item.startTime), end: util.formatTimeToDate(item.endTime)});
           //获取日期list
           wx.request({
             url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + that.data.activity_id + '/available',

@@ -1,19 +1,20 @@
 <!--pages/express/express.wxml-->
-<view class="timeline-container">
-  <block wx:for="{{list}}" wx:key="item.id" wx:if="{{express_show}}">
-    <view class="timeline">
-      <view class="dotline">
-        <view class="line"></view>
-        <view class="dot"></view>
-      </view>
-      <view class="content">
-        <text class="course">{{item.ftime}}</text>
-        <text class="chapter">{{item.context}}</text>
-      </view>
+<view class="timeline-container" wx:if="{{express_show}}">
+    <view class='num'>快递单号：{{express_num}}</view>
+    <block wx:for="{{list}}" wx:key="item.id">
+        <view class="timeline">
+            <view class="dotline">
+                <view class="line"></view>
+                <view class="dot"></view>
+            </view>
+            <view class="content">
+                <text class="course">{{item.ftime}}</text>
+                <text class="chapter">{{item.context}}</text>
+            </view>
+        </view>
+    </block>
+    <view class='nodata' wx:if='{{!express_show}}'>
+        暂无物流信息
     </view>
-  </block>
-  <view class='nodata' wx:if='{{!express_show}}'>
-    暂无物流信息
-  </view>
 </view>
 

@@ -1,5 +1,5 @@
 <!--pages/equip_detail/equip_detail.wxml-->
 <view style='width:100%;height:100%'>
-  <view class='toast' hidden="{{loadImage}}">数据拼命加载中{{dot}}</view>
-  <image hidden='{{!loadImage}}' style='width:100%' mode="widthFix" bindload="load" src="https://console.gmair.net/drift/device_intro.jpeg"/>
+    <view class='toast' hidden="{{loadImage}}">数据拼命加载中{{dot}}</view>
+    <image hidden='{{!loadImage}}' style='width:100%' mode="widthFix" bindload="load" src="{{equip_url}}"/>
 </view>

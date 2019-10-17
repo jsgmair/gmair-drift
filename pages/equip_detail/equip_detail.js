@@ -7,7 +7,8 @@ Page({
   data: {
     loadImage:false,
     dot:'',
-    interval:''
+    interval:'',
+    equip_url:''
   },
 
   load(){
@@ -32,11 +33,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let equip_url = options.equipUrl
+    console.log(options)
     let interval = setInterval(()=>{
       this.judgeDot()
     },500)
     this.setData({
-      interval:interval
+      interval:interval,
+      equip_url: equip_url
     })
   },
 

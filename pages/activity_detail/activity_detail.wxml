@@ -1,81 +1,90 @@
 <!--pages/activity_detail/activity_detail.wxml-->
 <view class="page">
-  <view class='page__hd acti_index'>
-    <view class="weui-article__section">
-    <view class='weui-article__section'>
-      <block wx:for="{{thumbnails}}" wx:key="{{item.index}}">
-        <image class="weui-article__img" src="{{item}}"/>
-      </block>
-    </view>
-    </view>
-  </view>
-  <!-- <view class="activity_time">
-    <!-- <view class="page__title" style="color:#00a6e4">{{act_name}}</view>
-    <view class="page__desc">{{act_desc}}</view>
-    <view class='page__desc'><text style="color:#00a6e4">主办方：</text>{{host}}</view>
-    <view class='page__desc'><text style="color:#00a6e4">活动时间：</text>{{start_date}} — {{end_date}}</view>
-  </view> -->
-  <view class="page__bd" style="background-color:white">
-    <view class="weui-panel weui-panel_access">
-      <view class="weui-panel__hd" style="color:#00a6e4;font-size:17px;padding-bottom:0rpx">设备介绍</view>
-      <view class="weui-panel__bd" style="border:none">
-      <view  class="weui-media-box weui-media-box_appmsg">
-        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-          <image class="weui-media-box__thumb" src="https://console.gmair.net/drift/device.png" /></view>
-        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-          <view class="weui-media-box__title">{{equip_name}}</view>
-          <view class="weui-media-box__desc">国标光电光度法</view>
+    <view class='page__hd acti_index'>
+        <view class="weui-article__section">
+            <view class='weui-article__section'>
+                <block wx:for="{{thumbnails}}" wx:key="{{item.index}}">
+                    <image class="weui-article__img" src="{{item}}"/>
+                </block>
+            </view>
         </view>
-        <view style='font-size:34rpx;color:#00A6E4' bindtap='more'>查看详情</view>
-        <van-icon style='display:flex;align-items:center;color:#00A6E4' font-size='50rpx' name="arrow" custom-class="icon"/>
-        </view>
-      </view>
-      <!-- <view class="weui-panel__ft" bindtap='more'>
-        <view class="weui-cell weui-cell_access weui-cell_link">
-          <view class="weui-cell__bd">查看详情</view>
-            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-          </view>
-        </view>-->
-      </view>
-      <!-- <van-notice-bar wx:if="{{notification!==''}}" text="{{notification}}" left-icon="https://console.gmair.net/drift/alert.png"/> -->
-      <!-- <view class="activity_time">
-         <view class='page__desc'><text>申请时间：</text>{{start_date}} — {{end_date}}
-         </view>
-      </view> -->
-      <view class="weui-cells weui-cells_after-title" style="font-size:14px">
-        <view class="weui-cell">
-          <view class="weui-cell__bd">当前服务人数</view>
-          <view class="weui-cell__ft">{{registered_size}}人</view>
-        </view>
-      </view>
-      
-      <view wx:if="{{activity_type===0}}"  class='choose_btn_view' style='margin-top:70rpx'>
-        <button class="weui-btn" type="default" disabled="true">活动尚未开始</button>
-      </view>
-      <view wx:if="{{activity_type===1&&type===0}}"  class='choose_btn_view' style='margin-top:70rpx'>
-        <button class="weui-btn" open-type="getUserInfo" type="primary" bindgetuserinfo="activity_apply1" hover-class='btn_hover'>活动申请</button>
-      </view>
-      <view wx:if="{{activity_type===1&&type===1}}"  class='choose_btn_view' style='margin-top:70rpx'>
-        <button class="weui-btn" open-type="getPhoneNumber" type="primary" bindgetphonenumber="activity_apply2" hover-class='btn_hover'>活动申请</button>
-      </view>
-      <view wx:if="{{activity_type===1&&type===2}}"  class='choose_btn_view' style='margin-top:70rpx'>
-        <button class="weui-btn"  type="primary" bindtap="activity_apply3" hover-class='btn_hover'>活动申请</button>
-      </view>
-      <view wx:if="{{activity_type===2}}"  class='choose_btn_view' style='margin-top:70rpx'>
-        <button class="weui-btn" type="default" disabled="true">活动已结束</button>
-      </view>
     </view>
-    <button class='service' open-type="contact" bindcontact="handleContact"><van-icon name="service" size="60rpx" custom-class="icon" color='#00A6E4' style='opacity:1'/></button>
+    <!-- <view class="activity_time">
+      <!-- <view class="page__title" style="color:#00a6e4">{{act_name}}</view>
+      <view class="page__desc">{{act_desc}}</view>
+      <view class='page__desc'><text style="color:#00a6e4">主办方：</text>{{host}}</view>
+      <view class='page__desc'><text style="color:#00a6e4">活动时间：</text>{{start_date}} — {{end_date}}</view>
+    </view> -->
+    <view class="page__bd" style="background-color:white">
+        <view class="weui-panel weui-panel_access">
+            <view class="weui-panel__hd" style="color:#00a6e4;font-size:17px;padding-bottom:0rpx">设备介绍</view>
+            <view class="weui-panel__bd" style="border:none">
+                <view class="weui-media-box weui-media-box_appmsg">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image class="weui-media-box__thumb" src="{{url}}"/>
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">{{equip_name}}</view>
+                        <view class="weui-media-box__desc">{{text}}</view>
+                    </view>
+                    <view style='font-size:34rpx;color:#00A6E4' bindtap='more'>查看详情</view>
+                    <van-icon style='display:flex;align-items:center;color:#00A6E4' font-size='50rpx' name="arrow"
+                              custom-class="icon"/>
+                </view>
+            </view>
+            <!-- <view class="weui-panel__ft" bindtap='more'>
+              <view class="weui-cell weui-cell_access weui-cell_link">
+                <view class="weui-cell__bd">查看详情</view>
+                  <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                </view>
+              </view>-->
+        </view>
+        <!-- <van-notice-bar wx:if="{{notification!==''}}" text="{{notification}}" left-icon="https://console.gmair.net/drift/alert.png"/> -->
+        <!-- <view class="activity_time">
+           <view class='page__desc'><text>申请时间：</text>{{start_date}} — {{end_date}}
+           </view>
+        </view> -->
+        <view class="weui-cells weui-cells_after-title" style="font-size:14px">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">当前服务人数</view>
+                <view class="weui-cell__ft">{{registered_size}}人</view>
+            </view>
+        </view>
+
+        <view wx:if="{{activity_type===0}}" class='choose_btn_view' style='margin-top:70rpx'>
+            <button class="weui-btn" type="default" disabled="true">活动尚未开始</button>
+        </view>
+        <view wx:if="{{activity_type===1&&type===0}}" class='choose_btn_view' style='margin-top:70rpx'>
+            <button class="weui-btn" open-type="getUserInfo" type="primary" bindgetuserinfo="activity_apply1"
+                    hover-class='btn_hover'>活动申请
+            </button>
+        </view>
+        <view wx:if="{{activity_type===1&&type===1}}" class='choose_btn_view' style='margin-top:70rpx'>
+            <button class="weui-btn" open-type="getPhoneNumber" type="primary" bindgetphonenumber="activity_apply2"
+                    hover-class='btn_hover'>活动申请
+            </button>
+        </view>
+        <view wx:if="{{activity_type===1&&type===2}}" class='choose_btn_view' style='margin-top:70rpx'>
+            <button class="weui-btn" type="primary" bindtap="activity_apply3" hover-class='btn_hover'>活动申请</button>
+        </view>
+        <view wx:if="{{activity_type===2}}" class='choose_btn_view' style='margin-top:70rpx'>
+            <button class="weui-btn" type="default" disabled="true">活动已结束</button>
+        </view>
+    </view>
+    <button class='service' open-type="contact" bindcontact="handleContact">
+        <van-icon name="service" size="60rpx" custom-class="icon" color='#00A6E4' style='opacity:1'/>
+    </button>
     <van-popup
-    show="{{service_show}}"
-    custom-class="center"
-    transition="none"
-    bind:close="togglePopup"
-    bind:transitionEnd="onTransitionEnd"
-  >
-    <view style='width:360rpx;height:360rpx;'>
-       <image class="weui-media-box__thumb" style='height:300rpx' src="https://console.gmair.net/drift/device.png" />
-       <view class='service_text'>请截图添加客服微信</view>
-    </view>
-  </van-popup>
+            show="{{service_show}}"
+            custom-class="center"
+            transition="none"
+            bind:close="togglePopup"
+            bind:transitionEnd="onTransitionEnd"
+    >
+        <view style='width:360rpx;height:360rpx;'>
+            <image class="weui-media-box__thumb" style='height:300rpx'
+                   src="https://console.gmair.net/drift/device.png"/>
+            <view class='service_text'>请截图添加客服微信</view>
+        </view>
+    </van-popup>
 </view>

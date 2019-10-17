@@ -22,10 +22,9 @@ Page({
     company_index: '0',
     company_value:['shunfeng'],
     expressId:'',
+    list:[],
     equipPrice:'',
     annexPrice:'',
-    attach1: {},
-    attach2: {},
   },
   check_submit(expressId,company){
     if(expressId === ""||company === ""|| company == undefined){
@@ -153,8 +152,7 @@ Page({
             realPay: response.data.realPay.toFixed(2),
             status:response.data.status,
             time:time,
-            attach2: response.data.list[1],
-            attach1: response.data.list[2],
+            list:response.data.list,
             equipPrice: response.data.list[0].itemPrice,
             annexPrice: price
           })

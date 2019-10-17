@@ -2,7 +2,10 @@
 .timeline-container {
 	margin: 10rpx 10rpx;
 }
-
+.num{
+  font-size: 34rpx;
+  margin: 20rpx;
+}
 .timeline {
 	display: flex;
 }
