@@ -47,7 +47,7 @@
                     <text style='padding-left:15rpx;color: #5cd65c'>扫一扫</text>
                 </view>
                 <view class="scan_middle">
-                    <input placeholder="扫描新风机二维码/输入优惠码" style='font-size:28rpx;width:100%' disabled='{{input_disabled}}'
+                    <input placeholder="输入优惠码" style='font-size:28rpx;width:100%' disabled='{{input_disabled}}'
                            value='{{code}}' bindinput='codeInput'/>
                 </view>
                 <view class="scan_right" bindtap='submit_code'>
