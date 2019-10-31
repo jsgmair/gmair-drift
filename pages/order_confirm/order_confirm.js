@@ -115,23 +115,10 @@ Page({
               paySign: response.data.paySign,
               // total_fee: response.data[0].total_fee,
               success(res) {
-                // wx.showToast({
-                //   title: '支付成功',jk
-                //   icon: 'success',
-                //   duration: 2000
-                // })
                 console.log('success')
                 wx.switchTab({
                   url: '/pages/order_list/order_list'
                 })
-                // setTimeout(() => {
-                //   wx.redirectTo({
-                //     url: "/pages/apply_detail/apply_detail"
-                //   })
-                // }, 1000)
-                // setTimeout(function(){
-
-                // },2000)
               },
               fail(res) {
                 // wx.showToast({
@@ -140,6 +127,12 @@ Page({
                 //   duration: 2000
                 // })
               }
+          })
+        }else if(response.responseCode==="RESPONSE_ERROR"){
+          wx.showToast({
+            title: response.description,
+            icon: 'none',
+            duration: 3000
           })
         }
       }
