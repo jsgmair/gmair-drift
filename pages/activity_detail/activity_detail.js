@@ -180,6 +180,29 @@ Page({
       }
     });
     that.obtain_info();
+    //获取活动信息
+    wx.request({
+      url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + that.data.activity_id + '/profile',
+      success: function (response) {
+        console.log(response)
+        response = response.data;
+        if (response.responseCode == 'RESPONSE_OK') {
+          let item = response.data;
+          let start_date = util.formatTimeToDateCN(item.openDate);
+          let end_date = util.formatTimeToDateCN(item.closeDate);
+          let newDate = new Date().getTime();
+          let activity_type;
+          if (newDate < item.openDate) {
+            activity_type = 0
+          } else if (newDate > item.closeDate) {
+            activity_type = 2
+          } else {
+            activity_type = 1
+          }
+          that.setData({ act_name: item.activityName, act_desc: item.introduction, start_date: start_date, end_date: end_date, host: item.host, activity_type: activity_type });
+        }
+      }
+    });
   },
 
   /**
@@ -266,6 +289,7 @@ Page({
     if(e.detail.errMsg === "getUserInfo:ok") {
       let iv = e.detail.iv
       let data = e.detail.encryptedData
+      console.log(e)
       wx.request({
         url: app.globalData.protocol + app.globalData.url + '/drift/user/decode/user',
         method: 'POST',

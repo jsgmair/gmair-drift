@@ -48,6 +48,11 @@ Page({
           console.log(orders)
           orders.reverse()
           that.setData({ size: orders.length, order_list: orders })
+        }else if(response.responseCode==="RESPONSE_NULL"){
+          that.setData({
+            size:0,
+            order_list:[]
+          })
         }
       }
     })
