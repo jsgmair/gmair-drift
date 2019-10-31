@@ -34,7 +34,7 @@
                             <view class="weui-media-box__title">{{item.itemName}}x{{item.quantity}}</view>
                             <view class="weui-media-box__desc" wx:if="{{item.text!==null}}">{{item.text}}</view>
                         </view>
-                        <view style="margin-right:30rpx">价格：{{item.itemPrice*item.quantity}}元</view>
+                        <view style="margin-right:30rpx">价格：{{item.realPrice}}元</view>
                     </view>
                 </view>
             </view>

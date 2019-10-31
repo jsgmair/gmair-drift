@@ -44,9 +44,19 @@
                             <view class="weui-media-box__title">{{item.itemName}}x{{item.quantity}}</view>
                             <view class="weui-media-box__desc" wx:if="{{item.text!==null}}">{{item.text}}</view>
                         </view>
-                        <view style="margin-right:30rpx">价格：{{item.itemPrice*item.quantity}}元</view>
+                        <view style="margin-right:30rpx">价格：{{item.realPrice}}元</view>
                     </view>
                 </view>
+            </view>
+        </view>
+        <view class="weui-panel" style='margin-bottom:20rpx'>
+            <view class="weui-panel__hd item">
+                <view class='left'>寄回地址</view>
+            </view>
+            <view class="weui-panel__bd panel">
+                <view class="item_panel2">
+            <text selectable='true'>江苏省南京市鼓楼区清江南路19号南大苏富特科技创新园1号楼15楼果麦新风（收）4009946898</text>
+        </view>
             </view>
         </view>
         <view class="item_panel">

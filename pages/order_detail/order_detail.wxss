@@ -37,6 +37,17 @@ page{
   flex: 1;
   align-items: center;
 }
+.item_panel2{
+  background: white;
+  padding:10px 15px;
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+.item_title{
+  margin-top:30rpx;
+  padding:0px 15px;
+}
 .panel_left{
   display: flex;
   flex: 2;
