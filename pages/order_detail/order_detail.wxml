@@ -81,7 +81,7 @@
                 </view>
                 <view class="back_panel">
                     <view class="panel_left2">
-                        <text>收获地址</text>
+                        <text>收货地址</text>
                     </view>
                     <view class="panel_right2">
                         <text selectable='true'>{{back_address}}</text>
