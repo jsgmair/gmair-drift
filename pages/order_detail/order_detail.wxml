@@ -49,25 +49,57 @@
                 </view>
             </view>
         </view>
-        <view class="weui-panel" style='margin-bottom:20rpx'>
+        <!-- <view class="weui-panel" style='margin-bottom:20rpx'>
             <view class="weui-panel__hd item">
                 <view class='left'>寄回地址</view>
             </view>
             <view class="weui-panel__bd panel">
                 <view class="item_panel2">
             <text selectable='true'>江苏省南京市鼓楼区清江南路19号南大苏富特科技创新园1号楼15楼果麦新风（收）4009946898</text>
-        </view>
             </view>
+        </view> -->
+        <view class="weui-panel" style='margin-bottom:20rpx' wx:if="{{status === 'DELIVERED'||status === 'BACK'||status === 'FINISHED'}}">
+            <view class="weui-panel__hd item">
+                <view class='left'>寄回详情</view>
+            </view>
+            
+                <view class="back_panel">
+                    <view class="panel_left2">
+                        <text>收件人</text>
+                    </view>
+                    <view class="panel_right2">
+                        <text selectable='true'>{{back_name}}</text>
+                    </view>
+                </view>
+                <view class="back_panel">
+                    <view class="panel_left2">
+                        <text>联系方式</text>
+                    </view>
+                    <view class="panel_right2">
+                        <text selectable='true'>{{back_phone}}</text>
+                    </view>
+                </view>
+                <view class="back_panel">
+                    <view class="panel_left2">
+                        <text>收获地址</text>
+                    </view>
+                    <view class="panel_right2">
+                        <text selectable='true'>{{back_address}}</text>
+                    </view>
+                </view>
+          
         </view>
+        <!-- </view> -->
         <view class="item_panel">
             <view class="panel_left">预约使用日期</view>
             <view class="panel_right">{{time}}</view>
         </view>
-        <van-notice-bar wx:if="{{notification!==''}}" text="请于{{back_time}}前将检测仪寄出" left-icon="https://console.gmair.net/drift/alert.png"/>
+        <van-notice-bar wx:if="{{notification!==''}}" text="请于{{back_time}}前将检测仪寄出"
+                        left-icon="https://console.gmair.net/drift/alert.png"/>
         <!-- <view class="item_panel">
             <view class="panel_left">请于{{back_time}}前将检测仪寄出</view>
             <!-- <view class="panel_right">{{back_time}}</view> -->
-        <!-- </view> --> 
+        <!-- </view> -->
         <view class='choose_btn_view' style='margin-top:70rpx' wx:if="{{status === 'APPLIED'}}">
             <button class="weui-btn" type="primary" bindtap="toPay" hover-class='btn_hover'>前往支付</button>
         </view>

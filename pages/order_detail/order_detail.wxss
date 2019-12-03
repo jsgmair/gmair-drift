@@ -113,3 +113,20 @@ page{
   display: flex;
   flex: 3
 }
+.back_panel{
+  background: white;
+  /* margin-top:20rpx; */
+  padding:10px 18px;
+  display: flex;
+  flex: 1;
+  /* align-items: center; */
+}
+.panel_left2{
+  display: flex;
+  flex: 1;
+}
+.panel_right2{
+  display: flex;
+  flex: 3;
+  justify-content: flex-end
+}

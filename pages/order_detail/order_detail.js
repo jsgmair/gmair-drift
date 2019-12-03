@@ -26,6 +26,9 @@ Page({
     equipPrice:'',
     annexPrice:'',
     back_time:'',
+    back_address:'',
+    back_name:'',
+    back_phone:''
   },
   check_submit(expressId,company){
     if(expressId === ""||company === ""|| company == undefined){
@@ -135,6 +138,7 @@ Page({
         console.log(response)
         response = response.data
         if (response.responseCode === "RESPONSE_OK") {
+          that.obtain_activity(response.data.activityId)
           let time = util.formatTimeToDate(response.data.expectedDate) + '至' + util.formatTimeToDate(response.data.expectedDate + response.data.intervalDate * 86400000)
           let back_time = util.formatTimeToDate(response.data.expectedDate + response.data.intervalDate * 86400000)
           let num = 0
@@ -162,6 +166,24 @@ Page({
         }
       }
     })
+  },
+  obtain_activity(activityId){
+    let that = this
+    wx.request({
+      url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + activityId + '/profile',
+      success: function (response) {
+        response = response.data;
+        if (response.responseCode == 'RESPONSE_OK') {
+          let item = response.data;
+          console.log(item)
+          that.setData({
+             back_address:item.backAddress,
+             back_name:item.backName,
+             back_phone:item.backPhone
+          })
+        }
+      }
+    });
   },
   express(e){
      console.log(e);
