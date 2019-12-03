@@ -25,6 +25,7 @@ Page({
     list:[],
     equipPrice:'',
     annexPrice:'',
+    back_time:'',
   },
   check_submit(expressId,company){
     if(expressId === ""||company === ""|| company == undefined){
@@ -135,6 +136,7 @@ Page({
         response = response.data
         if (response.responseCode === "RESPONSE_OK") {
           let time = util.formatTimeToDate(response.data.expectedDate) + '至' + util.formatTimeToDate(response.data.expectedDate + response.data.intervalDate * 86400000)
+          let back_time = util.formatTimeToDate(response.data.expectedDate + response.data.intervalDate * 86400000)
           let num = 0
           let price = 0
           // for (let i = 1; i < response.data.list.length; i++) {
@@ -152,6 +154,7 @@ Page({
             realPay: response.data.realPay.toFixed(2),
             status:response.data.status,
             time:time,
+            back_time:back_time,
             list:response.data.list,
             equipPrice: response.data.list[0].itemPrice,
             annexPrice: price

@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "订单详情",
   "usingComponents": {
+    "van-notice-bar": "/miniprogram_npm/vant-weapp/notice-bar/index",
     "van-icon": "/miniprogram_npm/vant-weapp/icon/index"
   },
   "navigationBarBackgroundColor": "#00A6E4"
