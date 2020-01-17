@@ -81,7 +81,7 @@
                 </view>
                 <view class="back_panel">
                     <view class="panel_left2">
-                        <text>收获地址</text>
+                        <text>收货地址</text>
                     </view>
                     <view class="panel_right2">
                         <text selectable='true'>{{back_address}}</text>
@@ -94,7 +94,7 @@
             <view class="panel_left">预约使用日期</view>
             <view class="panel_right">{{time}}</view>
         </view>
-        <van-notice-bar wx:if="{{notification!==''}}" text="请于{{back_time}}前将检测仪寄出"
+        <van-notice-bar wx:if="{{notification!==''}}" text="使用结束后，请您于{{back_time}}前将检测仪寄出"
                         left-icon="https://console.gmair.net/drift/alert.png"/>
         <!-- <view class="item_panel">
             <view class="panel_left">请于{{back_time}}前将检测仪寄出</view>
