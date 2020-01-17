@@ -1,0 +1,116 @@
+<!--pages/worker_details/worker_details.wxml-->
+<view class='page'>
+    <image mode="widthFix" class='image' src="https://console.gmair.net/drift/1.jpeg"/>
+    <view class="page__bd">
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-form-preview">
+                <view class="weui-form-preview__bd content">
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">姓名</view>
+                        <view class="weui-form-preview__value">{{order_data.consignee}}</view>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">地址</view>
+                        <view class="weui-form-preview__value">{{order_data.consigneeAddress}}</view>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">联系方式</view>
+                        <view class="weui-form-preview__value">{{order_data.phone}}</view>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">检测项目</view>
+                        <view class="weui-form-preview__value">{{template.detectName}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view>
+            <view class="weui-cells__title">生成报告</view>
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_switch">
+                    <view class="weui-cell__bd">填写详情</view>
+                    <view class="weui-cell__ft">
+                        <switch color='#00A6E4' checked='{{add_switch}}' bindchange='switch_change'/>
+                    </view>
+                </view>
+            </view>
+            <view hidden='{{!add_switch}}'>
+                <view class="weui-cells__title">表单</view>
+                <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell weui-cell_input">
+                        <view class="weui-cell__hd">
+                            <view class="weui-label">检测日期</view>
+                        </view>
+                        <view class="weui-cell__bd weui-cell__ft weui-cell__ft_in-access">
+                            <picker mode="date" value="{{detect_date}}" bindchange="detectDateChange">
+                                <view class="weui-input right">{{detect_date}}</view>
+                            </picker>
+                        </view>
+                    </view>
+                    <view class="weui-cell weui-cell_input">
+                        <view class="weui-cell__hd">
+                            <view class="weui-label">入住日期</view>
+                        </view>
+                        <view class="weui-cell__bd weui-cell__ft weui-cell__ft_in-access">
+                            <picker mode="date" value="{{live_date}}" bindchange="liveDateChange">
+                                <view class="weui-input right">{{live_date}}</view>
+                            </picker>
+                        </view>
+                    </view>
+                    <view class="weui-cell weui-cell_input">
+                        <view class="weui-cell__hd">
+                            <view class="weui-label">装修完成日期</view>
+                        </view>
+                        <view class="weui-cell__bd weui-cell__ft weui-cell__ft_in-access">
+                            <picker mode="date" value="{{decorate_date}}" bindchange="decorateDateChange">
+                                <view class="weui-input right">{{decorate_date}}</view>
+                            </picker>
+                        </view>
+                    </view>
+                    <view class="weui-cell weui-cell_input ">
+                        <view class="weui-cell__hd ">
+                            <view class="weui-label">是否密闭</view>
+                        </view>
+                        <view class="weui-cell__bd weui-cell__ft weui-cell__ft_in-access">
+                            <picker bindchange="bindcloseChange" range="{{close_type}}">
+                                <view class="weui-input right">{{close_type[is_closed]}}</view>
+                            </picker>
+                        </view>
+                    </view>
+                    <view class="weui-cell weui-cell_input">
+                        <view class="weui-cell__hd">
+                            <view class="weui-label">室内温度</view>
+                        </view>
+                        <view class="weui-cell__bd weui-cell__ft weui-cell__ft_in-access">
+                            <picker bindchange="temperatureChange" value='{{temperature_index}}' range="{{temperature}}">
+                                <view class="weui-input right">{{temperature[temperature_index]}}</view>
+                            </picker>
+                        </view>
+                    </view>
+                </view>
+
+                <view>
+                    <view class="weui-cells">
+                        <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 0 }}"  wx:for="{{data}}" wx:key="item.id" wx:for-item="item" >
+                            <van-cell-group>
+                                <view class="weui-cell weui-cell__bd data_item">
+                                    <view class='item_left'>
+                                    <input value="{{item.position}}" data-id="{{item.id}}" placeholder="位置(如:卧室)" bindinput='positionInput'></input></view>
+                                    <view class='item_center'><input value="{{item.area}}" data-id="{{item.id}}" placeholder="面积(如:20)" bindinput='areaInput'></input></view>
+                                    <view class='item_right'><input value="{{item.data}}" data-id="{{item.id}}" placeholder="检测数值" bindinput='dataInput'></input></view>
+                                </view>
+                            </van-cell-group>
+                            <view slot="right" class="van-swipe-cell__right" data-id="{{item.id}}" bindtap='deleteItem'>删除</view>
+                        </van-swipe-cell>
+                    </view>
+                    <view class='add_icon' bindtap='addData' hidden='{{data.length>=7}}'><van-icon name="plus" size="42rpx" custom-class="icon" color='white'/></view>
+                </view>
+                <view class="weui-btn-area">
+                    <button class="weui-btn" type="primary" bindtap="submit" hover-class='btn_hover'
+                            disabled='{{!submit_ready}}'>确定
+                    </button>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

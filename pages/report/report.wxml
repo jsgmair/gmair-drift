@@ -1,0 +1,91 @@
+<view class="boxs" catchtouchmove="noneEnoughPeople">
+  <view bindtouchstart="handletouchtart" bindtouchmove="handletouchmove" bindtouchend="handletouchend">
+    <view class="box1">
+       <image mode="widthFix" class='image' src="https://console.gmair.net/drift/1.jpeg"/>
+    <view class="page__bd">
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-form-preview">
+                <view class="weui-form-preview__bd content">
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">姓名</view>
+                        <view class="weui-form-preview__value">{{report_data.consumerName}}</view>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">地址</view>
+                        <view class="weui-form-preview__value">{{report_data.consumerAddress}}</view>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">联系方式</view>
+                        <view class="weui-form-preview__value">{{report_data.consumerPhone}}</view>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">检测项目</view>
+                        <view class="weui-form-preview__value">{{template.detectName}}</view>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">检测日期</view>
+                        <view class="weui-form-preview__value">{{report_data.detectDate}}</view>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">入住日期</view>
+                        <view class="weui-form-preview__value">{{report_data.liveDate}}</view>
+                    </view>
+                     <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">装修完成日期</view>
+                        <view class="weui-form-preview__value">{{report_data.decorateDate}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        </view>
+        <view class='bottom_icon'><van-icon  name="arrow-down" size="50rpx" custom-class="icon" color='#00A6E4'/></view>
+        
+    </view>
+    <view class="box2">
+       <view class='box_item' hidden='{{report_data.closed}}'>检测时没有密闭</view>
+       <view class='box_item' hidden='{{!report_data.closed}}'>检测时密闭</view>
+       <view class='box_item'>当时室内温度是{{report_data.temperature}}</view>
+       <view class='box_item'>评价依据：{{template.evaluateBasis}}</view>
+       <view class='bottom_icon'><van-icon  name="arrow-down" size="50rpx" custom-class="icon" color='white'/></view>
+    </view>
+    <view class="box3">
+        <view class='box_item'>你总共检测了{{qua_cn+un_qua_cn}}个不用的位置</view>
+        <view class='box_item'>按照中国标准，共有{{qua_cn}}个合格{{un_qua_cn}}个不合格</view>
+        <view class='box_item'>按照美国标准，共有{{qua_en}}个合格{{un_qua_en}}个不合格</view>
+        <view class='box_item'>继续滑动查看详情</view>
+        <view class='bottom_icon'><van-icon  name="arrow-down" size="50rpx" custom-class="icon" color='white'/></view>
+    </view>
+    <view class="box4">
+        <view class="table">
+  <view class="tr bg-w">
+    <view class="th">位置</view>
+    <view class="th">面积(㎡)</view>
+    <view class="th ">数值(mg/m³)</view>
+    <view class="th ">中国标准</view>
+    <view class="th ">美国标准</view>
+  </view>
+  <block wx:for="{{list}}" wx:key="{{item.itemId}}">
+    <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
+      <view class="td">{{item.position}}</view>
+      <view class="td">{{item.area}}</view>
+      <view class="td">{{item.data}}</view>
+      <view class="td">{{item.qua_cn}}</view>
+      <view class="td">{{item.qua_en}}</view>
+    </view>
+    <view class="tr" wx:else>
+      <view class="td">{{item.position}}</view>
+      <view class="td">{{item.area}}</view>
+      <view class="td">{{item.data}}</view>
+      <view class="td">{{item.qua_cn}}</view>
+      <view class="td">{{item.qua_en}}</view>
+    </view>
+  </block>
+</view>
+<view class='bottom_icon'><van-icon  name="arrow-down" size="50rpx" custom-class="icon" color='white'/></view>
+    </view>
+    <view class="box5">
+        <view class='box_item'>{{template.knowledge}}</view>
+        <view class='box_item tips'>没有更多内容，点击右上角转发</view>
+    </view>
+  </view>
+</view>

@@ -180,6 +180,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.hideShareMenu();
     let that=this;
     let order_id=options.orderId;
     // order_id = 'GMO20190903airhwu31'

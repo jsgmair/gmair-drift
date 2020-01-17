@@ -226,10 +226,39 @@ Page({
       }
     })
   },
+
+  toReport(){
+     this.obtain_report_detail(this.data.order_id)
+  },
+
+  obtain_report_detail(order_id) {
+    let that = this
+    // console.log(order_id)
+    wx.request({
+      url: app.globalData.protocol + app.globalData.url +"/drift/report/query?orderId=" + order_id,
+      // url: "http://localhost:8026/drift/report/query?orderId=" + order_id,
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+      },
+      success: function (response) {
+        response = response.data
+        if(response.responseCode==="RESPONSE_OK"){
+          wx.navigateTo({
+            url: '/pages/report/report?orderId=' + order_id,
+          })
+        }else{
+          wx.navigateTo({
+            url: '/pages/report_submit/report_submit?orderId=' + order_id,
+          })
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.hideShareMenu();
     let that = this;
     let order_id = options.orderId;
     // order_id ="GMO20190909zh2l8o5"

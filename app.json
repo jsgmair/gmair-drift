@@ -15,7 +15,9 @@
     "pages/protocol/protocol",
     "pages/equip_detail/equip_detail",
     "pages/express/express",
-    "pages/service/service"
+    "pages/service/service",
+    "pages/report_submit/report_submit",
+    "pages/report/report"
   ],
   "tabBar": {
     "selectedColor": "#00A6E4",

@@ -103,6 +103,7 @@
         <view class='choose_btn_view' style='margin-top:70rpx' wx:if="{{status === 'APPLIED'}}">
             <button class="weui-btn" type="primary" bindtap="toPay" hover-class='btn_hover'>前往支付</button>
         </view>
+        
         <view class='choose_btn_view cancel' bindtap='order_cancel' style='margin-top:40rpx'
               wx:if="{{status === 'APPLIED'||status === 'PAYED'}}">
             取消订单
@@ -127,6 +128,9 @@
                 </picker>
             </modal>
             <button class="weui-btn" type="primary" bindtap="addOrder" hover-class='btn_hover'>填写寄回单号</button>
+        </view>
+        <view class='choose_btn_view' style='margin-top:70rpx' wx:if="{{status === 'FINISHED'||status==='DELIVERED'||status==='BACK'}}">
+            <button class="weui-btn" type="primary" bindtap="toReport" hover-class='btn_hover'>检测报告</button>
         </view>
     </view>
 </view>
