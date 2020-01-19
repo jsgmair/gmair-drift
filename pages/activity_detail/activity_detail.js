@@ -30,7 +30,8 @@ Page({
     service_show:false,
     text:'',
     url:'',
-    equip_url:''
+    equip_url:'',
+    notify_show:false,
   },
   handleContact(e){
       console.log(e.detail.path)
@@ -47,10 +48,15 @@ Page({
       // })
   },
 
-  togglePopup(e){
+  togglePopup(){
+    console.log('dhaksjdhak')
      this.setData({
-       service_show: false
+       notify_show: false
      })
+    wx.setStorage({
+      key: 'notify_show',
+      data: false,
+    })
   },
 
   /**
@@ -59,6 +65,20 @@ Page({
   onLoad: function (options) {
     let that = this;
     that.obtain_equip();
+    console.log(wx.getStorageSync("notify_show"))
+    let notify_show = wx.getStorageSync("notify_show")
+    this.setData({
+      notify_show: notify_show
+    })
+    setTimeout(()=>{
+      wx.setStorage({
+        key: 'notify_show',
+        data: false,
+      })
+      this.setData({
+        notify_show: false
+      })
+    },6000)
     //获取活动信息
     wx.request({
       url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + that.data.activity_id + '/profile',

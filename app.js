@@ -8,9 +8,20 @@ App({
     url: 'microservice.gmair.net',
     // url: '192.168.30.5:8026',
     port: 443,
+    notify_show:false
   },
   onLaunch: function () {
     this.check_session(this)
+    this.check_notify();
+  },
+
+  check_notify(){
+     if(new Date()<new Date("2020-01-30 23:59:00")){
+       wx.setStorage({
+         key: 'notify_show',
+         data: true,
+       })
+     }
   },
   check_session: function (context) {
     let that = this;

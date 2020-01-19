@@ -49,3 +49,6 @@
   justify-content: center;
   font-size: 30rpx;
 }
+.image{
+  width: 750rpx
+}

@@ -501,6 +501,7 @@ Page({
               response = response.data;
               if (response.responseCode == 'RESPONSE_OK') {
                 // console.log(that.formatSelectList(response.data))
+                response.data = that.formatResponse(response.data)
                 that.setData({
                   can_select_list: that.formatSelectList(response.data),
                   list: that.formatList(response.data)
@@ -527,6 +528,23 @@ Page({
     });
   },
 
+  formatResponse(data){
+    let array = []
+    for (let i = 0; i < data.length; i++) {
+      let json = data[i]
+      // console.log(json)
+      for (let key in json) {
+        console.log(key)
+        if (new Date(key)>new Date("2020-01-23 23:59:59")&&new Date(key)<new Date("2020-01-30 23:59:59")) {
+          json[key] = false
+        }
+      }
+      array.push(json)
+    }
+    console.log(array)
+    return array
+  },
+
   formatSelectList(data){
     let array = []
     for (let i = 0; i < data.length; i++) {
@@ -546,7 +564,7 @@ Page({
     for (let i = 0; i < data.length; i++) {
       let json = data[i]
       for (let key in json) {
-          array.push(key)
+        array.push(key)
       }
     }
     return array

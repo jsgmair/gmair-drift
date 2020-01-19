@@ -9,6 +9,14 @@
             </view>
         </view>
     </view>
+    <van-popup
+    show="{{ notify_show }}"
+    custom-class="center"
+    transition="none"
+    bind:close="togglePopup"
+  >
+    <image mode="widthFix" class='image' src = "https://console.gmair.net/drift/notify.png"></image>
+  </van-popup>
     <!-- <view class="activity_time">
       <!-- <view class="page__title" style="color:#00a6e4">{{act_name}}</view>
       <view class="page__desc">{{act_desc}}</view>
