@@ -81,8 +81,9 @@ Component({
         json['canSelect'] = this.check_select(value)
         json['canSelectRange'] = this.check_select_range(value)
         dateArr.push(json)
+        console.log(json)
       }
-      let last = 7 - this.data.lastDay%7
+      let last = 7 - (this.data.lastDay+this.data.firstDay-1)%7
       for (var i = 0; i < last; i++) {
         json = {}
         json['index'] = ''

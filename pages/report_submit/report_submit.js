@@ -257,7 +257,7 @@ Page({
         response = response.data;
         if (response.responseCode == 'RESPONSE_OK') {
           wx.request({
-            url: 'http://localhost:8026/drift/report/query?orderId=' + that.data.order_id,
+            url: app.globalData.protocol + app.globalData.url+'/drift/report/query?orderId=' + that.data.order_id,
             header: {
               "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
             },
