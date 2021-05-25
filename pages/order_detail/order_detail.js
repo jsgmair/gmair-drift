@@ -7,6 +7,7 @@ Page({
    */
   data: {
     order_id: "",
+    activity_id:"",
     address: '',
     address_detail: '',
     name: '',
@@ -16,7 +17,8 @@ Page({
     item_quantity: '',
     realPay: '',
     status: '',
-    time: '',
+    start_time: '',
+    back_time:'',
     modal_hidden:true,
     company_array:['顺丰快递'],
     company_index: '0',
@@ -25,11 +27,71 @@ Page({
     list:[],
     equipPrice:'',
     annexPrice:'',
-    back_time:'',
     back_address:'',
     back_name:'',
-    back_phone:''
+    back_phone:'',
+    is_select:false,
+    datelist:[],//日期范围list
+    can_select_list: [],//可以选择的日期
+    interval:2,
   },
+
+  //日期选择
+  daySelect(e){
+    let start_time = e.detail.item.value
+    let back_time = this.formatEndTime(start_time, this.data.interval)
+    this.setData({
+      start_time:start_time,
+      back_time: back_time,
+      is_select: false
+    })
+     console.log(start_time)
+      this.update_expectDate(this.data.order_id,start_time)
+  },
+
+  select_day(e){
+    console.log("select")
+    this.setData({
+      is_select:true
+    })
+  },
+  toggleBottomPopup(e){
+    this.setData({
+      is_select: false
+    })
+  },
+
+  //根据id修改expectDate
+  update_expectDate(orderId,expectedDate){
+    wx.request({
+      url: app.globalData.protocol + app.globalData.url + '/drift/order/updateExpectedDate',
+      method:'POST',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+      },
+      data: {
+        orderId: orderId,
+        expectedDate:expectedDate
+      },
+      success:function(response){
+          response = response.data
+          if (response.responseCode === "RESPONSE_OK"){
+            wx.showToast({
+              title: '修改成功',
+              icon: 'success',
+              duration: 2000
+            })
+          }else{
+            wx.showToast({
+              title: '修改失败',
+              icon: 'none',
+              duration: 2000
+            })
+          }
+      }
+    })
+  },
+
   check_submit(expressId,company){
     if(expressId === ""||company === ""|| company == undefined){
       return false
@@ -126,6 +188,9 @@ Page({
       modal_hidden: true
     })
   },
+
+  
+
   obtain_order_detail(order_id) {
     let that = this
     // console.log(order_id)
@@ -139,8 +204,12 @@ Page({
         response = response.data
         if (response.responseCode === "RESPONSE_OK") {
           that.obtain_activity(response.data.activityId)
-          let time = util.formatTimeToDate(response.data.expectedDate) + '至' + util.formatTimeToDate(response.data.expectedDate + response.data.intervalDate * 86400000)
-          let back_time = util.formatTimeToDate(response.data.expectedDate + response.data.intervalDate * 86400000)
+          let expectedDate = response.data.expectedDate;
+          let start_time = null,back_time=null
+          if(expectedDate !== null){
+            start_time = util.formatTimeToDate(expectedDate)
+            back_time = util.formatTimeToDate(expectedDate + response.data.intervalDate * 86400000)
+          }
           let num = 0
           let price = 0
           // for (let i = 1; i < response.data.list.length; i++) {
@@ -157,7 +226,7 @@ Page({
             item_quantity: num,
             realPay: response.data.realPay.toFixed(2),
             status:response.data.status,
-            time:time,
+            start_time:start_time,
             back_time:back_time,
             list:response.data.list,
             equipPrice: response.data.list[0].itemPrice,
@@ -259,14 +328,111 @@ Page({
    */
   onLoad: function (options) {
     wx.hideShareMenu();
+    console.log(options)
     let that = this;
     let order_id = options.orderId;
-    // order_id ="GMO20190909zh2l8o5"
     this.obtain_order_detail(order_id)
     that.setData({
       order_id: order_id
     })
     // this.obtain_order_detail(this.data.order_id)
+
+    //获取日期list
+    wx.request({
+      url: app.globalData.protocol + app.globalData.url + '/drift/order/' + order_id,
+      success: function (response) {
+        response = response.data;
+        if (response.responseCode == 'RESPONSE_OK') {
+          that.setData({
+            activity_id:response.data.activityId
+          });
+          //获取日期list
+          wx.request({
+            url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + that.data.activity_id + '/available',
+            success: function (response) {
+              response = response.data;
+              if (response.responseCode == 'RESPONSE_OK') {         
+                response.data = that.formatResponse(response.data)
+                that.setData({
+                  can_select_list: that.formatSelectList(response.data),
+                  datelist: that.formatList(response.data)
+                })
+                for (let i = 0; i < response.data.length; i++) {
+                  let json = response.data[i]
+                  // console.log(json)
+                  for (let key in json) {
+                    if (json[key] === true) {
+                      let starttime = key
+                      that.setData({
+                        //start_time: starttime,
+                        //back_time: that.formatEndTime(starttime, that.data.interval)
+                      })
+                      return
+                    }
+                  }
+                }
+              }
+            }
+          });
+        }
+      }
+    });
+  },
+
+  formatResponse(data){
+    let array = []
+    for (let i = 0; i < data.length; i++) {
+      let json = data[i]
+      // console.log(json)
+      for (let key in json) {
+        if (new Date(key)>new Date("2020-01-23 23:59:59")&&new Date(key)<new Date("2020-01-30 23:59:59")) {
+          json[key] = false
+        }
+      }
+      array.push(json)
+    }
+    return array
+  },
+
+  formatSelectList(data){
+    let array = []
+    for (let i = 0; i < data.length; i++) {
+      let json = data[i]
+      // console.log(json)
+      for (let key in json) {
+        if (json[key] === true) {
+          // console.log(key)
+          array.push(key)
+        }
+      }
+    }
+    return array
+  },
+  formatList(data) {
+    let array = []
+    for (let i = 0; i < data.length; i++) {
+      let json = data[i]
+      for (let key in json) {
+        array.push(key)
+      }
+    }
+    return array
+  },
+  formatStartTime(start_date,new_date){
+    // console.log(new_date.getTime())
+    let result;
+    if(start_date>=new_date.getTime){
+      result = util.formatTimeToDate(start_date)
+    }else{
+      result = util.formatTimeToDate(new_date)
+    }
+    return result;
+  },
+  formatEndTime(start_time,interval){
+    let result;
+    let start = new Date(start_time)
+    result = start.getTime() + 86400000*interval
+    return util.formatTimeToDate(result)
   },
 
   /**

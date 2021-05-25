@@ -2,6 +2,9 @@
 page{
   height: 100%;
 }
+.weui-panel{
+  margin-bottom: 10px;
+}
 .page{
   height: 100%;
   overflow: scroll;
@@ -130,3 +133,6 @@ page{
   flex: 3;
   justify-content: flex-end
 }
+
+
+

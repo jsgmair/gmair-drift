@@ -497,7 +497,6 @@ Page({
           wx.request({
             url: app.globalData.protocol + app.globalData.url + '/drift/activity/' + that.data.activity_id + '/available',
             success: function (response) {
-              // console.log(response)
               response = response.data;
               if (response.responseCode == 'RESPONSE_OK') {
                 // console.log(that.formatSelectList(response.data))
@@ -534,7 +533,6 @@ Page({
       let json = data[i]
       // console.log(json)
       for (let key in json) {
-        console.log(key)
         if (new Date(key)>new Date("2020-01-23 23:59:59")&&new Date(key)<new Date("2020-01-30 23:59:59")) {
           json[key] = false
         }

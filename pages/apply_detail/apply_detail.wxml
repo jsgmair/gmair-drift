@@ -15,8 +15,8 @@
             </view>
             <view class="weui-cell__bd">
                 <view class="weui-input">{{starttime}}</view>
-            </view>
-            <view class="weui-cell__ft">
+            </view>          
+            <view class="weui-cell__ft">  
                 <van-tag class="demo-margin-right" plain type="primary">时间选择</van-tag>
                 <!-- <view class="weui-cell__ft_in-access"></view> -->
             </view>

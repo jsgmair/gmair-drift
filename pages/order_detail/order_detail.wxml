@@ -90,12 +90,28 @@
           
         </view>
         <!-- </view> -->
-        <view class="item_panel">
-            <view class="panel_left">预约使用日期</view>
-            <view class="panel_right">{{time}}</view>
+      
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">使用日期</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <view wx:if="{{start_time !== null}}" class="weui-input">{{start_time}}</view>
+                    <view wx:else class="weui-input"></view>
+                </view>
+                <view wx:if="{{status === 'APPLIED'||status==='PAYED'}}" class="weui-cell__ft"  bindtap='select_day'>  
+                    <van-tag wx:if="{{start_time !== null}}" class="demo-margin-right" plain type="primary">修改时间</van-tag>
+                    <van-tag wx:else class="demo-margin-right" plain type="primary">设置时间</van-tag>
+                </view>
+            </view>
         </view>
-        <van-notice-bar wx:if="{{notification!==''}}" text="使用结束后，请您于{{back_time}}前将检测仪寄出"
-                        left-icon="https://console.gmair.net/drift/alert.png"/>
+
+            <van-notice-bar wx:if="{{notification!=='' && back_time !== null}}" text="使用结束后，请您于{{back_time}}前将检测仪寄出"
+                        left-icon="https://console.gmair.net/drift/alert.png"/>   
+            <van-notice-bar wx:else text="请设置商品使用日期" left-icon="https://console.gmair.net/drift/alert.png"/>
+    
+        
         <!-- <view class="item_panel">
             <view class="panel_left">请于{{back_time}}前将检测仪寄出</view>
             <!-- <view class="panel_right">{{back_time}}</view> -->
@@ -132,5 +148,16 @@
         <view class='choose_btn_view' style='margin-top:70rpx' wx:if="{{status === 'FINISHED'||status==='DELIVERED'||status==='BACK'}}">
             <button class="weui-btn" type="primary" bindtap="toReport" hover-class='btn_hover'>检测报告</button>
         </view>
-    </view>
+    </view>  
 </view>
+
+<van-popup
+        wx:if="{{is_select}}"
+        show="{{ is_select }}"
+        position="bottom"
+        custom-class="bottom"
+        bind:close="toggleBottomPopup"
+>
+        <gm-calendar day_select="{{start_time}}" list="{{datelist}}" can_select_list="{{can_select_list}}"
+                 bind:daySelect="daySelect"></gm-calendar>
+</van-popup>
