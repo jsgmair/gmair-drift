@@ -27,47 +27,56 @@ Page({
   },
   //根据手机号查询订单
   searchByPhone(e){
-    if(!util.validate_mobile(this.data.phone)){
+    let that = this;
+    if(that.data.phone === ""){
+        this.obtain_list()
+    }else if(!util.validate_mobile(that.data.phone)){
       wx.showToast({
         title: "请输入正确的手机号",
         icon: 'none'
       })
     }else{
-        wx.request({
-          url: app.globalData.protocol + app.globalData.url + '/drift/order/findByPhone?phone=' + this.data.phone,
-          header: {
-            "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
-          },
-          success:function(response){
-            response = response.data
-            if (response.responseCode == 'RESPONSE_OK') {
-              let orders = response.data;
-              for (let i = 0; i < orders.length; i++) {
-                //天猫订单expectedDate默认为null
-                if(orders[i].expectedDate != null)
-                  orders[i].time = util.formatTimeToDate(orders[i].expectedDate) + '至' + util.formatTimeToDate(orders[i].expectedDate + orders[i].intervalDate * 86400000)
-                else
-                  orders[i].time = null;
-                  let num = 0
-                for (let j = 1; j < orders[i].list.length; j++) {
-                  // console.log(orders[i].list[j].quantity)
-                  num += orders[i].list[j].quantity * orders[i].list[j].singleNum
-                }
-                // console.log(num)
-                orders[i].price = orders[i].realPay.toFixed(2)
-                orders[i].item_quantity = num
-              }
-              orders.reverse()
-              that.setData({ size: orders.length, order_list: orders })
-            }else if(response.responseCode==="RESPONSE_NULL"){
-              that.setData({
-                size:0,
-                order_list:[]
-              })
-            }
-          }
-        })
+       this.obtain_list_ByPhone(that.data.phone)
     }
+  },
+
+  obtain_list_ByPhone(phone){
+    let that = this
+    wx.request({
+      url: app.globalData.protocol + app.globalData.url + '/drift/order/findByPhone?phone=' + phone,
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+      },
+      success:function(response){ 
+        response = response.data
+        if (response.responseCode == 'RESPONSE_OK') {     
+          let orders = response.data;
+          for (let i = 0; i < orders.length; i++) {
+
+            //天猫订单expectedDate默认为null
+            if(orders[i].expectedDate != null)
+              orders[i].time = util.formatTimeToDate(orders[i].expectedDate) + '至' + util.formatTimeToDate(orders[i].expectedDate + orders[i].intervalDate * 86400000)
+            else
+              orders[i].time = null;
+            let num = 0
+            for (let j = 1; j < orders[i].list.length; j++) {
+              num += orders[i].list[j].quantity * orders[i].list[j].singleNum
+            }
+            // console.log(num)
+            orders[i].price = orders[i].realPay.toFixed(2)
+            orders[i].item_quantity = num
+          }
+        
+          orders.reverse()
+          that.setData({ size: orders.length, order_list: orders })
+        }else if(response.responseCode==="RESPONSE_NULL"){
+          that.setData({
+            size:0,
+            order_list:[]
+          })
+        }
+      }
+    })
   },
 
   /**
@@ -100,7 +109,6 @@ Page({
             orders[i].price = orders[i].realPay.toFixed(2)
             orders[i].item_quantity = num
           }
-          console.log(orders)
           orders.reverse()
           that.setData({ size: orders.length, order_list: orders })
         }else if(response.responseCode==="RESPONSE_NULL"){
@@ -113,7 +121,10 @@ Page({
     })
   },
   onLoad: function (options) {
-     this.obtain_list()
+    if(this.data.phone === "")
+      this.obtain_list()
+    else
+      this.obtain_list_ByPhone(this.data.phone)
   },
 
   /**
@@ -127,7 +138,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.obtain_list()
+    if(this.data.phone === "")
+      this.obtain_list()
+    else
+      this.obtain_list_ByPhone(this.data.phone)
   },
 
   /**
